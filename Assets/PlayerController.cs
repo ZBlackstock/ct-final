@@ -5,9 +5,16 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int moveSpeed = 600;
+
     [SerializeField] private int uppercutIdleForce = 300;
     [SerializeField] private int uppercutSprintForce = 600;
     private int uppercutForce = 300;
+    private bool uppercut;
+
+    [SerializeField] private int attackIdleForce = 300;
+    [SerializeField] private int attackSprintForce = 600;
+    private int attackForce = 300;
+    private bool attack;
 
     private float moveInput;
     private int direction = 1; // 1 = Right // -1 = left
@@ -15,7 +22,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator bodyAnim;
     private AnimatorStateInfo bodyAnimState;
     private bool faceRight = true;
-    private bool uppercut;
     private Player_Animations animVariables;
     private bool canmove; // just for debug inspector
 
@@ -31,7 +37,7 @@ public class PlayerController : MonoBehaviour
     {
         canmove = canMove();
 
-        if (Input.GetKeyDown(KeyCode.X) && canMove())
+        if (Input.GetKeyDown(KeyCode.C) && canMove())
         {
             if (bodyAnimState.IsName("Player_Run"))
             {
@@ -43,6 +49,19 @@ public class PlayerController : MonoBehaviour
             }
 
             uppercut = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.X) && canMove())
+        {
+            if (bodyAnimState.IsName("Player_Run"))
+            {
+                attackForce = attackSprintForce;
+            }
+            else
+            {
+                attackForce = attackIdleForce;
+            }
+
+            attack = true;
         }
 
         if (canMove())
@@ -56,6 +75,7 @@ public class PlayerController : MonoBehaviour
 
         bodyAnim.SetFloat("moveInput", moveInput);
         bodyAnim.SetBool("uppercut", uppercut);
+        bodyAnim.SetBool("attack", attack);
 
         if ((faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0))
         {
@@ -86,6 +106,21 @@ public class PlayerController : MonoBehaviour
             if (animVariables.GetUppercutStepBack())
             {
                 rb.AddForce(new Vector2(-uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+            }
+
+            if (attack)
+            {
+                attack = false;
+                rb.velocity = Vector2.zero;
+            }
+            if (animVariables.GetAttack())
+            {
+                rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+            }
+
+            if (animVariables.GetAttackKnockback())
+            {
+                rb.AddForce(new Vector2(-attackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
             }
         }
     }

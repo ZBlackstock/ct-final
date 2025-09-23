@@ -21,6 +21,8 @@ public class Player_Animations : MonoBehaviour
         return uppercutStepBack;    
     }
 
+    ///////////////////////////////////////////
+
     private bool uppercut;
 
     public void uppercut_True()
@@ -36,5 +38,43 @@ public class Player_Animations : MonoBehaviour
     public bool GetUppercut()
     {
         return uppercut;
+    }
+
+    ///////////////////////////////////////////
+
+    private bool attack;
+
+    public void attack_True()
+    {
+        attack = true;
+    }
+
+    public void attack_False()
+    {
+        attack = false;
+    }
+
+    public bool GetAttack()
+    {
+        return attack;
+    }
+
+    ///////////////////////////////////////////
+
+    private bool attackKnockback;
+
+    public void attackKnockback_True()
+    {
+        attackKnockback = true;
+    }
+
+    public void attackKnockback_False()
+    {
+        attackKnockback = false;
+    }
+
+    public bool GetAttackKnockback()
+    {
+        return attackKnockback;
     }
 }
