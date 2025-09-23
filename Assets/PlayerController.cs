@@ -6,11 +6,19 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private int moveSpeed = 600;
 
+    [Header("Jumping")]
+    [SerializeField] private int jumpForce = 6000;
+    private bool pressJump;
+    [SerializeField] private float groundedGravity;
+    [SerializeField] private float jumpingGravity;
+
+    [Header("Uppercut Counter")]
     [SerializeField] private int uppercutIdleForce = 300;
     [SerializeField] private int uppercutSprintForce = 600;
     private int uppercutForce = 300;
     private bool uppercut;
 
+    [Header("Attack")]
     [SerializeField] private int attackIdleForce = 300;
     [SerializeField] private int attackSprintForce = 600;
     private int attackForce = 300;
@@ -25,6 +33,8 @@ public class PlayerController : MonoBehaviour
     private Player_Animations animVariables;
     private bool canmove; // just for debug inspector
 
+    [SerializeField] private GroundCheck groundCheck;
+
 
     private void Awake()
     {
@@ -37,7 +47,7 @@ public class PlayerController : MonoBehaviour
     {
         canmove = canMove();
 
-        if (Input.GetKeyDown(KeyCode.C) && canMove())
+        if (Input.GetKeyDown(KeyCode.C) && canMove() && groundCheck.isGrounded)
         {
             if (bodyAnimState.IsName("Player_Run"))
             {
@@ -50,7 +60,7 @@ public class PlayerController : MonoBehaviour
 
             uppercut = true;
         }
-        else if (Input.GetKeyDown(KeyCode.X) && canMove())
+        else if (Input.GetKeyDown(KeyCode.X) && canMove() && groundCheck.isGrounded)
         {
             if (bodyAnimState.IsName("Player_Run"))
             {
@@ -63,6 +73,10 @@ public class PlayerController : MonoBehaviour
 
             attack = true;
         }
+        if (Input.GetKeyDown(KeyCode.Space) && canMove() && groundCheck.isGrounded)
+        {
+            pressJump = true;
+        }
 
         if (canMove())
         {
@@ -73,14 +87,24 @@ public class PlayerController : MonoBehaviour
             moveInput = 0;
         }
 
-        bodyAnim.SetFloat("moveInput", moveInput);
-        bodyAnim.SetBool("uppercut", uppercut);
-        bodyAnim.SetBool("attack", attack);
-
         if ((faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0))
         {
             Flip();
         }
+
+        if (groundCheck.isGrounded)
+        {
+            rb.gravityScale = groundedGravity;
+        }
+        else
+        {
+            rb.gravityScale = jumpingGravity;
+        }
+
+        bodyAnim.SetFloat("moveInput", moveInput);
+        bodyAnim.SetBool("uppercut", uppercut);
+        bodyAnim.SetBool("attack", attack);
+        bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
     }
 
     private void FixedUpdate()
@@ -90,6 +114,13 @@ public class PlayerController : MonoBehaviour
             Vector2 targetVel = new Vector2(moveInput * moveSpeed, rb.velocity.y);
             Vector2 velocityChange = targetVel - rb.velocity;
             rb.AddForce(velocityChange, ForceMode2D.Impulse);
+
+            if (pressJump)
+            {
+                pressJump = false;
+
+                rb.AddForce(new Vector2(rb.velocity.x, jumpForce * Time.fixedDeltaTime), ForceMode2D.Impulse);
+            }
         }
         else
         {
@@ -98,29 +129,32 @@ public class PlayerController : MonoBehaviour
                 uppercut = false;
                 rb.velocity = Vector2.zero;
             }
-            if (animVariables.GetUppercut())
-            {
-                rb.AddForce(new Vector2(uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
-            }
-
-            if (animVariables.GetUppercutStepBack())
-            {
-                rb.AddForce(new Vector2(-uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
-            }
-
-            if (attack)
+            else if (attack)
             {
                 attack = false;
                 rb.velocity = Vector2.zero;
             }
-            if (animVariables.GetAttack())
+
+
+            if (animVariables.GetUppercut())
+            {
+                rb.AddForce(new Vector2(uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+            }
+            else if (animVariables.GetUppercutStepBack())
+            {
+                rb.AddForce(new Vector2(-uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+            }
+            else if (animVariables.GetAttack())
             {
                 rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
             }
-
-            if (animVariables.GetAttackKnockback())
+            else if (animVariables.GetAttackKnockback())
             {
                 rb.AddForce(new Vector2(-attackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.velocity = Vector2.zero;
             }
         }
     }
