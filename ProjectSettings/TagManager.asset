@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - enemy
+  - playerAttack
   layers:
   - Default
   - TransparentFX
@@ -12,10 +14,10 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
-  - 
-  - 
+  - Player_Body
+  - Player_Attack
+  - Enemy_Body
+  - Enemy_Attack
   - 
   - 
   - 
@@ -41,6 +43,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: AbsBack
+    uniqueID: 1874470679
+    locked: 0
   - name: Background5
     uniqueID: 1528296387
     locked: 0
@@ -61,4 +66,22 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 2814557085
+    locked: 0
+  - name: Foreground-1
+    uniqueID: 63353833
+    locked: 0
+  - name: Foreground-2
+    uniqueID: 965830489
+    locked: 0
+  - name: Foreground-3
+    uniqueID: 4103652613
+    locked: 0
+  - name: Foreground-4
+    uniqueID: 1401541629
+    locked: 0
+  - name: Foreground-5
+    uniqueID: 4161032975
+    locked: 0
+  - name: UI
+    uniqueID: 1824865497
     locked: 0

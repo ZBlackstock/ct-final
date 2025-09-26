@@ -4,6 +4,21 @@ using UnityEngine;
 
 public class Player_Animations : MonoBehaviour
 {
+    private CameraShake cameraShake;
+    [SerializeField] private float shakeDuration = 0.3f;
+
+    private void Awake()
+    {
+        cameraShake = FindFirstObjectByType<CameraShake>();
+    }
+
+    public void ShakeCamera()
+    {
+        cameraShake.ShakeCamera(shakeDuration);
+    }
+
+    ///////////////////////////////////////////
+
     private bool uppercutStepBack;
 
     public void uppercutStepback_True()
@@ -18,7 +33,7 @@ public class Player_Animations : MonoBehaviour
 
     public bool GetUppercutStepBack()
     {
-        return uppercutStepBack;    
+        return uppercutStepBack;
     }
 
     ///////////////////////////////////////////
@@ -76,5 +91,42 @@ public class Player_Animations : MonoBehaviour
     public bool GetAttackKnockback()
     {
         return attackKnockback;
+    }
+
+    ///////////////////////////////////////////
+
+    private bool step;
+
+    public void step_True()
+    {
+        step = true;
+    }
+
+    public void step_False()
+    {
+        step = false;
+    }
+
+    public bool GetStep()
+    {
+        return step;
+    }
+    ///////////////////////////////////////////
+
+    private bool stepKnockback;
+
+    public void stepKnockback_True()
+    {
+        stepKnockback = true;
+    }
+
+    public void stepKnockback_False()
+    {
+        stepKnockback = false;
+    }
+
+    public bool GetStepKnockback()
+    {
+        return stepKnockback;
     }
 }
