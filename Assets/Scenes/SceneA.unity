@@ -33278,6 +33278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ignoreWakeUp: 1
+  wakeUpKneel: 0
   moveSpeed: 40
   jumpForce: 4000
   groundedGravity: 9.8

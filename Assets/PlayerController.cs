@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public bool ignoreWakeUp;
+    public bool wakeUpKneel;
     [SerializeField] private int moveSpeed = 600;
 
     [Header("Jumping")]
@@ -65,6 +66,8 @@ public class PlayerController : MonoBehaviour
         animVariables = bodyAnim.GetComponent<Player_Animations>();
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
         health = GetComponentInChildren<Player_Health>();
+
+        bodyAnim.SetBool("wakeUpKneel", wakeUpKneel);
     }
 
     void Update()
@@ -72,7 +75,7 @@ public class PlayerController : MonoBehaviour
         canmove = canMove();
         moveInput = canMove() ? Input.GetAxisRaw("Horizontal") : 0;
 
-        startTimer = !ignoreWakeUp ? -Time.deltaTime : startTimer = -1;
+        startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
 
         CheckInput();
         ExecuteInputs();
