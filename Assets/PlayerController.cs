@@ -12,31 +12,38 @@ public class PlayerController : MonoBehaviour
     private bool pressJump;
     public float groundedGravity;
     public float jumpingGravity;
+    [SerializeField] private float jumpInputWait = 0.1f;
+    private float jumpInputTimer;
 
     [Header("Uppercut Counter")]
     [SerializeField] private int uppercutIdleForce = 300;
     [SerializeField] private int uppercutSprintForce = 600;
     private int uppercutForce = 300;
     private bool uppercut;
+    [SerializeField] private float uppercutInputWait = 0.1f;
+    private float uppercutInputTimer;
 
     [Header("Step Counter")]
     [SerializeField] private int stepIdleForce = 200;
     [SerializeField] private int stepSprintForce = 300;
     private int stepForce = 300;
     private bool step;
+    [SerializeField] private float stepInputWait = 0.1f;
+    private float stepInputTimer;
 
     [Header("Attack")]
     [SerializeField] private int attackIdleForce = 300;
     [SerializeField] private int attackSprintForce = 600;
     private int attackForce = 300;
     private bool attack;
+    [SerializeField] private float attackInputWait = 0.1f;
+    private float attackInputTimer;
 
     [Header("AttackKnockback")]
     [SerializeField] private int attackKnockbackForce = -500;
     public bool attackKnockback;
 
     public Vector2 hurtKnockbackForce;
-
 
     private float moveInput;
     private int direction = 1; // 1 = Right // -1 = left
@@ -51,6 +58,7 @@ public class PlayerController : MonoBehaviour
     private float startTimer = 9f;
     private Player_Health health;
 
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -62,68 +70,85 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         canmove = canMove();
-        if (!ignoreWakeUp)
-        {
-            startTimer -= Time.deltaTime;
-        }
-        else
-        {
-            startTimer = -1;
-        }
+        moveInput = canMove() ? Input.GetAxisRaw("Horizontal") : 0;
 
-        if (!health.IsHurt())
+        startTimer = !ignoreWakeUp ? -Time.deltaTime : startTimer = -1;
+
+        CheckInput();
+        ExecuteInputs();
+        SetAnimatorParameters();
+        SubtractTimers();
+        DetectAppropriateGravScale();
+    }
+
+    private void SetAnimatorParameters()
+    {
+        bodyAnim.SetFloat("moveInput", moveInput);
+        bodyAnim.SetFloat("startTimer", startTimer);
+        bodyAnim.SetBool("uppercut", uppercut);
+        bodyAnim.SetBool("step", step);
+        bodyAnim.SetBool("attack", attack);
+        bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
+    }
+
+    private void SubtractTimers()
+    {
+        attackInputTimer -= Time.deltaTime;
+        uppercutInputTimer -= Time.deltaTime;
+        stepInputTimer -= Time.deltaTime;
+        jumpInputTimer -= Time.deltaTime;
+    }
+
+    private void CheckInput()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            if (Input.GetKeyDown(KeyCode.C) && canMove() && groundCheck.isGrounded)
+            uppercutInputTimer = uppercutInputWait;
+        }
+        else if (Input.GetKeyDown(KeyCode.X))
+        {
+            attackInputTimer = attackInputWait;
+        }
+        else if (Input.GetKeyDown(KeyCode.Z))
+        {
+            stepInputTimer = stepInputWait;
+        }
+        else if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jumpInputTimer = jumpInputWait;
+        }
+    }
+    private void DetectAppropriateGravScale()
+    {
+        rb.gravityScale = groundCheck.isGrounded && !bodyAnimState.IsName("Player_Hurt") ? groundedGravity : jumpingGravity;
+    }
+
+    private void ExecuteInputs()
+    {
+        if (!health.IsHurt() && !health.IsDeath())
+        {
+            if (uppercutInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
-                if (bodyAnimState.IsName("Player_Run"))
-                {
-                    uppercutForce = uppercutSprintForce;
-                }
-                else
-                {
-                    uppercutForce = uppercutIdleForce;
-                }
-
+                uppercutInputTimer = 0;
+                uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (Input.GetKeyDown(KeyCode.X) && canMove() && groundCheck.isGrounded)
+            else if (attackInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
-                if (bodyAnimState.IsName("Player_Run"))
-                {
-                    attackForce = attackSprintForce;
-                }
-                else
-                {
-                    attackForce = attackIdleForce;
-                }
-
+                attackInputTimer = 0;
+                attackForce = bodyAnimState.IsName("Player_Run") ? attackSprintForce : attackIdleForce;
                 attack = true;
             }
-            else if (Input.GetKeyDown(KeyCode.Z) && canMove() && groundCheck.isGrounded)
+            else if (stepInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
-                if (bodyAnimState.IsName("Player_Run"))
-                {
-                    stepForce = stepSprintForce;
-                }
-                else
-                {
-                    stepForce = stepIdleForce;
-                }
-
+                stepInputTimer = 0;
+                stepForce = bodyAnimState.IsName("Player_Run") ? stepSprintForce : stepIdleForce;
                 step = true;
             }
-            if (Input.GetKeyDown(KeyCode.Space) && canMove() && groundCheck.isGrounded)
+            if (jumpInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
+                jumpInputTimer = 0;
                 pressJump = true;
-            }
-
-            if (canMove())
-            {
-                moveInput = Input.GetAxisRaw("Horizontal");
-            }
-            else
-            {
-                moveInput = 0;
             }
 
             if ((faceRight == false && moveInput > 0 || faceRight == true && moveInput < 0))
@@ -131,23 +156,6 @@ public class PlayerController : MonoBehaviour
                 Flip();
             }
         }
-
-
-        if (groundCheck.isGrounded && !bodyAnimState.IsName("Player_Hurt"))
-        {
-            rb.gravityScale = groundedGravity;
-        }
-        else
-        {
-            rb.gravityScale = jumpingGravity;
-        }
-
-        bodyAnim.SetFloat("moveInput", moveInput);
-        bodyAnim.SetFloat("startTimer", startTimer);
-        bodyAnim.SetBool("uppercut", uppercut);
-        bodyAnim.SetBool("step", step);
-        bodyAnim.SetBool("attack", attack);
-        bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
     }
 
     private void FixedUpdate()
@@ -216,15 +224,19 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        else
+        else // player is taking damage
         {
-            Vector2 force = new Vector2(hurtKnockbackForce.x * Time.fixedDeltaTime, hurtKnockbackForce.y * Time.fixedDeltaTime);
+            // Check if jumping, if so, subtract current y velocity
+            Vector2 force = new Vector2(hurtKnockbackForce.x * Time.fixedDeltaTime,
+                bodyAnimState.IsName("Player_Run") ? hurtKnockbackForce.y * Time.fixedDeltaTime :
+                hurtKnockbackForce.y * Time.fixedDeltaTime - rb.velocity.y);
             rb.AddForce(force, ForceMode2D.Impulse);
             bodyAnim.SetBool("hurt", false);
             health.SetHurt(false);
         }
     }
 
+    // Flip player scaling
     public void Flip()
     {
         faceRight = !faceRight;
@@ -234,6 +246,8 @@ public class PlayerController : MonoBehaviour
         direction *= -1;
     }
 
+    // Checks if player anim is currenty a movable state (not interacting or taking damage etc
+    // Common check to see if player can perform action
     bool canMove()
     {
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);

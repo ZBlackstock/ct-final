@@ -22,6 +22,9 @@ public class Player_Health : MonoBehaviour
     private Settings settings;
 
     private float timer = -1f; // For when to freeze after taking hit
+    private Player_Particles playerParticles;
+    [SerializeField] private SpriteRenderer[] playerSprites;
+    [SerializeField] private GameObject trail;
 
     void Awake()
     {
@@ -29,6 +32,7 @@ public class Player_Health : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         cameraShake = FindFirstObjectByType<CameraShake>();
         settings = FindFirstObjectByType<Settings>();
+        playerParticles = GetComponentInParent<Player_Particles>();
     }
 
     void Update()
@@ -51,7 +55,7 @@ public class Player_Health : MonoBehaviour
 
         if (timer < 0 && timer != -1f)
         {
-            settings.SetTimeScale(0, 0.3f);
+            settings.SetTimeScale(0, !death ? 0.3f : 0.6f);
             timer = -1f;
         }
         else if (timer > 0)
@@ -65,28 +69,70 @@ public class Player_Health : MonoBehaviour
     {
         hurt = true;
         health--;
-
-        invincibilityTimer = invincibilityDuration;
-        rb.gravityScale = playerController.jumpingGravity;
-        if (fromRight && playerController.hurtKnockbackForce.x > 0 || !fromRight && playerController.hurtKnockbackForce.x < 0)
-        {
-            playerController.hurtKnockbackForce = new Vector2(playerController.hurtKnockbackForce.x * -1, playerController.hurtKnockbackForce.y);
-        }
-
-        cameraShake.ShakeCamera(0.3f);
-        tintAnim.SetTrigger("hit");
-        anim.SetBool("hurt", true);
-        timer = 0.1f;
+        timer = 0.05f; //Time until brief "hit pause" 
 
         if (health <= 0)
         {
+            print("Dead");
+
             Player_Death();
+            DeathEffects();
+        }
+        else
+        {
+            print("Hurt");
+            if (fromRight && playerController.hurtKnockbackForce.x > 0 || !fromRight && playerController.hurtKnockbackForce.x < 0)
+            {
+                playerController.hurtKnockbackForce = new Vector2(playerController.hurtKnockbackForce.x * -1, playerController.hurtKnockbackForce.y);
+            }
+            invincibilityTimer = invincibilityDuration;
+            rb.gravityScale = playerController.jumpingGravity;
+
+            HitEffects();
+        }
+    }
+
+    private void HitEffects()
+    {
+        cameraShake.ShakeCamera(0.3f);
+        tintAnim.SetTrigger("hit");
+        anim.SetBool("hurt", true);
+        playerParticles.SpawnParticlesAsGameObject(playerParticles.hurt_Particles, anim.transform.position);
+    }
+
+    public void Player_Death()
+    {
+        death = true;
+        invincibilityTimer = 100;
+        trail.SetActive(false); 
+    }
+
+    private void DeathEffects()
+    {
+        cameraShake.ShakeCamera(0.6f);
+        foreach (SpriteRenderer sprite in playerSprites)
+        {
+            sprite.enabled = false;
+        }
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
+        playerParticles.SpawnParticlesAsGameObject(playerParticles.death_Particles, anim.transform.position);
+
+
+        for (int i = 0; i < playerSprites.Length - 1; i++)
+        {
+            playerParticles.SpawnParticlesAsGameObject(playerParticles.playerArmour_Particles[i], 
+                playerSprites[i].bounds.center, playerSprites[i].transform.rotation);
         }
     }
 
     public bool IsHurt()
     {
         return hurt;
+    }
+    public bool IsDeath()
+    {
+        return death;
     }
 
     public void SetHurt(bool isHurt)
@@ -104,10 +150,7 @@ public class Player_Health : MonoBehaviour
         }
     }
 
-    public void Player_Death()
-    {
-        death = true;
-    }
+
 
     public void SetFadeBlackVisible()
     {
