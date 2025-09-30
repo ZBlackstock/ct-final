@@ -136,7 +136,7 @@ public class PlayerController : MonoBehaviour
                 uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (attackInputTimer > 0 && canMove() && groundCheck.isGrounded)
+            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack")))
             {
                 attackInputTimer = 0;
                 attackForce = bodyAnimState.IsName("Player_Run") ? attackSprintForce : attackIdleForce;
