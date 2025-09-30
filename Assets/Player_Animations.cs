@@ -7,6 +7,15 @@ public class Player_Animations : MonoBehaviour
     private CameraShake cameraShake;
     [SerializeField] private float shakeDuration = 0.3f;
 
+    public void Hurt()
+    {
+        uppercutStepback_False();
+        uppercut_False();
+        attack_False();
+        attackKnockback_False();
+        step_False();
+    }
+
     private void Awake()
     {
         cameraShake = FindFirstObjectByType<CameraShake>();

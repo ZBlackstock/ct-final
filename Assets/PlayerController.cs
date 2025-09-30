@@ -37,6 +37,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int attackSprintForce = 600;
     private int attackForce = 300;
     private bool attack;
+    private bool attack1;
     [SerializeField] private float attackInputWait = 0.1f;
     private float attackInputTimer;
 
@@ -75,6 +76,11 @@ public class PlayerController : MonoBehaviour
         canmove = canMove();
         moveInput = canMove() ? Input.GetAxisRaw("Horizontal") : 0;
 
+        if (attack1)
+        {
+            attack1 = false;
+        }
+
         startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
 
         CheckInput();
@@ -91,6 +97,7 @@ public class PlayerController : MonoBehaviour
         bodyAnim.SetBool("uppercut", uppercut);
         bodyAnim.SetBool("step", step);
         bodyAnim.SetBool("attack", attack);
+        bodyAnim.SetBool("attack1", attack1);
         bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
     }
 
@@ -121,6 +128,7 @@ public class PlayerController : MonoBehaviour
             jumpInputTimer = jumpInputWait;
         }
     }
+
     private void DetectAppropriateGravScale()
     {
         rb.gravityScale = groundCheck.isGrounded && !bodyAnimState.IsName("Player_Hurt") ? groundedGravity : jumpingGravity;
@@ -136,11 +144,19 @@ public class PlayerController : MonoBehaviour
                 uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack")))
+            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.7f))
             {
                 attackInputTimer = 0;
                 attackForce = bodyAnimState.IsName("Player_Run") ? attackSprintForce : attackIdleForce;
-                attack = true;
+
+                if (!(bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.7f))
+                {
+                    attack = true;
+                }
+                else
+                {
+                    attack1 = true;
+                }
             }
             else if (stepInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
@@ -229,9 +245,9 @@ public class PlayerController : MonoBehaviour
         }
         else // player is taking damage
         {
+            animVariables.Hurt();
             // Check if jumping, if so, subtract current y velocity
-            Vector2 force = new Vector2(hurtKnockbackForce.x * Time.fixedDeltaTime,
-                bodyAnimState.IsName("Player_Run") ? hurtKnockbackForce.y * Time.fixedDeltaTime :
+            Vector2 force = new Vector2(hurtKnockbackForce.x * Time.fixedDeltaTime - rb.velocity.x,
                 hurtKnockbackForce.y * Time.fixedDeltaTime - rb.velocity.y);
             rb.AddForce(force, ForceMode2D.Impulse);
             bodyAnim.SetBool("hurt", false);
