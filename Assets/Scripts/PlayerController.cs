@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GroundCheck groundCheck;
     private float startTimer = 9f;
     private Player_Health health;
-
+    private bool disableMove;
 
     private void Awake()
     {
@@ -69,6 +69,11 @@ public class PlayerController : MonoBehaviour
         health = GetComponentInChildren<Player_Health>();
 
         bodyAnim.SetBool("wakeUpKneel", wakeUpKneel);
+    }
+
+    private void Start()
+    {
+        startTimer = wakeUpKneel ? 2.5f : 9f;
     }
 
     void Update()
@@ -144,12 +149,12 @@ public class PlayerController : MonoBehaviour
                 uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.7f))
+            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
             {
                 attackInputTimer = 0;
                 attackForce = bodyAnimState.IsName("Player_Run") ? attackSprintForce : attackIdleForce;
 
-                if (!(bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.7f))
+                if (!(bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
                 {
                     attack = true;
                 }
@@ -272,9 +277,17 @@ public class PlayerController : MonoBehaviour
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
         if (bodyAnimState.IsName("Player_Run") || bodyAnimState.IsName("Player_Idle") || bodyAnimState.IsName("Player_Jump"))
         {
-            return true;
+            if (!disableMove)
+            {
+                return true;
+            }
         }
 
         return false;
+    }
+
+    public void SetDisableMove(bool disable)
+    {
+        disableMove = disable;
     }
 }

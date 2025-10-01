@@ -7,13 +7,29 @@ using UnityEngine.UI;
 public class ButtonSelectionHighlight : MonoBehaviour
 {
     private RectTransform selectedButtonTrans;
-    private GameObject selectedButton;
+    [SerializeField] private GameObject selectedButton;
+    [SerializeField] private GameObject firstSelectedButton;
     [SerializeField] private float swordOffset;
     [SerializeField] private RectTransform[] swords = new RectTransform[2];
+    [SerializeField] private bool rapidAppear;
 
-    private void Start()
+    private void OnEnable()
     {
-        
+        try
+        {
+            foreach (RectTransform sword in swords)
+            {
+                sword.GetComponent<Animator>().SetBool("rapidAppear", rapidAppear);
+            }
+            selectedButton = firstSelectedButton;
+            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
+            selectedButtonTrans = selectedButton.GetComponent<RectTransform>();
+            SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
+        }
+        catch
+        {
+        }
+
     }
 
     void Update()
@@ -26,9 +42,9 @@ public class ButtonSelectionHighlight : MonoBehaviour
             SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
         }
 
-        if(EventSystem.current.currentSelectedGameObject == null && selectedButton != null)
+        if (EventSystem.current.currentSelectedGameObject == null && selectedButton != null)
         {
-            EventSystem.current.SetSelectedGameObject(selectedButton); 
+            EventSystem.current.SetSelectedGameObject(selectedButton);
         }
     }
 

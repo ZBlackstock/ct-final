@@ -19,8 +19,8 @@ public class Player_Sword : MonoBehaviour
     {
         if (col.CompareTag("enemy"))
         {
-            settings.SetTimeScale(0, 0.2f);
-            camShake.ShakeCamera(0.2f);
+            settings.SetTimeScale(0, 0.1f);
+            camShake.ShakeCamera(0.1f);
             playerController.attackKnockback = true;    
         }
     }

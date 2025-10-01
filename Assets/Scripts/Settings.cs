@@ -6,21 +6,30 @@ using UnityEngine;
 public class Settings : MonoBehaviour
 {
     [SerializeField] private float timeScale;
+    private _PauseMenu pauseMenu;
     private float timer;
+
+    private void Awake()
+    {
+        pauseMenu = FindFirstObjectByType<_PauseMenu>();
+    }
 
     void Update()
     {
         Application.targetFrameRate = 120;
 
-        if(timer < 0)
+        if (!pauseMenu.GetPauseMenuActive())
         {
-            Time.timeScale = timeScale;
-            timer = -1f;
-        }
-        else
-        {
-            // Reduce timer only when temporary new timescale has been set
-            timer -= Time.unscaledDeltaTime;
+            if (timer < 0)
+            {
+                Time.timeScale = timeScale;
+                timer = -1f;
+            }
+            else
+            {
+                // Reduce timer only when temporary new timescale has been set
+                timer -= Time.unscaledDeltaTime;
+            }
         }
     }
    

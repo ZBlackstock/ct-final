@@ -23,11 +23,6 @@ public class CamZoomCollider : MonoBehaviour
         {
             zoomRate = 1;
         }
-        if (zoomDamping.x == 0 || zoomDamping.y == 0)
-        {
-            zoomDamping.x = 2;
-            zoomDamping.y = 2;
-        }
     }
 
     private void Update()
@@ -45,7 +40,7 @@ public class CamZoomCollider : MonoBehaviour
 
         countCopy = s_colliderCount;
 
-        transposer.m_FollowOffset.y = -transposer.m_FollowOffset.z / 7;
+        transposer.m_FollowOffset.y = -transposer.m_FollowOffset.z /1.5f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -71,16 +66,12 @@ public class CamZoomCollider : MonoBehaviour
     private void SnapCamera(float newZ)
     {
         float dampingTemp = transposer.m_ZDamping;
-        transposer.m_ZDamping = 0;
         transposer.m_FollowOffset.z = newZ;
-        transposer.m_ZDamping = dampingTemp;
     }
 
     private IEnumerator ZoomCamera(float newZ)
     {
         float currentZ = transposer.m_FollowOffset.z;
-        transposer.m_XDamping = zoomDamping.x;
-        transposer.m_YDamping = zoomDamping.y;
 
         if (currentZ < newZ)
         {
@@ -104,8 +95,6 @@ public class CamZoomCollider : MonoBehaviour
         }
 
         //transposer.m_CameraDistance = newZ;
-        transposer.m_XDamping = 1;
-        transposer.m_YDamping = 0.2f;
     }
 
     /* IEnumerator GraduallyReduceSoftZone()
