@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     private int attackForce = 300;
     private bool attack;
     private bool attack1;
+    private bool canJumpAttack;
     [SerializeField] private float attackInputWait = 0.1f;
     private float attackInputTimer;
 
@@ -60,6 +61,7 @@ public class PlayerController : MonoBehaviour
     private float startTimer = 9f;
     private Player_Health health;
     private bool disableMove;
+    private bool UIOpen;
 
     private void Awake()
     {
@@ -93,7 +95,13 @@ public class PlayerController : MonoBehaviour
         SetAnimatorParameters();
         SubtractTimers();
         DetectAppropriateGravScale();
+
+        if (groundCheck.isGrounded)
+        {
+            canJumpAttack = true;
+        }
     }
+
 
     private void SetAnimatorParameters()
     {
@@ -116,21 +124,24 @@ public class PlayerController : MonoBehaviour
 
     private void CheckInput()
     {
-        if (Input.GetKeyDown(KeyCode.C))
+        if (!GetUIOpen())
         {
-            uppercutInputTimer = uppercutInputWait;
-        }
-        else if (Input.GetKeyDown(KeyCode.X))
-        {
-            attackInputTimer = attackInputWait;
-        }
-        else if (Input.GetKeyDown(KeyCode.Z))
-        {
-            stepInputTimer = stepInputWait;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space))
-        {
-            jumpInputTimer = jumpInputWait;
+            if (Input.GetKeyDown(KeyCode.C))
+            {
+                uppercutInputTimer = uppercutInputWait;
+            }
+            else if (Input.GetKeyDown(KeyCode.X))
+            {
+                attackInputTimer = attackInputWait;
+            }
+            else if (Input.GetKeyDown(KeyCode.Z))
+            {
+                stepInputTimer = stepInputWait;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space))
+            {
+                jumpInputTimer = jumpInputWait;
+            }
         }
     }
 
@@ -149,21 +160,26 @@ public class PlayerController : MonoBehaviour
                 uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (attackInputTimer > 0 && groundCheck.isGrounded && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
+            else if (attackInputTimer > 0 && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
             {
-                attackInputTimer = 0;
-                attackForce = bodyAnimState.IsName("Player_Run") ? attackSprintForce : attackIdleForce;
+                if(groundCheck.isGrounded || !groundCheck.isGrounded && canJumpAttack)
+                {
+                    attackInputTimer = 0;
+                    attackForce = moveInput != 0 ? attackSprintForce : attackIdleForce;
 
-                if (!(bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
-                {
-                    attack = true;
-                }
-                else
-                {
-                    attack1 = true;
+                    if (!(bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
+                    {
+                        attack = true;
+                    }
+                    else
+                    {
+                        attack1 = true;
+                    }
+
+                    canJumpAttack = groundCheck.isGrounded;
                 }
             }
-            else if (stepInputTimer > 0 && canMove() && groundCheck.isGrounded)
+            else if (stepInputTimer > 0 && canMove())
             {
                 stepInputTimer = 0;
                 stepForce = bodyAnimState.IsName("Player_Run") ? stepSprintForce : stepIdleForce;
@@ -229,18 +245,17 @@ public class PlayerController : MonoBehaviour
                 {
                     if (!attackKnockback)
                     {
-                        rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+                        rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
                     }
                     else
                     {
-                        rb.AddForce(new Vector2(attackKnockbackForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+                        rb.AddForce(new Vector2(attackKnockbackForce * direction * Time.fixedDeltaTime, -rb.velocity.y), ForceMode2D.Impulse);
                         attackKnockback = false;
-                        print("attack knockback");
                     }
                 }
                 else if (animVariables.GetStep())
                 {
-                    rb.AddForce(new Vector2(stepForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(stepForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
                 }
                 else
                 {
@@ -272,12 +287,12 @@ public class PlayerController : MonoBehaviour
 
     // Checks if player anim is currenty a movable state (not interacting or taking damage etc
     // Common check to see if player can perform action
-    bool canMove()
+    public bool canMove()
     {
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
         if (bodyAnimState.IsName("Player_Run") || bodyAnimState.IsName("Player_Idle") || bodyAnimState.IsName("Player_Jump"))
         {
-            if (!disableMove)
+            if (!disableMove && !UIOpen)
             {
                 return true;
             }
@@ -289,5 +304,32 @@ public class PlayerController : MonoBehaviour
     public void SetDisableMove(bool disable)
     {
         disableMove = disable;
+    }
+    public void SetUIOpen(bool open, bool waitFrame)
+    {
+        if (!waitFrame)
+        {
+            UIOpen = open;
+        }
+        else
+        {
+            StartCoroutine(WaitFrame());
+        }
+    }
+
+    private IEnumerator WaitFrame()
+    {
+        yield return null;
+        SetUIOpen(false, false);
+    }
+
+    public bool GetUIOpen()
+    {
+        return UIOpen;
+    }
+
+    public float GetMoveInput()
+    {
+        return moveInput;
     }
 }

@@ -40,7 +40,7 @@ public class CamZoomCollider : MonoBehaviour
 
         countCopy = s_colliderCount;
 
-        transposer.m_FollowOffset.y = -transposer.m_FollowOffset.z /1.5f;
+        transposer.m_FollowOffset.y = -transposer.m_FollowOffset.z /3f;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,11 +52,11 @@ public class CamZoomCollider : MonoBehaviour
 
             if (snapCamera)
             {
-                SnapCamera(camDist);
+                SnapCamera(-camDist);
             }
             else
             {
-                StartCoroutine(ZoomCamera(camDist));
+                StartCoroutine(ZoomCamera(-camDist));
             }
 
             //transposer.m_DeadZoneHeight = deadZoneHeight;

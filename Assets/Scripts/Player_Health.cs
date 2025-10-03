@@ -15,7 +15,8 @@ public class Player_Health : MonoBehaviour
     private CameraShake cameraShake;
     [SerializeField] private Animator fadeBlackAnim;
 
-    public int health = 10;
+    public float maxHealth = 10;
+    public float health = 10;
     private bool death;
     private float sceneResetTimer = 5f;
     [SerializeField] private Animator tintAnim;
@@ -68,7 +69,7 @@ public class Player_Health : MonoBehaviour
     private void TakeHit(bool fromRight)
     {
         hurt = true;
-        health--;
+        health -= 10;
         timer = 0.05f; //Time until brief "hit pause" 
 
         if (health <= 0)

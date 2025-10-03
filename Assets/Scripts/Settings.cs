@@ -16,7 +16,7 @@ public class Settings : MonoBehaviour
 
     void Update()
     {
-        Application.targetFrameRate = 120;
+        Application.targetFrameRate = 60;
 
         if (!pauseMenu.GetPauseMenuActive())
         {
