@@ -47,6 +47,9 @@ public class PlayerController : MonoBehaviour
     public bool attackKnockback;
 
     public Vector2 hurtKnockbackForce;
+    [SerializeField] private int counteredForce = 300;
+
+    public bool countered;
 
     private float moveInput;
     private int direction = 1; // 1 = Right // -1 = left
@@ -112,6 +115,7 @@ public class PlayerController : MonoBehaviour
         bodyAnim.SetBool("attack", attack);
         bodyAnim.SetBool("attack1", attack1);
         bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
+        bodyAnim.SetBool("countered", countered);
     }
 
     private void SubtractTimers()
@@ -162,7 +166,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (attackInputTimer > 0 && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
             {
-                if(groundCheck.isGrounded || !groundCheck.isGrounded && canJumpAttack)
+                if (groundCheck.isGrounded || !groundCheck.isGrounded && canJumpAttack)
                 {
                     attackInputTimer = 0;
                     attackForce = moveInput != 0 ? attackSprintForce : attackIdleForce;
@@ -232,30 +236,41 @@ public class PlayerController : MonoBehaviour
                     attack = false;
                     rb.velocity = Vector2.zero;
                 }
+                else if (countered)
+                {
+                    countered = false;
+                    rb.velocity = Vector2.zero;
+                }
 
                 if (animVariables.GetUppercut())
                 {
-                    rb.AddForce(new Vector2(uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(uppercutForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
                 }
                 else if (animVariables.GetUppercutStepBack())
                 {
-                    rb.AddForce(new Vector2(-uppercutForce * direction * Time.fixedDeltaTime, rb.velocity.y), ForceMode2D.Impulse);
+                    rb.AddForce(new Vector2(-uppercutForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
                 }
                 else if (animVariables.GetAttack())
                 {
                     if (!attackKnockback)
                     {
-                        rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
+                        rb.AddForce(new Vector2(attackForce * direction * Time.fixedDeltaTime, -rb.velocity.y), ForceMode2D.Impulse);
                     }
                     else
                     {
-                        rb.AddForce(new Vector2(attackKnockbackForce * direction * Time.fixedDeltaTime, -rb.velocity.y), ForceMode2D.Impulse);
+                        Vector2 velocity = TakeVelocityAndSetZero();
+
+                        rb.AddForce(new Vector2(-velocity.x * 100 * Time.fixedDeltaTime, -velocity.y), ForceMode2D.Impulse);
                         attackKnockback = false;
                     }
                 }
                 else if (animVariables.GetStep())
                 {
                     rb.AddForce(new Vector2(stepForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
+                }
+                else if (animVariables.GetCountered())
+                {
+                    rb.AddForce(new Vector2(-counteredForce * direction * Time.fixedDeltaTime, 0), ForceMode2D.Impulse);
                 }
                 else
                 {
@@ -266,15 +281,23 @@ public class PlayerController : MonoBehaviour
         else // player is taking damage
         {
             animVariables.Hurt();
-            // Check if jumping, if so, subtract current y velocity
-            Vector2 force = new Vector2(hurtKnockbackForce.x * Time.fixedDeltaTime - rb.velocity.x,
-                hurtKnockbackForce.y * Time.fixedDeltaTime - rb.velocity.y);
+            Vector2 velocity = TakeVelocityAndSetZero();
+            Vector2 force = new Vector2(hurtKnockbackForce.x - velocity.x * Time.fixedDeltaTime, hurtKnockbackForce.y - velocity.y * Time.fixedDeltaTime);
             rb.AddForce(force, ForceMode2D.Impulse);
             bodyAnim.SetBool("hurt", false);
             health.SetHurt(false);
         }
     }
 
+
+    private Vector2 TakeVelocityAndSetZero()
+    {
+        float x = rb.velocity.x;
+        float y = rb.velocity.y;
+        rb.velocity = Vector2.zero;
+
+        return new Vector2(x, y);
+    }
     // Flip player scaling
     public void Flip()
     {

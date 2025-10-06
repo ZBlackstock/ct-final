@@ -5,7 +5,10 @@ using UnityEngine;
 public class Player_Animations : MonoBehaviour
 {
     private CameraShake cameraShake;
+    private Animator playerAnim;
+    private AnimatorStateInfo playerStateInfo;  
     [SerializeField] private float shakeDuration = 0.3f;
+    [SerializeField] private GameObject[] attackCollisions;
 
     public void Hurt()
     {
@@ -19,6 +22,25 @@ public class Player_Animations : MonoBehaviour
     private void Awake()
     {
         cameraShake = FindFirstObjectByType<CameraShake>();
+        playerAnim = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        DisableAllAttackCollisions();
+    }
+
+    public void DisableAllAttackCollisions()
+    {
+        foreach (GameObject col in attackCollisions)
+        {
+            col.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        playerStateInfo = playerAnim.GetCurrentAnimatorStateInfo(0);
     }
 
     public void ShakeCamera()
@@ -68,9 +90,58 @@ public class Player_Animations : MonoBehaviour
 
     private bool attack;
 
+    private bool countered;
+
+    public void countered_True()
+    {
+        countered = true;
+    }
+
+    public void countered_False()
+    {
+        countered = false;
+    }
+
+    public bool GetCountered()
+    {
+        return countered;
+    }
+
     public void attack_True()
     {
         attack = true;
+    }
+
+    private void AttackHitbox_True()
+    {
+        if (playerStateInfo.IsName("Player_Attack"))
+        {
+            attackCollisions[0].SetActive(true);
+        }
+        else if (playerStateInfo.IsName("Player_Attack1"))
+        {
+            attackCollisions[1].SetActive(true);
+        }
+        else if (playerStateInfo.IsName("Player_JumpAttack"))
+        {
+            attackCollisions[2].SetActive(true);
+        }
+    }
+
+    private void AttackHitbox_False()
+    {
+        if (playerStateInfo.IsName("Player_Attack"))
+        {
+            attackCollisions[0].SetActive(false);
+        }
+        else if (playerStateInfo.IsName("Player_Attack1"))
+        {
+            attackCollisions[1].SetActive(false);
+        }
+        else if (playerStateInfo.IsName("Player_JumpAttack"))
+        {
+            attackCollisions[2].SetActive(false);
+        }
     }
 
     public void attack_False()

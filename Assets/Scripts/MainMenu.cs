@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     private float loadSceneTimer = 5;
     private bool visible;
     private bool select;
+    [SerializeField] private GameObject controlsPanel;
+    private float timer;
 
     private void Awake()
     {
@@ -29,6 +31,7 @@ public class MainMenu : MonoBehaviour
 
     private void Update()
     {
+        timer -= Time.deltaTime;
         if (Input.anyKeyDown && canvases[0].activeSelf)
         {
             OpenMenu();
@@ -50,6 +53,14 @@ public class MainMenu : MonoBehaviour
         {
             anim.SetBool("select", select);
         }
+
+        if (controlsPanel.activeSelf && timer < 0)
+        {
+            if (Input.anyKeyDown)
+            {
+                controlsPanel.SetActive(false);
+            }
+        }
     }
 
     public void btn_Play()
@@ -64,9 +75,15 @@ public class MainMenu : MonoBehaviour
         canvases[1].SetActive(true);
         canvases[2].SetActive(true);
     }
+    public void btn_Controls()
+    {
+        controlsPanel.SetActive(true);
+        timer = 0.1f;
+    }
 
     public void btn_Quit()
     {
         Application.Quit();
     }
+
 }
