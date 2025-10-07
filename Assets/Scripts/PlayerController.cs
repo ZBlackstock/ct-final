@@ -66,12 +66,15 @@ public class PlayerController : MonoBehaviour
     private bool disableMove;
     private bool UIOpen;
 
+    Player_Particles playerParticles;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animVariables = bodyAnim.GetComponent<Player_Animations>();
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
         health = GetComponentInChildren<Player_Health>();
+        playerParticles = GetComponent<Player_Particles>();
 
         bodyAnim.SetBool("wakeUpKneel", wakeUpKneel);
     }
@@ -102,6 +105,17 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.isGrounded)
         {
             canJumpAttack = true;
+        }
+
+        if (canMove())
+        {
+            animVariables.attackKnockback_False();
+            animVariables.attack_False();
+            animVariables.countered_False();
+            animVariables.stepKnockback_False();
+            animVariables.step_False();
+            animVariables.uppercutStepback_False();
+            animVariables.uppercut_False();
         }
     }
 
@@ -224,6 +238,9 @@ public class PlayerController : MonoBehaviour
                 if (uppercut)
                 {
                     uppercut = false;
+
+                    playerParticles.uppercutParticles.transform.localScale = new Vector2(faceRight ? 1 : -1, 1); ;
+                    playerParticles.PlayeParticlesFromParticleSystem(playerParticles.uppercutParticles);
                     rb.velocity = Vector2.zero;
                 }
                 else if (step)
