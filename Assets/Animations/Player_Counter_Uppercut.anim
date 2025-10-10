@@ -5507,14 +5507,28 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.075
+  - time: 0.079166666
     functionName: uppercut_True
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.24166666
+  - time: 0.079166666
+    functionName: CounterHitbox_True
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25416666
+    functionName: CounterHitbox_False
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.25416666
     functionName: uppercut_False
     data: 
     objectReferenceParameter: {fileID: 0}

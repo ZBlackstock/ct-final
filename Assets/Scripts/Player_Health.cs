@@ -26,6 +26,7 @@ public class Player_Health : MonoBehaviour
     private Player_Particles playerParticles;
     [SerializeField] private SpriteRenderer[] playerSprites;
     [SerializeField] private GameObject trail;
+    private bool playerInvincible;
 
     void Awake()
     {
@@ -97,7 +98,7 @@ public class Player_Health : MonoBehaviour
     {
         cameraShake.ShakeCamera(0.3f);
         tintAnim.SetTrigger("hit");
-        anim.SetBool("hurt", true);
+        anim.SetTrigger("hurt");
         playerParticles.SpawnParticlesAsGameObject(playerParticles.hurt_Particles, anim.transform.position);
     }
 
@@ -105,7 +106,7 @@ public class Player_Health : MonoBehaviour
     {
         death = true;
         invincibilityTimer = 100;
-        trail.SetActive(false); 
+        trail.SetActive(false);
     }
 
     private void DeathEffects()
@@ -122,7 +123,7 @@ public class Player_Health : MonoBehaviour
 
         for (int i = 0; i < playerSprites.Length - 1; i++)
         {
-            playerParticles.SpawnParticlesAsGameObject(playerParticles.playerArmour_Particles[i], 
+            playerParticles.SpawnParticlesAsGameObject(playerParticles.playerArmour_Particles[i],
                 playerSprites[i].bounds.center, playerSprites[i].transform.rotation);
         }
     }
@@ -143,15 +144,13 @@ public class Player_Health : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.CompareTag("enemy") && invincibilityTimer < 0)
+        if (col.tag.Contains("enemy") && invincibilityTimer < 0)
         {
             //Detect if child caused collision
             TakeHit(col.gameObject.transform.position.x > transform.position.x);
             rb.velocity = Vector2.zero;
         }
     }
-
-
 
     public void SetFadeBlackVisible()
     {
@@ -161,6 +160,16 @@ public class Player_Health : MonoBehaviour
     private void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void SetPlayerInvincible(float duration)
+    {
+        invincibilityTimer = duration;
+    }
+
+    public bool GetPlayerInvincible()
+    {
+        return invincibilityTimer > 0;
     }
 }
 

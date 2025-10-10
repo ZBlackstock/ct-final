@@ -9,6 +9,7 @@ public class Player_Animations : MonoBehaviour
     private AnimatorStateInfo playerStateInfo;  
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private GameObject[] attackCollisions;
+    [SerializeField] private GameObject[] counterCollisions;
 
     public void Hurt()
     {
@@ -28,11 +29,20 @@ public class Player_Animations : MonoBehaviour
     private void Start()
     {
         DisableAllAttackCollisions();
+        DisableAllCounterCollisions();
     }
 
     public void DisableAllAttackCollisions()
     {
         foreach (GameObject col in attackCollisions)
+        {
+            col.SetActive(false);
+        }
+    }
+
+    public void DisableAllCounterCollisions()
+    {
+        foreach (GameObject col in counterCollisions)
         {
             col.SetActive(false);
         }
@@ -141,6 +151,30 @@ public class Player_Animations : MonoBehaviour
         else if (playerStateInfo.IsName("Player_JumpAttack"))
         {
             attackCollisions[2].SetActive(false);
+        }
+    }
+
+    private void CounterHitbox_True()
+    {
+        if (playerStateInfo.IsName("Player_Counter_Uppercut"))
+        {
+            counterCollisions[0].SetActive(true);
+        }
+        else if (playerStateInfo.IsName("Player_Counter_Step"))
+        {
+            counterCollisions[1].SetActive(true);
+        }
+    }
+
+    private void CounterHitbox_False()
+    {
+        if (playerStateInfo.IsName("Player_Counter_Uppercut"))
+        {
+            counterCollisions[0].SetActive(false);
+        }
+        else if (playerStateInfo.IsName("Player_Counter_Step"))
+        {
+            counterCollisions[1].SetActive(false);
         }
     }
 

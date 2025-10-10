@@ -8,7 +8,7 @@ public class NextLevelTrigger : MonoBehaviour
     [SerializeField] private Animator absBack;
     [SerializeField] private Animator fadeBlack;
     private PlayerController playerController;
-    private float timer = 8;
+    private float timer = 12;
 
     private void Awake()
     {
