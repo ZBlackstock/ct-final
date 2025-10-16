@@ -25,8 +25,6 @@ public class BT_MoveToPlayer : EnemyAction
     {
         attackWaitTimer = Random.Range(attackWait.x, attackWait.y);
         anim.SetInteger("attackSeq", -1);
-
-        Debug.Log("Starting MoveToPlayer");
     }
 
     public override TaskStatus OnUpdate()
@@ -36,6 +34,7 @@ public class BT_MoveToPlayer : EnemyAction
             return TaskStatus.Failure;
         }
 
+        anim.ResetTrigger("hit"); // Player is moving, so cannot be hit (will always block)
         InverseMoveSpeedCheck();
         CalculateMoveSpeed();
         SetAnimatorVariables();
@@ -120,8 +119,6 @@ public class BT_MoveToPlayer : EnemyAction
         reverseMultiplier = reverse ? -1 : 1;
         reverseWalkDuration = Random.Range(reverseWalkDurationRange.x, reverseWalkDurationRange.y);
         reverseWalkDuration = reverse ? reverseWalkDuration : reverseWalkDuration * 2;
-
-        Debug.Log("reverse = " + reverse);
     }
     private void SetAnimatorVariables()
     {

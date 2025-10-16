@@ -12,7 +12,10 @@ public class Player_Sword : MonoBehaviour
     private Animator anim;
     Enemy_Health enemyHealth;
     private _ParticlesManager particlesManager;
+    private SoundManager sound;
 
+    [SerializeField] private AudioClip uppercutCounterCollision, stepCounterCollision;
+    [SerializeField] private AudioClip[] hits;
 
     void Awake()
     {
@@ -24,18 +27,20 @@ public class Player_Sword : MonoBehaviour
         anim = playerController.gameObject.GetComponentInChildren<Animator>();
         enemyHealth = FindFirstObjectByType<Enemy_Health>();
         particlesManager = FindFirstObjectByType<_ParticlesManager>();
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        // Uppercut Counter
         if (this.CompareTag("player_uppercut"))
         {
             if (col.CompareTag("enemy_overhead"))
             {
                 SuccessfulUppercutCounter();
             }
-        }
-       else  if (this.CompareTag("player_step"))
+        } // Step Counter
+        else if (this.CompareTag("player_step"))
         {
             if (col.CompareTag("enemy_underarm"))
             {
@@ -46,16 +51,11 @@ public class Player_Sword : MonoBehaviour
         {
             if (col.CompareTag("enemy_exposed"))
             {
-                settings.SetTimeScale(0, 0.1f);
-                camShake.ShakeCamera(0.1f);
-                playerController.attackKnockback = true;
+                AttackLand();
             }
             else if (col.CompareTag("enemy_unexposed"))
             {
-                //settings.SetTimeScale(0, 0.05f);
-                playerController.countered = true;
-                playerAnims.DisableAllAttackCollisions();
-                playerAnims.attack_False();
+                AttackCountered();
             }
         }
     }
@@ -63,7 +63,7 @@ public class Player_Sword : MonoBehaviour
     private void SuccessfulUppercutCounter()
     {
         playerController.uppercutKnockback = true;
-
+        sound.PlaySound(uppercutCounterCollision);
         anim.Play("Player_Counter_Uppercut", 0, 0.3f);
         anim.SetTrigger("counterSuccess");
         settings.SetTimeScale(0, 0.15f, 0.01f);
@@ -72,7 +72,7 @@ public class Player_Sword : MonoBehaviour
         playerAnims.uppercut_False();
         playerHealth.SetPlayerInvincible(1f);
         enemyHealth.OverheadCountered(true);
-        
+
 
         foreach (ParticleSystem p in particlesManager.uppercutCounterParticles)
         {
@@ -84,7 +84,7 @@ public class Player_Sword : MonoBehaviour
     private void SuccessfulStepCounter()
     {
         playerController.stepKnockback = true;
-
+        sound.PlaySound(stepCounterCollision);
         anim.Play("Player_Counter_Step", 0, 0.35f);
         anim.SetTrigger("counterSuccess");
         settings.SetTimeScale(0, 0.1f, 0.1f);
@@ -95,6 +95,21 @@ public class Player_Sword : MonoBehaviour
         enemyHealth.UnderarmCountered(true);
 
         particlesManager.PlayParticlesFromParticleSystem(particlesManager.stepCounterParticles);
+    }
+
+    private void AttackLand()
+    {
+        settings.SetTimeScale(0, 0.1f);
+        camShake.ShakeCamera(0.1f);
+        playerController.attackKnockback = true;
+        sound.PlaySoundRandom(hits, 1, 0.95f, 1);
+    }
+
+    private void AttackCountered()
+    {
+        playerController.countered = true;
+        playerAnims.DisableAllAttackCollisions();
+        playerAnims.attack_False();
     }
 
     private void OnTriggerExit2D(Collider2D col)

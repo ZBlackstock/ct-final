@@ -5,6 +5,7 @@ using UnityEngine;
 public class BT_Check_Dead : EnemyConditional
 {
     [SerializeField] private GameObject enableOnDeath;
+    bool isDead;
     public override TaskStatus OnUpdate()
     {
         if (enableOnDeath != null)
@@ -12,6 +13,13 @@ public class BT_Check_Dead : EnemyConditional
             enableOnDeath.SetActive(anim.GetBool("dead"));
         }
 
-        return anim.GetBool("dead") ? TaskStatus.Failure : TaskStatus.Success;
+        isDead = anim.GetBool("dead");
+
+        if (isDead)
+        {
+            rb.velocity = Vector2.zero;
+        }
+
+        return  isDead ? TaskStatus.Failure : TaskStatus.Success;
     }
 }

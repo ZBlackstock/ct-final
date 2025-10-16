@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Audio Clips")]
     [SerializeField] private AudioClip jump;
-    [SerializeField] private AudioClip land, uppercutWhoosh, stepCounterChime, stepCounterSuccess, uppercutCounterSuccess;
+    [SerializeField] private AudioClip land, uppercutWhoosh, stepCounterChime;
     [SerializeField] private AudioClip[] attackWhoosh;
     [SerializeField] private AudioClip[] deflected;
 
@@ -165,19 +165,19 @@ public class PlayerController : MonoBehaviour
     {
         if (!GetUIOpen())
         {
-            if (Input.GetKeyDown(KeyCode.C))
+            if (Input.GetKeyDown(KeyCode.C) || Input.GetButtonDown("RightBumper")) // Uppercut Counter
             {
                 uppercutInputTimer = uppercutInputWait;
             }
-            else if (Input.GetKeyDown(KeyCode.X))
+            else if (Input.GetKeyDown(KeyCode.X) || Input.GetButtonDown("X")) // Attack
             {
                 attackInputTimer = attackInputWait;
             }
-            else if (Input.GetKeyDown(KeyCode.Z))
+            else if (Input.GetKeyDown(KeyCode.Z) || Input.GetButtonDown("LeftBumper")) // Step Counter
             {
                 stepInputTimer = stepInputWait;
             }
-            else if (Input.GetKeyDown(KeyCode.Space))
+            else if (Input.GetKeyDown(KeyCode.Space) || Input.GetButtonDown("A")) // Jump
             {
                 jumpInputTimer = jumpInputWait;
             }
@@ -271,7 +271,6 @@ public class PlayerController : MonoBehaviour
                 else if (animVariables.GetUppercutStepBack() && uppercutKnockback)
                 {
                     ChangeVelocity(new Vector2(-uppercutKnockbackForce, 0), uppercutForceDuration);
-                    sound.PlaySound(uppercutCounterSuccess);
                     uppercutKnockback = false;
                 }
                 else if (step)
@@ -281,10 +280,9 @@ public class PlayerController : MonoBehaviour
 
                     step = false;
                 }
-                else if (stepKnockback) // Step counter success
+                else if (stepKnockback)
                 {
                     ChangeVelocity(new Vector2(-stepForce, 0), stepForceDuration);
-                    sound.PlaySound(stepCounterSuccess);
                     stepKnockback = false;
                 }
                 else if (attack || attack1)

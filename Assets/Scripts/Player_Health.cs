@@ -71,7 +71,7 @@ public class Player_Health : Health
             rb.velocity = Vector2.zero;
 
             hurt = true;
-            health -= 10;
+            health -= 15;
             timer = 0.05f; //Time until brief "hit pause" 
 
             if (health <= 0)

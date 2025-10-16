@@ -30,9 +30,10 @@ public class BT_Attack : EnemyAction
         rb.velocity = Vector2.zero;
         attackForceDelayTimer = attackForceDelay;
         anim.SetInteger("attackSeq", attackSeq);
-        Debug.Log("Starting attack sequence");
         success = false;
         attackCountered = false;
+        hit.Value = false;
+        anim.ResetTrigger("hit");
     }
 
     public override TaskStatus OnUpdate()
@@ -58,7 +59,11 @@ public class BT_Attack : EnemyAction
             attackCountered = true;
         }
 
-        HitCheck();
+        // Check if counter has been executed
+        if (attackCountered)
+        {
+            HitCheck();
+        }
 
         return success ? TaskStatus.Success : TaskStatus.Running;
     }
@@ -102,6 +107,7 @@ public class BT_Attack : EnemyAction
         {
             ExitAttackTask();
             hit.Value = false;
+            anim.ResetTrigger("hit");
         }
     }
 
@@ -112,10 +118,12 @@ public class BT_Attack : EnemyAction
 
     public override void OnEnd()
     {
+        anim.ResetTrigger("hit");
         StopAllCoroutines();
         success = false;
         addedForce = false;
         attackCountered = false;
+        hit.Value = false;
         attackForceDelayTimer = attackForceDelay;
         anim.SetInteger("attackSeq", -1);
     }
