@@ -11,6 +11,8 @@ public class InteractPrompt : MonoBehaviour
     private InputDetection input;
     private SpriteRenderer arrow, symbol;
     public bool playerInRange, interacting, disabled;
+    private SoundManager sound;
+    [SerializeField] private AudioClip interactSound;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class InteractPrompt : MonoBehaviour
         input = FindFirstObjectByType<InputDetection>();
         arrow = transform.GetChild(0).GetComponent<SpriteRenderer>();
         symbol = arrow.transform.GetChild(0).GetComponent<SpriteRenderer>();
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
     private void Update()
@@ -35,6 +38,7 @@ public class InteractPrompt : MonoBehaviour
         if (playerInRange && !disabled && !interacting && !playerController.GetUIOpen() && Input.GetButtonDown("Interact")) // Set back to false externally
         {
             IsInteracting(true);
+            sound.PlaySound(interactSound);
         }
     }
 

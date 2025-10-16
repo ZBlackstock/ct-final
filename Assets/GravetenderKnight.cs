@@ -10,17 +10,20 @@ public class GravetenderKnight : MonoBehaviour
     [SerializeField] private Animator bodyAnim;
     private AnimatorStateInfo bodyAnimState;
     private bool faceRight;
+    private Enemy_Health health;
 
     private void Awake()
     {
         playerController = FindFirstObjectByType<PlayerController>();
         playerTrans = playerController.GetComponent<Transform>();
+        health = GetComponentInChildren<Enemy_Health>();
     }
 
     void Update()
     {
         FlipCheck();
         bodyAnim.SetBool("faceRight", faceRight);
+        health.Set_FaceRight(faceRight);
     }
 
     private void FlipCheck()

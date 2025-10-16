@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -14,9 +15,13 @@ public class MainMenu : MonoBehaviour
     private bool select;
     [SerializeField] private GameObject controlsPanel;
     private float timer;
+    [SerializeField] private AudioClip buttonSelect;
+    private SoundManager sound;
+    [SerializeField] private GameObject fakePlayer;
 
     private void Awake()
     {
+        sound = FindFirstObjectByType<SoundManager>();
         Cursor.visible = false;
     }
 
@@ -63,27 +68,41 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    public void btn_Play()
-    {
-        visible = true;
-        select = true;
-    }
-
     public void OpenMenu()
     {
+        PlaySound_ButtonSelect();
+        print("openMenu");
         canvases[0].SetActive(false);
         canvases[1].SetActive(true);
         canvases[2].SetActive(true);
     }
+    public void btn_Play()
+    {
+        print("play");
+        PlaySound_ButtonSelect();
+        fakePlayer.SetActive(false);
+        visible = true;
+        select = true;
+    }
+
     public void btn_Controls()
     {
+        PlaySound_ButtonSelect();
         controlsPanel.SetActive(true);
         timer = 0.1f;
     }
-
+    public void btn_Settings()
+    {
+        PlaySound_ButtonSelect();
+    }
     public void btn_Quit()
     {
         Application.Quit();
     }
 
+    private void PlaySound_ButtonSelect()
+    {
+        print("select");
+        sound.PlaySound(buttonSelect, 0.6f);
+    }
 }

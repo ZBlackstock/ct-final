@@ -38,9 +38,6 @@ public class GroundCheck : MonoBehaviour
 
         Color rayColor;
         rayColor = Color.green;
-        Debug.DrawRay(capsule.bounds.center + new Vector3(capsule.bounds.extents.x, 0), Vector2.down * (capsule.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(capsule.bounds.center - new Vector3(capsule.bounds.extents.x, 0), Vector2.down * (capsule.bounds.extents.y + extraHeight), rayColor);
-        Debug.DrawRay(capsule.bounds.center - new Vector3(capsule.bounds.extents.x, capsule.bounds.extents.y + extraHeight), Vector2.right * (capsule.bounds.extents.x * 2f), rayColor);
 
         return raycastHit.collider != null;
     }

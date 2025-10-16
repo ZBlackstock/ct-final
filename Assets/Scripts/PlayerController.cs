@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private int uppercutSprintForce = 600;
     public int uppercutKnockbackForce = 300;
     private int uppercutForce = 300;
+    [SerializeField] private float uppercutForceDuration = 0.1f;
     [HideInInspector] public bool uppercut, uppercutKnockback;
     [SerializeField] private float uppercutInputWait = 0.1f;
     private float uppercutInputTimer;
@@ -28,14 +30,18 @@ public class PlayerController : MonoBehaviour
     [Header("Step Counter")]
     [SerializeField] private int stepIdleForce = 200;
     [SerializeField] private int stepSprintForce = 300;
-    private int stepForce = 300;
-    private bool step;
+    private int stepForce = 200;
+    public int stepKnockbackForce = 300;
+    [SerializeField] private float stepForceDuration = 0.1f;
     [SerializeField] private float stepInputWait = 0.1f;
     private float stepInputTimer;
+    [HideInInspector] public bool step, stepKnockback;
+
 
     [Header("Attack")]
     [SerializeField] private int attackIdleForce = 300;
     [SerializeField] private int attackSprintForce = 600;
+    [SerializeField] private float attackForceDuration;
     private int attackForce = 300;
     private bool attack;
     private bool attack1;
@@ -44,12 +50,12 @@ public class PlayerController : MonoBehaviour
     private float attackInputTimer;
 
     [Header("AttackKnockback")]
-    [SerializeField] private int attackKnockbackForce = -500;
     public bool attackKnockback;
-    public float maxHurtYVelocity = 1000;
 
     public Vector2 hurtKnockbackForce;
     [SerializeField] private int counteredForce = 300;
+    public float maxHurtYVelocity = 1000;
+
 
     public bool countered;
 
@@ -63,12 +69,21 @@ public class PlayerController : MonoBehaviour
     private bool canmove; // just for debug inspector
 
     [SerializeField] private GroundCheck groundCheck;
+    private SoundManager sound;
     private float startTimer = 9f;
     private Player_Health health;
     private bool disableMove;
     private bool UIOpen;
+    private bool velocityCoroutineRunning;
+    private bool playedLandSound;
 
-    Player_Particles playerParticles;
+    [Header("Audio Clips")]
+    [SerializeField] private AudioClip jump;
+    [SerializeField] private AudioClip land, uppercutWhoosh, stepCounterChime, stepCounterSuccess, uppercutCounterSuccess;
+    [SerializeField] private AudioClip[] attackWhoosh;
+    [SerializeField] private AudioClip[] deflected;
+
+    _ParticlesManager playerParticles;
 
     private void Awake()
     {
@@ -76,8 +91,8 @@ public class PlayerController : MonoBehaviour
         animVariables = bodyAnim.GetComponent<Player_Animations>();
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
         health = GetComponentInChildren<Player_Health>();
-        playerParticles = GetComponent<Player_Particles>();
-
+        playerParticles = GetComponent<_ParticlesManager>();
+        sound = FindFirstObjectByType<SoundManager>();
         bodyAnim.SetBool("wakeUpKneel", wakeUpKneel);
     }
 
@@ -91,11 +106,6 @@ public class PlayerController : MonoBehaviour
         canmove = canMove();
         moveInput = canMove() ? Input.GetAxisRaw("Horizontal") : 0;
 
-        if (attack1)
-        {
-            attack1 = false;
-        }
-
         startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
 
         CheckInput();
@@ -107,6 +117,16 @@ public class PlayerController : MonoBehaviour
         if (groundCheck.isGrounded)
         {
             canJumpAttack = true;
+
+            if (!playedLandSound && startTimer < 0)
+            {
+                sound.PlaySound(land);
+                playedLandSound = true;
+            }
+        }
+        else
+        {
+            playedLandSound = false;
         }
 
         if (canMove())
@@ -120,7 +140,6 @@ public class PlayerController : MonoBehaviour
             animVariables.uppercut_False();
         }
     }
-
 
     private void SetAnimatorParameters()
     {
@@ -180,7 +199,8 @@ public class PlayerController : MonoBehaviour
                 uppercutForce = bodyAnimState.IsName("Player_Run") ? uppercutSprintForce : uppercutIdleForce;
                 uppercut = true;
             }
-            else if (attackInputTimer > 0 && (canMove() || bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f))
+            else if (attackInputTimer > 0 && (canMove() ||
+                (bodyAnimState.IsName("Player_Attack") && bodyAnimState.normalizedTime > 0.6f && bodyAnimState.normalizedTime < 0.85f && !bodyAnim.IsInTransition(0))))
             {
                 if (groundCheck.isGrounded || !groundCheck.isGrounded && canJumpAttack)
                 {
@@ -222,73 +242,69 @@ public class PlayerController : MonoBehaviour
     {
         if (!health.IsHurt())
         {
-            if (canMove())
+            if (canMove() && !velocityCoroutineRunning)
             {
                 rb.velocity = new Vector2(moveInput * moveSpeed, (pressJump ? jumpForce : rb.velocity.y));
                 if (pressJump)
                 {
                     pressJump = false;
+                    sound.PlaySound(jump);
                 }
             }
             else
             {
-                rb.velocity = Vector2.zero;
+                if (!velocityCoroutineRunning)
+                {
+                    rb.velocity = Vector2.zero;
+                }
 
                 if (uppercut)
                 {
+                    ChangeVelocity(new Vector2(uppercutForce, 0), uppercutForceDuration);
+
+                    sound.PlaySound(uppercutWhoosh);
+                    playerParticles.uppercutParticles.transform.localScale = new Vector2(faceRight ? 1 : -1, 1);
+                    playerParticles.PlayParticlesFromParticleSystem(playerParticles.uppercutParticles);
                     uppercut = false;
-
-                    playerParticles.uppercutParticles.transform.localScale = new Vector2(faceRight ? 1 : -1, 1); ;
-                    playerParticles.PlayeParticlesFromParticleSystem(playerParticles.uppercutParticles);
-
+                    uppercutKnockback = true;
+                }
+                else if (animVariables.GetUppercutStepBack() && uppercutKnockback)
+                {
+                    ChangeVelocity(new Vector2(-uppercutKnockbackForce, 0), uppercutForceDuration);
+                    sound.PlaySound(uppercutCounterSuccess);
+                    uppercutKnockback = false;
                 }
                 else if (step)
                 {
+                    ChangeVelocity(new Vector2(stepForce, 0), stepForceDuration);
+                    sound.PlaySound(stepCounterChime);
+
                     step = false;
                 }
-                else if (attack)
+                else if (stepKnockback) // Step counter success
                 {
+                    ChangeVelocity(new Vector2(-stepForce, 0), stepForceDuration);
+                    sound.PlaySound(stepCounterSuccess);
+                    stepKnockback = false;
+                }
+                else if (attack || attack1)
+                {
+                    ChangeVelocity(new Vector2(attackForce, 0), attackForceDuration);
+                    sound.PlaySound(attackWhoosh[attack ? 0 : 1]);
+
                     attack = false;
+                    attack1 = false;
+                }
+                else if (attackKnockback)
+                {
+                    ChangeVelocity(new Vector2(-attackForce, 0), attackForceDuration);
+                    attackKnockback = false;
                 }
                 else if (countered)
                 {
+                    ChangeVelocity(new Vector2(-counteredForce, 0), 0.1f);
+                    sound.PlaySoundRandom(deflected, 1, 1, 1);
                     countered = false;
-                }
-                else if (uppercutKnockback)
-                {
-                    rb.AddForce(new Vector2(uppercutKnockbackForce * -direction, 0), ForceMode2D.Impulse);
-                    uppercutKnockback = false;
-                    print("UppercutKnockback");
-                }
-
-                if (animVariables.GetUppercut())
-                {
-                    rb.AddForce(new Vector2(uppercutForce * direction, 0), ForceMode2D.Impulse);
-                }
-                else if (animVariables.GetUppercutStepBack())
-                {
-                    rb.AddForce(new Vector2(-uppercutForce * direction, 0), ForceMode2D.Impulse);
-                }
-                else if (animVariables.GetAttack())
-                {
-                    if (!attackKnockback)
-                    {
-                        rb.AddForce(new Vector2(attackForce * direction, 0), ForceMode2D.Impulse);
-                    }
-                    else
-                    {
-
-                        rb.AddForce(new Vector2(-attackForce * direction, 0), ForceMode2D.Impulse);
-                        attackKnockback = false;
-                    }
-                }
-                else if (animVariables.GetStep())
-                {
-                    rb.AddForce(new Vector2(stepForce * direction, 0), ForceMode2D.Impulse);
-                }
-                else if (animVariables.GetCountered())
-                {
-                    rb.AddForce(new Vector2(-counteredForce * direction, 0), ForceMode2D.Impulse);
                 }
             }
         }
@@ -304,6 +320,21 @@ public class PlayerController : MonoBehaviour
             bodyAnim.SetBool("hurt", false);
             health.SetHurt(false);
         }
+    }
+
+    private void ChangeVelocity(Vector2 velocity, float duration)
+    {
+        StopAllCoroutines();
+        StartCoroutine(ChangeVelocityCoroutine(velocity, duration));
+    }
+
+    private IEnumerator ChangeVelocityCoroutine(Vector2 velocity, float duration)
+    {
+        velocityCoroutineRunning = true;
+        rb.velocity = new Vector2(velocity.x * direction, velocity.y);
+        yield return new WaitForSeconds(duration);
+        rb.velocity = Vector2.zero;
+        velocityCoroutineRunning = false;
     }
 
     // Flip player scaling
@@ -336,6 +367,7 @@ public class PlayerController : MonoBehaviour
     {
         disableMove = disable;
     }
+
     public void SetUIOpen(bool open, bool waitFrame)
     {
         if (!waitFrame)
@@ -363,5 +395,4 @@ public class PlayerController : MonoBehaviour
     {
         return moveInput;
     }
-
 }

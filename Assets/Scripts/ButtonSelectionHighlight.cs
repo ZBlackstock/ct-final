@@ -12,6 +12,14 @@ public class ButtonSelectionHighlight : MonoBehaviour
     [SerializeField] private float swordOffset;
     [SerializeField] private RectTransform[] swords = new RectTransform[2];
     [SerializeField] private bool rapidAppear;
+    [SerializeField] private AudioClip buttonHighlight;
+    private SoundManager sound;
+
+
+    private void Awake()
+    {
+        sound = FindFirstObjectByType<SoundManager>();
+    }
 
     private void OnEnable()
     {
@@ -40,6 +48,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
             selectedButton = EventSystem.current.currentSelectedGameObject;
             selectedButtonTrans = selectedButton.GetComponent<RectTransform>();
             SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
+            PlaySound_ButtonHighlight();
         }
 
         if (EventSystem.current.currentSelectedGameObject == null && selectedButton != null)
@@ -52,5 +61,10 @@ public class ButtonSelectionHighlight : MonoBehaviour
     {
         swords[0].position = new Vector2(pos.x - (width / 2) - swordOffset, pos.y);
         swords[1].position = new Vector2(pos.x + (width / 2) + swordOffset, pos.y);
+    }
+
+    private void PlaySound_ButtonHighlight()
+    {
+        sound.PlaySound(buttonHighlight);
     }
 }

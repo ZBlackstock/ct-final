@@ -50,12 +50,12 @@ public class BT_MoveToPlayer : EnemyAction
                 ReverseWalk(StartReverseWalk());
             }
         }
-        else
+        else if (!forcedReverse)
         {
             reverseMultiplier = 1;
         }
 
-        if (PlayerWithinAttackRange())
+        if (PlayerWithinAttackRange() && !anim.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("counter"))
         {
             if (attackWaitTimer < 0)
             {
@@ -120,6 +120,8 @@ public class BT_MoveToPlayer : EnemyAction
         reverseMultiplier = reverse ? -1 : 1;
         reverseWalkDuration = Random.Range(reverseWalkDurationRange.x, reverseWalkDurationRange.y);
         reverseWalkDuration = reverse ? reverseWalkDuration : reverseWalkDuration * 2;
+
+        Debug.Log("reverse = " + reverse);
     }
     private void SetAnimatorVariables()
     {

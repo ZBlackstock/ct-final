@@ -6,10 +6,13 @@ public class Player_Animations : MonoBehaviour
 {
     private CameraShake cameraShake;
     private Animator playerAnim;
-    private AnimatorStateInfo playerStateInfo;  
+    private AnimatorStateInfo playerStateInfo;
+    private SoundManager sound;
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private GameObject[] attackCollisions;
     [SerializeField] private GameObject[] counterCollisions;
+    [SerializeField] private AudioClip[] steps;
+    [SerializeField] private AudioClip wakeUp, stepCounter;
 
     public void Hurt()
     {
@@ -24,6 +27,7 @@ public class Player_Animations : MonoBehaviour
     {
         cameraShake = FindFirstObjectByType<CameraShake>();
         playerAnim = GetComponent<Animator>();
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
     private void Start()
@@ -242,5 +246,18 @@ public class Player_Animations : MonoBehaviour
     public bool GetStepKnockback()
     {
         return stepKnockback;
+    }
+
+    private void PlaySound_Step()
+    {
+        sound.PlaySoundRandom(steps, 0.5f, 1, 1);
+    }
+    private void PlaySound_WakeUp()
+    {
+        sound.PlaySound(wakeUp, 1);
+    }
+    private void PlaySound_StepCounter()
+    {
+        sound.PlaySound(stepCounter, 1);
     }
 }

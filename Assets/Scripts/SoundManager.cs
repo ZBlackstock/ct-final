@@ -151,6 +151,7 @@ public class SoundManager : MonoBehaviour
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
     }
+
     public void StopSound(AudioClip audio)
     {
         if (audioS.Count > 0)

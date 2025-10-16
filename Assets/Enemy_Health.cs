@@ -1,28 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
-public class Enemy_Health : MonoBehaviour
+public class Enemy_Health : Health
 {
     [SerializeField] private string[] tags = new string[2];
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 0.15f;
-    private Rigidbody2D rb;
-    [SerializeField] private Animator tintAnim;
-    [SerializeField] private Animator bodyAnim;
+
     private GravetenderKnight gravetenderKnight;
     private CapsuleCollider2D capsule;
-    public float maxHealth = 100;
-    public float health = 100;
+
     private bool dead;
     private bool counter;
-    private bool overheadCountered;
+    private bool overheadCountered, underarmCountered;
+    private _ParticlesManager particlesManager;
+    private bool faceRight;
+    [SerializeField] private SpriteRenderer attackTrail;
+    private BehaviorTree behaviourTree;
 
     private void Awake()
     {
         rb = GetComponentInParent<Rigidbody2D>();
         capsule = GetComponent<CapsuleCollider2D>();
         gravetenderKnight = GetComponentInParent<GravetenderKnight>();
+        particlesManager = FindFirstObjectByType<_ParticlesManager>();
+        behaviourTree = GetComponentInParent<BehaviorTree>();
     }
 
     void Update()
@@ -50,12 +54,15 @@ public class Enemy_Health : MonoBehaviour
             bodyAnim.SetTrigger("hit");
             bodyAnim.SetBool("dead", health <= 0);
             capsule.enabled = health > 0;
-            
+            behaviourTree.SetVariableValue("hit", true);
         }
         else
         {
+            invincibilityTimer = 0.1f;
             counter = true;
             bodyAnim.SetTrigger("counter");
+            particlesManager.enemyCounter_Particles.transform.localScale = new Vector3((faceRight ? -1 : 1), 1, 1);
+            particlesManager.PlayParticlesFromParticleSystem(particlesManager.enemyCounter_Particles);
         }
     }
 
@@ -64,13 +71,30 @@ public class Enemy_Health : MonoBehaviour
         if (countered)
         {
             bodyAnim.SetTrigger("countered_overhead");
+            attackTrail.enabled = false;
         }
 
         overheadCountered = countered;
     }
 
+    public void UnderarmCountered(bool countered)
+    {
+        if (countered)
+        {
+            bodyAnim.SetTrigger("countered_underarm");
+            attackTrail.enabled = false;
+        }
+
+        underarmCountered = countered;
+    }
+
     public bool GetHasBeenCountered()
     {
-        return overheadCountered;
+        return overheadCountered || underarmCountered;
+    }
+
+    public void Set_FaceRight(bool right)
+    {
+        faceRight = right;
     }
 }

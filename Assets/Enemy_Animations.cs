@@ -11,17 +11,17 @@ public class AttackSequence
 public class Enemy_Animations : MonoBehaviour
 {
     [SerializeField] public List<AttackSequence> attackSequences = new List<AttackSequence>();
+    private SoundManager sound;
+    [SerializeField] private AudioClip[] steps;
 
-
-    void Start()
+    private void Awake()
     {
-        
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlaySound_Step()
     {
-        
+        sound.PlaySoundRandom(steps, 0.3f, 1, 1);
     }
 }
 

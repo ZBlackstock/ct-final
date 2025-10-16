@@ -4,29 +4,25 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class Player_Health : MonoBehaviour
+public class Player_Health : Health
 {
-    [SerializeField] private Animator anim;
     private bool hurt;
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 1.5f;
-    private Rigidbody2D rb;
     private PlayerController playerController;
     private CameraShake cameraShake;
     [SerializeField] private Animator fadeBlackAnim;
 
-    public float maxHealth = 10;
-    public float health = 10;
     private bool death;
     private float sceneResetTimer = 5f;
-    [SerializeField] private Animator tintAnim;
-    private Settings settings;
 
     private float timer = -1f; // For when to freeze after taking hit
-    private Player_Particles playerParticles;
+    private _ParticlesManager playerParticles;
     [SerializeField] private SpriteRenderer[] playerSprites;
     [SerializeField] private GameObject trail;
     private bool playerInvincible;
+    [SerializeField] private AudioClip hurtSound;
+    private SoundManager sound;
 
     void Awake()
     {
@@ -34,7 +30,8 @@ public class Player_Health : MonoBehaviour
         playerController = GetComponentInParent<PlayerController>();
         cameraShake = FindFirstObjectByType<CameraShake>();
         settings = FindFirstObjectByType<Settings>();
-        playerParticles = GetComponentInParent<Player_Particles>();
+        playerParticles = GetComponentInParent<_ParticlesManager>();
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
     void Update()
@@ -69,28 +66,31 @@ public class Player_Health : MonoBehaviour
 
     private void TakeHit(bool fromRight)
     {
-        hurt = true;
-        health -= 10;
-        timer = 0.05f; //Time until brief "hit pause" 
-
-        if (health <= 0)
+        if(invincibilityTimer < 0)
         {
-            print("Dead");
+            rb.velocity = Vector2.zero;
 
-            Player_Death();
-            DeathEffects();
-        }
-        else
-        {
-            print("Hurt");
-            if (fromRight && playerController.hurtKnockbackForce.x > 0 || !fromRight && playerController.hurtKnockbackForce.x < 0)
+            hurt = true;
+            health -= 10;
+            timer = 0.05f; //Time until brief "hit pause" 
+
+            if (health <= 0)
             {
-                playerController.hurtKnockbackForce = new Vector2(playerController.hurtKnockbackForce.x * -1, playerController.hurtKnockbackForce.y);
+                Player_Death();
+                DeathEffects();
             }
-            invincibilityTimer = invincibilityDuration;
-            rb.gravityScale = playerController.jumpingGravity;
+            else
+            {
+                sound.PlaySound(hurtSound);
+                if (fromRight && playerController.hurtKnockbackForce.x > 0 || !fromRight && playerController.hurtKnockbackForce.x < 0)
+                {
+                    playerController.hurtKnockbackForce = new Vector2(playerController.hurtKnockbackForce.x * -1, playerController.hurtKnockbackForce.y);
+                }
+                invincibilityTimer = invincibilityDuration;
+                rb.gravityScale = playerController.jumpingGravity;
 
-            HitEffects();
+                HitEffects();
+            }
         }
     }
 
@@ -98,8 +98,8 @@ public class Player_Health : MonoBehaviour
     {
         cameraShake.ShakeCamera(0.3f);
         tintAnim.SetTrigger("hit");
-        anim.SetTrigger("hurt");
-        playerParticles.SpawnParticlesAsGameObject(playerParticles.hurt_Particles, anim.transform.position);
+        bodyAnim.SetTrigger("hurt");
+        playerParticles.SpawnParticlesAsGameObject(playerParticles.hurt_Particles, bodyAnim.transform.position);
     }
 
     public void Player_Death()
@@ -118,7 +118,7 @@ public class Player_Health : MonoBehaviour
         }
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        playerParticles.SpawnParticlesAsGameObject(playerParticles.death_Particles, anim.transform.position);
+        playerParticles.SpawnParticlesAsGameObject(playerParticles.death_Particles, bodyAnim.transform.position);
 
 
         for (int i = 0; i < playerSprites.Length - 1; i++)
@@ -142,13 +142,13 @@ public class Player_Health : MonoBehaviour
         hurt = isHurt;
     }
 
-    private void OnTriggerStay2D(Collider2D col)
+    private IEnumerator OnTriggerStay2D(Collider2D col)
     {
+        yield return null;
         if (col.tag.Contains("enemy") && invincibilityTimer < 0)
         {
             //Detect if child caused collision
             TakeHit(col.gameObject.transform.position.x > transform.position.x);
-            rb.velocity = Vector2.zero;
         }
     }
 

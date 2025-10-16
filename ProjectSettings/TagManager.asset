@@ -11,6 +11,7 @@ TagManager:
   - enemy_overhead
   - player_uppercut
   - player_step
+  - enemy_underarm
   layers:
   - Default
   - TransparentFX
