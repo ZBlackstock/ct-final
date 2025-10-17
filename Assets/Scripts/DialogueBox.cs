@@ -98,7 +98,7 @@ public class DialogueBox : MonoBehaviour
         }
         else if (input.GetCurrentInput() == "xbox")
         {
-            skipText.text = "(X) Skip";
+            skipText.text = "(Y) Skip";
         }
     }
 
@@ -216,6 +216,7 @@ public class DialogueBox : MonoBehaviour
         }
 
         playerController.SetUIOpen(false, false);
+        playerController.SetDialogueOpen(false);
 
         gameObject.SetActive(false);
     }

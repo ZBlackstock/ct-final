@@ -35,6 +35,7 @@ public class Settings : MonoBehaviour
    
     public void SetTimeScale(float time)
     {
+        print("TimeScale set to " + time);
         Time.timeScale = time;
     }
 

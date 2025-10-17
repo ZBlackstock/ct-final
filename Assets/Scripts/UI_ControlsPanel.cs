@@ -34,17 +34,31 @@ public class UI_ControlsPanel : MonoBehaviour
 
         if (controlsPanel.activeSelf && timer < 0)
         {
-            if (Input.anyKeyDown)
+            if (!pauseMenu.GetPauseMenuActive())
             {
-                SetControlsPanel(false);
-                if (interact != null)
+                if (Input.anyKeyDown)
                 {
-                    interact.IsInteracting(false);
+                    SetControlsPanel(false);
+                    if (interact != null)
+                    {
+                        interact.IsInteracting(false);
+                    }
+                }
+            }
+            else
+            {
+                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start") || Input.GetButton("B"))
+                {
+                    SetControlsPanel(false);
+                    if (interact != null)
+                    {
+                        interact.IsInteracting(false);
+                    }
                 }
             }
         }
 
-        if(interact != null)
+        if (interact != null)
         {
             if (interact.Interacted())
             {
@@ -62,8 +76,8 @@ public class UI_ControlsPanel : MonoBehaviour
             healthbar.SetActive(!appear);
         }
         playerController.SetUIOpen(appear || pauseMenu.GetPauseMenuActive(), false); // UIOPen if controls is open OR pause menu is open1
-        settings.SetTimeScale(appear || pauseMenu.transform.GetChild(0).gameObject.activeSelf ? 0 : 1);
         controlsPanel.SetActive(appear);
+        pauseMenu.buttonHighlightCanvas.SetActive(pauseMenu.GetPauseMenuActive() && !appear);
         timer = appear ? 0.1f : 0;
     }
 }

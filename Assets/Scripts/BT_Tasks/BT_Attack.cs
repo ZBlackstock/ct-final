@@ -1,6 +1,7 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using System.Collections;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using static BehaviorDesigner.Runtime.BehaviorManager;
 
@@ -16,7 +17,7 @@ public class BT_Attack : EnemyAction
     private Enemy_Health health;
     [Range(0, 1)] private float counter_NormalisedTime; //When countered, skip to specific fram - makes counter connection look better
     private bool velocityCoroutineRunning;
-
+    private AnimatorStateInfo animStateInfo;
     public SharedBool hit;
 
     public override void OnAwake()
@@ -38,6 +39,8 @@ public class BT_Attack : EnemyAction
 
     public override TaskStatus OnUpdate()
     {
+        animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
+
         // If timer above 0, decrease. Else set to -1 (add attack force)
         attackForceDelayTimer = attackForceDelayTimer >= 0 ? attackForceDelayTimer -= Time.deltaTime : -1;
 
@@ -96,8 +99,8 @@ public class BT_Attack : EnemyAction
     IEnumerator Wait()
     {
         yield return null; // Wait frame to ensure correct animation clip
-        yield return new WaitForSeconds(anim.GetCurrentAnimatorStateInfo(0).length);
-
+        yield return new WaitForSeconds(animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length));
+        Debug.Log("Waiting for anim length: " + anim.GetCurrentAnimatorStateInfo(0).length);
         ExitAttackTask();
     }
 

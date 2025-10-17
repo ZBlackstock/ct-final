@@ -8,13 +8,12 @@ public class ButtonSelectionHighlight : MonoBehaviour
 {
     private RectTransform selectedButtonTrans;
     [SerializeField] private GameObject selectedButton;
-    [SerializeField] private GameObject firstSelectedButton;
+    public GameObject firstSelectedButton;
     [SerializeField] private float swordOffset;
     [SerializeField] private RectTransform[] swords = new RectTransform[2];
     [SerializeField] private bool rapidAppear;
     [SerializeField] private AudioClip buttonHighlight;
     private SoundManager sound;
-
 
     private void Awake()
     {
@@ -30,8 +29,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
                 sword.GetComponent<Animator>().SetBool("rapidAppear", rapidAppear);
             }
             selectedButton = firstSelectedButton;
-            EventSystem.current.SetSelectedGameObject(firstSelectedButton);
-            selectedButtonTrans = selectedButton.GetComponent<RectTransform>();
+            SetHighlighterPosition(selectedButton);
             SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
         }
         catch
@@ -46,8 +44,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
             EventSystem.current.currentSelectedGameObject != null)
         {
             selectedButton = EventSystem.current.currentSelectedGameObject;
-            selectedButtonTrans = selectedButton.GetComponent<RectTransform>();
-            SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
+            SetHighlighterPosition(selectedButton);
             PlaySound_ButtonHighlight();
         }
 
@@ -57,14 +54,24 @@ public class ButtonSelectionHighlight : MonoBehaviour
         }
     }
 
+    private void PlaySound_ButtonHighlight()
+    {
+        sound.PlaySound(buttonHighlight);
+    }
+
+    private void SetHighlighterPosition(GameObject button)
+    {
+        selectedButtonTrans = button.GetComponent<RectTransform>();
+        SetSelectionPosition(selectedButtonTrans.position, selectedButtonTrans.rect.width);
+    }
     private void SetSelectionPosition(Vector2 pos, float width)
     {
         swords[0].position = new Vector2(pos.x - (width / 2) - swordOffset, pos.y);
         swords[1].position = new Vector2(pos.x + (width / 2) + swordOffset, pos.y);
     }
 
-    private void PlaySound_ButtonHighlight()
+    public void SetEventSystemCurrentButton(GameObject current)
     {
-        sound.PlaySound(buttonHighlight);
+        EventSystem.current.SetSelectedGameObject(current);
     }
 }

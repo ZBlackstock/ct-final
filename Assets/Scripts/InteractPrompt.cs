@@ -5,7 +5,7 @@ using UnityEngine;
 public class InteractPrompt : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    [SerializeField] private Sprite eKey, xButton;
+    [SerializeField] private Sprite E_Key, Y_Button;
     private PlayerController playerController;
     private GroundCheck groundCheck;
     private InputDetection input;
@@ -130,11 +130,11 @@ public class InteractPrompt : MonoBehaviour
     {
         if (input.GetCurrentInput() == "keyboard")
         {
-            symbol.sprite = eKey;
+            symbol.sprite = E_Key;
         }
         else if (input.GetCurrentInput() == "xbox")
         {
-            symbol.sprite = xButton;
+            symbol.sprite = Y_Button;
         }
     }
 

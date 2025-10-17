@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     private float startTimer = 9f;
     private Player_Health health;
     private bool disableMove;
-    private bool UIOpen;
+    private bool UIOpen, dialogueOpen;
     private bool velocityCoroutineRunning;
     private bool playedLandSound;
 
@@ -84,6 +84,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private AudioClip[] deflected;
 
     _ParticlesManager playerParticles;
+    [SerializeField] private GameObject healthbar;
+    [SerializeField] private EnableOnEnter healthEnableTrigger;
 
     private void Awake()
     {
@@ -105,8 +107,19 @@ public class PlayerController : MonoBehaviour
     {
         canmove = canMove();
         moveInput = canMove() ? Input.GetAxisRaw("Horizontal") : 0;
-
-        startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
+        if (moveInput > 0)
+        {
+            moveInput = 1;
+        }
+        else if (moveInput < 0)
+        {
+            moveInput = -1;
+        }
+        else
+        {
+            moveInput = 0;
+        }
+            startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
 
         CheckInput();
         ExecuteInputs();
@@ -376,6 +389,27 @@ public class PlayerController : MonoBehaviour
         {
             StartCoroutine(WaitFrame());
         }
+
+        if (healthEnableTrigger != null)
+        {
+            if (healthEnableTrigger.ObjectsEnabled())
+            {
+                healthbar.SetActive(!open);
+            }
+        }
+        else
+        {
+            healthbar.SetActive(!open);
+        }
+    }
+
+    public void SetDialogueOpen(bool open)
+    {
+        dialogueOpen = open;
+    }
+    public bool GetDialogueOpen()
+    {
+        return dialogueOpen;
     }
 
     private IEnumerator WaitFrame()

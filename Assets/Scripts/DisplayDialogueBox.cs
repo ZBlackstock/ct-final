@@ -24,7 +24,7 @@ public class DisplayDialogueBox : MonoBehaviour
             EnableDialogueBox();
         }
 
-        if ((Input.GetButtonDown("Cancel") || Input.GetButtonDown("Joystick1")) && dialogueBox.activeSelf)
+        if ((Input.GetButtonDown("Cancel") || Input.GetButtonDown("Start") || Input.GetButtonDown("B")) && dialogueBox.activeSelf)
         {
             DisableDialogueBox();
         }
@@ -47,6 +47,7 @@ public class DisplayDialogueBox : MonoBehaviour
         }
 
         playerController.SetUIOpen(true, false);
+        playerController.SetDialogueOpen(true);
         Vector3 spawn = spawnTrans.position;
 
         prompt.IsInteracting(false);

@@ -10,18 +10,22 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject[] canvases = new GameObject[3];
     [SerializeField] private Animator fadeBlack;
     [SerializeField] private Animator[] selectedButtonAnims = new Animator[2];
+    private ButtonSelectionHighlight buttonHighlighter;
     private float loadSceneTimer = 5;
     private bool visible;
     private bool select;
     [SerializeField] private GameObject controlsPanel;
+    [SerializeField] private GameObject settingsPanel;
     private float timer;
     [SerializeField] private AudioClip buttonSelect;
     private SoundManager sound;
     [SerializeField] private GameObject fakePlayer;
+    private bool playSelected;
 
     private void Awake()
     {
         sound = FindFirstObjectByType<SoundManager>();
+        buttonHighlighter = FindFirstObjectByType<ButtonSelectionHighlight>();
         Cursor.visible = false;
     }
 
@@ -61,7 +65,9 @@ public class MainMenu : MonoBehaviour
 
         if (controlsPanel.activeSelf && timer < 0)
         {
-            if (Input.anyKeyDown)
+            if (Input.anyKeyDown || Input.GetButtonDown("A") || Input.GetButtonDown("B") || Input.GetButtonDown("X") || Input.GetButtonDown("Y") ||
+                 Input.GetButtonDown("RightBumper") || Input.GetButtonDown("LeftBumper") || Input.GetButtonDown("RightTrigger") ||
+                 Input.GetButtonDown("LeftTrigger") || Input.GetButtonDown("Start"))
             {
                 controlsPanel.SetActive(false);
             }
@@ -76,33 +82,50 @@ public class MainMenu : MonoBehaviour
         canvases[1].SetActive(true);
         canvases[2].SetActive(true);
     }
+
     public void btn_Play()
     {
-        print("play");
-        PlaySound_ButtonSelect();
-        fakePlayer.SetActive(false);
-        visible = true;
-        select = true;
+        if (!playSelected)
+        {
+            print("play");
+            PlaySound_ButtonSelect();
+            fakePlayer.SetActive(false);
+            visible = true;
+            select = true;
+            playSelected = true;
+        }
     }
 
     public void btn_Controls()
     {
-        PlaySound_ButtonSelect();
-        controlsPanel.SetActive(true);
-        timer = 0.1f;
+        if (!playSelected)
+        {
+            PlaySound_ButtonSelect();
+            controlsPanel.SetActive(true);
+            timer = 0.1f;
+        }
     }
+
     public void btn_Settings()
     {
-        PlaySound_ButtonSelect();
+        if (!playSelected)
+        {
+            PlaySound_ButtonSelect();
+            canvases[1].SetActive(false);
+            canvases[3].SetActive(true);
+        }
     }
+
     public void btn_Quit()
     {
-        Application.Quit();
+        if (!playSelected)
+        {
+            Application.Quit();
+        }
     }
 
     private void PlaySound_ButtonSelect()
     {
-        print("select");
         sound.PlaySound(buttonSelect, 0.6f);
     }
 }
