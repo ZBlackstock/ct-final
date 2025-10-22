@@ -106,7 +106,7 @@ public class DialogueBox : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            sound.PlaySound(skip, 1);
+            sound.PlaySound(sound.UI_Dialogue_Skip, 1);
             skipLine = true;
             return true;
         }
@@ -120,7 +120,7 @@ public class DialogueBox : MonoBehaviour
     {
         if (uniqueDialogueOpenSound)
         {
-            sound.PlaySound(uniqueDialogueOpenSound, dialogueOpenSoundVolume);
+            sound.PlaySound(sound.UI_Vocal_NightmareDweller, dialogueOpenSoundVolume);
         }
 
         foreach (TMPro.TextMeshPro text in texts)
@@ -140,7 +140,7 @@ public class DialogueBox : MonoBehaviour
 
         for (int i = 0; i < texts.Count; i++) // Texts
         {
-            sound.PlaySoundLoop(dialogueTyping, 0.8f, 0.975f, 1f);
+            sound.PlaySoundLoop(sound.UI_Dialogue_Typing, 0.8f, 0.975f, 1f);
 
             texts[i].text = "";
             char currentChar = ' ';
@@ -152,7 +152,7 @@ public class DialogueBox : MonoBehaviour
 
                 if (skipLine && j > 0) // Skip line generation
                 {
-                    sound.StopSound(dialogueTyping);
+                    sound.StopSound(sound.UI_Dialogue_Typing);
                     texts[i].text = lineStores[i];
                     j = charCounts[i];
                 }
@@ -163,7 +163,7 @@ public class DialogueBox : MonoBehaviour
                 yield return new WaitUntil(() => realTimeSinceStartup >= (currentTimeSinceStartup + 0.025f));
             }
 
-            sound.StopSound(dialogueTyping);
+            sound.StopSound(sound.UI_Dialogue_Typing);
             yield return new WaitUntil(() => nextText()); // Next text 
             texts[i].text = "";
         }
@@ -173,7 +173,7 @@ public class DialogueBox : MonoBehaviour
 
     public void ResetDialogue()
     {
-        sound.StopSound(dialogueTyping);
+        sound.StopSound(sound.UI_Dialogue_Typing);
 
         StopCoroutine(DisplayText());
         nameTextFade.SetTextAlpha(0);
@@ -186,7 +186,7 @@ public class DialogueBox : MonoBehaviour
             sound = FindFirstObjectByType<SoundManager>();
         }
 
-        sound.PlaySound(open, 1);
+        sound.PlaySound(sound.UI_Dialogue_Open, 1);
         foreach (TMPro.TextMeshPro text in texts)
         {
             text.enabled = true;
@@ -207,8 +207,8 @@ public class DialogueBox : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.05f);
         yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).length - 0.05f);
 
-        sound.StopSound(dialogueTyping);
-        sound.PlaySound(close, 1);
+        sound.StopSound(sound.UI_Dialogue_Typing);
+        sound.PlaySound(sound.UI_Dialogue_Close, 1);
 
         if (playerController == null)
         {

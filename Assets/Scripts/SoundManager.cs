@@ -3,19 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
+// Manages playing of AudioClips
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] private AudioMixerGroup gameVolumeMixer;
     public List<AudioSource> audioS = new List<AudioSource>();
     public List<AudioSource> audioSUI = new List<AudioSource>();
-
     private float soundRandomiser;
+
+    [Header("AudioClips")]
+    public AudioClip player_WakeUp;
+    public AudioClip player_StepCounter;
+    public AudioClip player_UppercutCounterCollision;
+    public AudioClip player_StepCounterCollision;
+    public AudioClip player_Jump;
+    public AudioClip player_Land;
+    public AudioClip player_UppercutWhoosh;
+    public AudioClip player_StepCounterChime;
+    public AudioClip player_Hurt;
+
+    [Header("Randomised AudioClips")]
+    public AudioClip[] player_Steps;
+    public AudioClip[] player_AttackHits;
+    public AudioClip[] player_AttackWhoosh;
+    public AudioClip[] player_Deflected;
+    public AudioClip[] enemy_Steps;
+
+    [Header("UI AudioClips")]
+    public AudioClip UI_ButtonHighlight;
+    public AudioClip UI_ButtonSelect;
+    public AudioClip UI_Interact;
+    public AudioClip UI_ControlsPanelAppear;
+    public AudioClip UI_Dialogue_Open;
+    public AudioClip UI_Dialogue_Close;
+    public AudioClip UI_Dialogue_Skip;
+    public AudioClip UI_Dialogue_Typing;
+    public AudioClip UI_Vocal_NightmareDweller;
 
     private void Start()
     {
         StartCoroutine(AudioClear());
         StartCoroutine(DestroyUISound());
     }
+
     private IEnumerator AudioClear()
     {
         while (true)
@@ -63,15 +93,16 @@ public class SoundManager : MonoBehaviour
     }
     public bool IsSoundPlaying(AudioClip clip)
     {
-        foreach(AudioSource audio in audioS.ToArray())
+        foreach (AudioSource audio in audioS.ToArray())
         {
-            if(audio.clip == clip)
+            if (audio.clip == clip)
             {
                 return true;
             }
         }
         return false;
     }
+
     public void PlaySoundRandom(AudioClip[] audioClip, float volume, float pitchMin, float pitchMax)
     {
         soundRandomiser = Random.Range(0, audioClip.Length);
@@ -84,7 +115,8 @@ public class SoundManager : MonoBehaviour
         newAudioS.clip = audioClip[(int)soundRandomiser];
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
-    }    
+    }
+
     public void PlaySound(AudioClip audioClip)
     {
         AudioSource newAudioS = gameObject.AddComponent<AudioSource>();

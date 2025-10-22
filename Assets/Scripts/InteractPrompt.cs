@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class InteractPrompt : MonoBehaviour
 {
-    [SerializeField] private Animator anim;
     [SerializeField] private Sprite E_Key, Y_Button;
     private PlayerController playerController;
     private GroundCheck groundCheck;
@@ -12,7 +11,6 @@ public class InteractPrompt : MonoBehaviour
     private SpriteRenderer arrow, symbol;
     public bool playerInRange, interacting, disabled;
     private SoundManager sound;
-    [SerializeField] private AudioClip interactSound;
 
     private void Awake()
     {
@@ -27,7 +25,6 @@ public class InteractPrompt : MonoBehaviour
     private void Update()
     {
         DetectInputSource(); // Change to standard script reference ("InputDetection")
-        SetAnimationParameters();
         SetSpritesActive();
 
         if (playerController == null)
@@ -38,7 +35,7 @@ public class InteractPrompt : MonoBehaviour
         if (playerInRange && !disabled && !interacting && !playerController.GetUIOpen() && Input.GetButtonDown("Interact")) // Set back to false externally
         {
             IsInteracting(true);
-            sound.PlaySound(interactSound);
+            sound.PlaySound(sound.UI_Interact);
         }
     }
 
@@ -91,20 +88,6 @@ public class InteractPrompt : MonoBehaviour
         else
         {
             disabled = true;
-        }
-    }
-
-    private void SetAnimationParameters()
-    {
-        anim.SetBool("Interacting", interacting);
-
-        if (!disabled)
-        {
-            anim.SetBool("WithinRange", playerInRange);
-        }
-        else
-        {
-            anim.SetBool("WithinRange", false);
         }
     }
 

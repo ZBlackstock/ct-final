@@ -4,15 +4,15 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+// Highlights menu button in eventsystem and visually onscreen (2 swords)
 public class ButtonSelectionHighlight : MonoBehaviour
 {
     private RectTransform selectedButtonTrans;
     [SerializeField] private GameObject selectedButton;
-    public GameObject firstSelectedButton;
-    [SerializeField] private float swordOffset;
+    public GameObject firstSelectedButton; // First button highlighted on opening menu/pause menu
+    [SerializeField] private float swordOffset; // Gap between sword and button
     [SerializeField] private RectTransform[] swords = new RectTransform[2];
-    [SerializeField] private bool rapidAppear;
-    [SerializeField] private AudioClip buttonHighlight;
+    [SerializeField] private bool rapidAppear; // Appears quicker on pause menu
     private SoundManager sound;
 
     private void Awake()
@@ -40,6 +40,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
 
     void Update()
     {
+        // If eventsystem has different selected button GameObject to selectedButton, reassign selectedButton 
         if (EventSystem.current.currentSelectedGameObject != selectedButton &&
             EventSystem.current.currentSelectedGameObject != null)
         {
@@ -48,6 +49,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
             PlaySound_ButtonHighlight();
         }
 
+        // If eventsystem loses track of currently selected button, reassign it via selectedButton
         if (EventSystem.current.currentSelectedGameObject == null && selectedButton != null)
         {
             EventSystem.current.SetSelectedGameObject(selectedButton);
@@ -56,7 +58,7 @@ public class ButtonSelectionHighlight : MonoBehaviour
 
     private void PlaySound_ButtonHighlight()
     {
-        sound.PlaySound(buttonHighlight);
+        sound.PlaySound(sound.UI_ButtonHighlight);
     }
 
     private void SetHighlighterPosition(GameObject button)

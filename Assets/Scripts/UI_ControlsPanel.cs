@@ -3,24 +3,24 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
+// Manages enabling/disabling of controls panel, in gameplay & menus
 public class UI_ControlsPanel : MonoBehaviour
 {
     [SerializeField] private GameObject controlsPanel;
-    private _PauseMenu pauseMenu;
     [SerializeField] private InteractPrompt interact;
+    private _PauseMenu pauseMenu;
     private PlayerController playerController;
-    private Settings settings;
-    private Animator anim;
     private float timer = 0.1f;
     private GameObject healthbar;
+    private bool panelActive;
+    private SoundManager sound;
 
     private void Awake()
     {
         playerController = FindFirstObjectByType<PlayerController>();
-        settings = FindFirstObjectByType<Settings>();
-        anim = controlsPanel.GetComponent<Animator>();
         pauseMenu = FindFirstObjectByType<_PauseMenu>();
         healthbar = FindFirstObjectByType<UI_Healthbar>().gameObject;
+        sound = FindFirstObjectByType<SoundManager>();
     }
 
     private void Start()
@@ -32,43 +32,62 @@ public class UI_ControlsPanel : MonoBehaviour
     {
         timer -= Time.unscaledDeltaTime;
 
+        // Check player wants to exit controls
         if (controlsPanel.activeSelf && timer < 0)
         {
-            if (!pauseMenu.GetPauseMenuActive())
-            {
-                if (Input.anyKeyDown)
-                {
-                    SetControlsPanel(false);
-                    if (interact != null)
-                    {
-                        interact.IsInteracting(false);
-                    }
-                }
-            }
-            else
-            {
-                if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start") || Input.GetButton("B"))
-                {
-                    SetControlsPanel(false);
-                    if (interact != null)
-                    {
-                        interact.IsInteracting(false);
-                    }
-                }
-            }
+            ExitCheck(pauseMenu.GetPauseMenuActive());
         }
 
+        // Check player is interacting with prompt
         if (interact != null)
         {
-            if (interact.Interacted())
-            {
-                SetControlsPanel(true);
-                interact.IsInteracting(false);
-            }
+            InteractCheck();
         }
-
     }
 
+    private void ExitCheck(bool pauseMenuActive)
+    {
+        if (pauseMenuActive)
+        {
+            // Within pause menu, check for "back" inputs
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start") || Input.GetButton("B"))
+            {
+                SetControlsPanel(false);
+                panelActive = false;
+                if (interact != null)
+                {
+                    interact.IsInteracting(false);
+                }
+            }
+        }
+        else
+        {
+            // Not in pause menu, check for any key
+            if (Input.anyKeyDown)
+            {
+                SetControlsPanel(false);
+                panelActive = false;
+                if (interact != null)
+                {
+                    interact.IsInteracting(false);
+                }
+            }
+        }
+    }
+
+    // Checks if associated interact prompt has been interacted with
+    private void InteractCheck()
+    {
+        if (interact.Interacted())
+        {
+            SetControlsPanel(true);
+            sound.PlaySound(sound.UI_ControlsPanelAppear);
+            interact.IsInteracting(false);
+            panelActive = true;
+        }
+    }
+
+    // Set panel active/inactive
     public void SetControlsPanel(bool appear)
     {
         if (!pauseMenu.GetPauseMenuActive())
@@ -79,5 +98,10 @@ public class UI_ControlsPanel : MonoBehaviour
         controlsPanel.SetActive(appear);
         pauseMenu.buttonHighlightCanvas.SetActive(pauseMenu.GetPauseMenuActive() && !appear);
         timer = appear ? 0.1f : 0;
+    }
+
+    public bool GetControlsPanelActive()
+    {
+        return panelActive;
     }
 }

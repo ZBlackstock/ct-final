@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngineInternal;
 
 public class Player_Sword : MonoBehaviour
 {
@@ -10,12 +11,9 @@ public class Player_Sword : MonoBehaviour
     private Player_Animations playerAnims;
     private Player_Health playerHealth;
     private Animator anim;
-    Enemy_Health enemyHealth;
+    private Enemy_Health enemyHealth;
     private _ParticlesManager particlesManager;
     private SoundManager sound;
-
-    [SerializeField] private AudioClip uppercutCounterCollision, stepCounterCollision;
-    [SerializeField] private AudioClip[] hits;
 
     void Awake()
     {
@@ -32,47 +30,58 @@ public class Player_Sword : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        // Uppercut Counter
-        if (this.CompareTag("player_uppercut"))
+        if (col.tag.Contains("enemy"))
         {
-            if (col.CompareTag("enemy_overhead"))
+            // Uppercut Counter
+            if (this.CompareTag("player_uppercut"))
             {
-                SuccessfulUppercutCounter();
+                if (col.CompareTag("enemy_overhead"))
+                {
+                    SuccessfulCounter(true);
+                }
+            } // Step Counter
+            else if (this.CompareTag("player_step"))
+            {
+                if (col.CompareTag("enemy_underarm"))
+                {
+                    SuccessfulCounter(false);
+                }
             }
-        } // Step Counter
-        else if (this.CompareTag("player_step"))
-        {
-            if (col.CompareTag("enemy_underarm"))
+            else // Regular attack
             {
-                SuccessfulStepCounter();
+                AttackEnemy(enemyHealth.TakeHitFromPlayer());
             }
         }
-        else // Regular attack
+    }
+
+
+    private void SuccessfulCounter(bool uppercut)
+    {
+        playerHealth.AddHealth(playerHealth.healAmount);
+        playerHealth.SetPlayerInvincible(1f);
+
+        anim.SetTrigger("counterSuccess");
+        settings.SetTimeScale(0, 0.15f, 0.01f);
+        camShake.ShakeCamera(0.15f);
+        playerAnims.DisableAllAttackCollisions();
+
+        if (uppercut)
         {
-            if (col.CompareTag("enemy_exposed"))
-            {
-                AttackLand();
-            }
-            else if (col.CompareTag("enemy_unexposed"))
-            {
-                AttackCountered();
-            }
+            SuccessfulUppercutCounter();
+        }
+        else // Step counter success
+        {
+            SuccessfulStepCounter();
         }
     }
 
     private void SuccessfulUppercutCounter()
     {
         playerController.uppercutKnockback = true;
-        sound.PlaySound(uppercutCounterCollision);
+        sound.PlaySound(sound.player_UppercutCounterCollision);
         anim.Play("Player_Counter_Uppercut", 0, 0.3f);
-        anim.SetTrigger("counterSuccess");
-        settings.SetTimeScale(0, 0.15f, 0.01f);
-        camShake.ShakeCamera(0.15f);
-        playerAnims.DisableAllAttackCollisions();
         playerAnims.uppercut_False();
-        playerHealth.SetPlayerInvincible(1f);
         enemyHealth.OverheadCountered(true);
-
 
         foreach (ParticleSystem p in particlesManager.uppercutCounterParticles)
         {
@@ -84,32 +93,28 @@ public class Player_Sword : MonoBehaviour
     private void SuccessfulStepCounter()
     {
         playerController.stepKnockback = true;
-        sound.PlaySound(stepCounterCollision);
+        sound.PlaySound(sound.player_StepCounterCollision);
         anim.Play("Player_Counter_Step", 0, 0.35f);
-        anim.SetTrigger("counterSuccess");
-        settings.SetTimeScale(0, 0.1f, 0.1f);
-        camShake.ShakeCamera(0.1f);
-        playerAnims.DisableAllAttackCollisions();
         playerAnims.step_False();
-        playerHealth.SetPlayerInvincible(1f);
         enemyHealth.UnderarmCountered(true);
-
         particlesManager.PlayParticlesFromParticleSystem(particlesManager.stepCounterParticles);
     }
 
-    private void AttackLand()
+    private void AttackEnemy(bool enemyExposed)
     {
-        settings.SetTimeScale(0, 0.1f);
-        camShake.ShakeCamera(0.1f);
-        playerController.attackKnockback = true;
-        sound.PlaySoundRandom(hits, 1, 0.95f, 1);
-    }
-
-    private void AttackCountered()
-    {
-        playerController.countered = true;
-        playerAnims.DisableAllAttackCollisions();
-        playerAnims.attack_False();
+        if (enemyExposed)
+        {
+            settings.SetTimeScale(0, 0.1f);
+            camShake.ShakeCamera(0.1f);
+            playerController.attackKnockback = true;
+            sound.PlaySoundRandom(sound.player_AttackHits, 1, 0.95f, 1);
+        }
+        else // Attack countered by enemy
+        {
+            playerController.countered = true;
+            playerAnims.DisableAllAttackCollisions();
+            playerAnims.attack_False();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D col)

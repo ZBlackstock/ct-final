@@ -17,11 +17,10 @@ public class Player_Health : Health
     private float sceneResetTimer = 5f;
 
     private float timer = -1f; // For when to freeze after taking hit
-    private _ParticlesManager playerParticles;
+    private _ParticlesManager particlesManager;
     [SerializeField] private SpriteRenderer[] playerSprites;
     [SerializeField] private GameObject trail;
     private bool playerInvincible;
-    [SerializeField] private AudioClip hurtSound;
     private SoundManager sound;
 
     void Awake()
@@ -30,7 +29,7 @@ public class Player_Health : Health
         playerController = GetComponentInParent<PlayerController>();
         cameraShake = FindFirstObjectByType<CameraShake>();
         settings = FindFirstObjectByType<Settings>();
-        playerParticles = GetComponentInParent<_ParticlesManager>();
+        particlesManager = GetComponentInParent<_ParticlesManager>();
         sound = FindFirstObjectByType<SoundManager>();
     }
 
@@ -81,7 +80,7 @@ public class Player_Health : Health
             }
             else
             {
-                sound.PlaySound(hurtSound);
+                sound.PlaySound(sound.player_Hurt);
                 if (fromRight && playerController.hurtKnockbackForce.x > 0 || !fromRight && playerController.hurtKnockbackForce.x < 0)
                 {
                     playerController.hurtKnockbackForce = new Vector2(playerController.hurtKnockbackForce.x * -1, playerController.hurtKnockbackForce.y);
@@ -99,7 +98,7 @@ public class Player_Health : Health
         cameraShake.ShakeCamera(0.3f);
         tintAnim.SetTrigger("hit");
         bodyAnim.SetTrigger("hurt");
-        playerParticles.SpawnParticlesAsGameObject(playerParticles.hurt_Particles, bodyAnim.transform.position);
+        particlesManager.SpawnParticlesAsGameObject(particlesManager.hurt_Particles, bodyAnim.transform.position);
     }
 
     public void Player_Death()
@@ -118,12 +117,12 @@ public class Player_Health : Health
         }
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
 
-        playerParticles.SpawnParticlesAsGameObject(playerParticles.death_Particles, bodyAnim.transform.position);
+        particlesManager.SpawnParticlesAsGameObject(particlesManager.death_Particles, bodyAnim.transform.position);
 
 
         for (int i = 0; i < playerSprites.Length - 1; i++)
         {
-            playerParticles.SpawnParticlesAsGameObject(playerParticles.playerArmour_Particles[i],
+            particlesManager.SpawnParticlesAsGameObject(particlesManager.playerArmour_Particles[i],
                 playerSprites[i].bounds.center, playerSprites[i].transform.rotation);
         }
     }
@@ -170,6 +169,17 @@ public class Player_Health : Health
     public bool GetPlayerInvincible()
     {
         return invincibilityTimer > 0;
+    }
+
+    public void AddHealth(uint healthAdd)
+    {
+        if (health < maxHealth)
+        {
+            particlesManager.PlayParticlesFromParticleSystem(particlesManager.playerHeal);
+            // Ensure health healed doesn't go over max
+            health = health > (maxHealth - healthAdd) ? maxHealth : health += healthAdd;
+            tintAnim.SetTrigger("heal");
+        }
     }
 }
 

@@ -9,7 +9,7 @@ public class BT_Attack : EnemyAction
 {
     public int attackSeq = -1;
 
-    public float attackForceDelayTimer = 0.1f;
+    [HideInInspector] public float attackForceDelayTimer = 0.1f;
     public float attackForceDelay = 0.1f;
     public Vector2 attackForce, counteredForce;
     public float attackForceDuration = 0.01f, counteredForceDuration = 0.01f;
@@ -18,7 +18,8 @@ public class BT_Attack : EnemyAction
     [Range(0, 1)] private float counter_NormalisedTime; //When countered, skip to specific fram - makes counter connection look better
     private bool velocityCoroutineRunning;
     private AnimatorStateInfo animStateInfo;
-    public SharedBool hit;
+    public SharedBool hit, returnHit;
+    private float counteredTimer = -1;
 
     public override void OnAwake()
     {
@@ -35,11 +36,20 @@ public class BT_Attack : EnemyAction
         attackCountered = false;
         hit.Value = false;
         anim.ResetTrigger("hit");
+        returnHit.Value = false;
     }
 
     public override TaskStatus OnUpdate()
     {
         animStateInfo = anim.GetCurrentAnimatorStateInfo(0);
+        if (counteredTimer > 0)
+        {
+            counteredTimer -= Time.deltaTime;
+        }
+        else
+        {
+            counteredTimer = -1;
+        }
 
         // If timer above 0, decrease. Else set to -1 (add attack force)
         attackForceDelayTimer = attackForceDelayTimer >= 0 ? attackForceDelayTimer -= Time.deltaTime : -1;
@@ -62,11 +72,8 @@ public class BT_Attack : EnemyAction
             attackCountered = true;
         }
 
-        // Check if counter has been executed
-        if (attackCountered)
-        {
-            HitCheck();
-        }
+        // Check if player has hit enem during attack
+        HitCheck(attackCountered);
 
         return success ? TaskStatus.Success : TaskStatus.Running;
     }
@@ -98,19 +105,22 @@ public class BT_Attack : EnemyAction
 
     IEnumerator Wait()
     {
+
         yield return null; // Wait frame to ensure correct animation clip
-        yield return new WaitForSeconds(animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length));
-        Debug.Log("Waiting for anim length: " + anim.GetCurrentAnimatorStateInfo(0).length);
+        counteredTimer = animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length);
+        yield return new WaitUntil(() => counteredTimer == -1);
         ExitAttackTask();
     }
 
-    public void HitCheck()
+    public void HitCheck(bool attackCountered)
     {
         if (hit.Value == true)
         {
             ExitAttackTask();
             hit.Value = false;
             anim.ResetTrigger("hit");
+
+            returnHit.Value = !attackCountered;
         }
     }
 

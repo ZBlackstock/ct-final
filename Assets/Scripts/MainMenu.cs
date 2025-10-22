@@ -17,7 +17,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject settingsPanel;
     private float timer;
-    [SerializeField] private AudioClip buttonSelect;
     private SoundManager sound;
     [SerializeField] private GameObject fakePlayer;
     private bool playSelected;
@@ -126,6 +125,6 @@ public class MainMenu : MonoBehaviour
 
     private void PlaySound_ButtonSelect()
     {
-        sound.PlaySound(buttonSelect, 0.6f);
+        sound.PlaySound(sound.UI_ButtonSelect, 0.6f);
     }
 }

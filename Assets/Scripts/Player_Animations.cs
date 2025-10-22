@@ -11,8 +11,6 @@ public class Player_Animations : MonoBehaviour
     [SerializeField] private float shakeDuration = 0.3f;
     [SerializeField] private GameObject[] attackCollisions;
     [SerializeField] private GameObject[] counterCollisions;
-    [SerializeField] private AudioClip[] steps;
-    [SerializeField] private AudioClip wakeUp, stepCounter;
 
     public void Hurt()
     {
@@ -250,14 +248,14 @@ public class Player_Animations : MonoBehaviour
 
     private void PlaySound_Step()
     {
-        sound.PlaySoundRandom(steps, 0.5f, 1, 1);
+        sound.PlaySoundRandom(sound.player_Steps, 0.5f, 1, 1);
     }
     private void PlaySound_WakeUp()
     {
-        sound.PlaySound(wakeUp, 1);
+        sound.PlaySound(sound.player_WakeUp, 1);
     }
     private void PlaySound_StepCounter()
     {
-        sound.PlaySound(stepCounter, 1);
+        sound.PlaySound(sound.player_StepCounter, 1);
     }
 }

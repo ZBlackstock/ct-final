@@ -51,6 +51,8 @@ public class PlayerController : MonoBehaviour
 
     [Header("AttackKnockback")]
     public bool attackKnockback;
+    [SerializeField] private int attackKnockbackForce = 30;
+    [SerializeField] private float attackKnockbackForceDuration;
 
     public Vector2 hurtKnockbackForce;
     [SerializeField] private int counteredForce = 300;
@@ -76,12 +78,6 @@ public class PlayerController : MonoBehaviour
     private bool UIOpen, dialogueOpen;
     private bool velocityCoroutineRunning;
     private bool playedLandSound;
-
-    [Header("Audio Clips")]
-    [SerializeField] private AudioClip jump;
-    [SerializeField] private AudioClip land, uppercutWhoosh, stepCounterChime;
-    [SerializeField] private AudioClip[] attackWhoosh;
-    [SerializeField] private AudioClip[] deflected;
 
     _ParticlesManager playerParticles;
     [SerializeField] private GameObject healthbar;
@@ -133,7 +129,7 @@ public class PlayerController : MonoBehaviour
 
             if (!playedLandSound && startTimer < 0)
             {
-                sound.PlaySound(land);
+                sound.PlaySound(sound.player_Land);
                 playedLandSound = true;
             }
         }
@@ -261,7 +257,7 @@ public class PlayerController : MonoBehaviour
                 if (pressJump)
                 {
                     pressJump = false;
-                    sound.PlaySound(jump);
+                    sound.PlaySound(sound.player_Jump);
                 }
             }
             else
@@ -275,7 +271,7 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeVelocity(new Vector2(uppercutForce, 0), uppercutForceDuration);
 
-                    sound.PlaySound(uppercutWhoosh);
+                    sound.PlaySound(sound.player_UppercutWhoosh);
                     playerParticles.uppercutParticles.transform.localScale = new Vector2(faceRight ? 1 : -1, 1);
                     playerParticles.PlayParticlesFromParticleSystem(playerParticles.uppercutParticles);
                     uppercut = false;
@@ -289,7 +285,7 @@ public class PlayerController : MonoBehaviour
                 else if (step)
                 {
                     ChangeVelocity(new Vector2(stepForce, 0), stepForceDuration);
-                    sound.PlaySound(stepCounterChime);
+                    sound.PlaySound(sound.player_StepCounterChime);
 
                     step = false;
                 }
@@ -301,20 +297,20 @@ public class PlayerController : MonoBehaviour
                 else if (attack || attack1)
                 {
                     ChangeVelocity(new Vector2(attackForce, 0), attackForceDuration);
-                    sound.PlaySound(attackWhoosh[attack ? 0 : 1]);
+                    sound.PlaySound(sound.player_AttackWhoosh[attack ? 0 : 1]);
 
                     attack = false;
                     attack1 = false;
                 }
                 else if (attackKnockback)
                 {
-                    ChangeVelocity(new Vector2(-attackForce, 0), attackForceDuration);
+                    ChangeVelocity(new Vector2(-attackKnockbackForce, 0), attackKnockbackForceDuration);
                     attackKnockback = false;
                 }
                 else if (countered)
                 {
-                    ChangeVelocity(new Vector2(-counteredForce, 0), 0.1f);
-                    sound.PlaySoundRandom(deflected, 1, 1, 1);
+                    ChangeVelocity(new Vector2(-counteredForce, 0), 0.2f);
+                    sound.PlaySoundRandom(sound.player_Deflected, 1, 1, 1);
                     countered = false;
                 }
             }

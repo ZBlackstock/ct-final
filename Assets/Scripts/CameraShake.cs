@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Shakes the camera via animation. Called externally
 public class CameraShake : MonoBehaviour
 {
     private float timer;
@@ -15,6 +16,7 @@ public class CameraShake : MonoBehaviour
     {
         timer -= Time.deltaTime;
 
+        // If timer is above 0, shake camera
         anim.SetBool("shake", timer >= 0 ? true : false);
     }
 

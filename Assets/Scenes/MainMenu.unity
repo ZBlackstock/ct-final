@@ -947,8 +947,6 @@ MonoBehaviour:
   playerPrefName_Gameplay: gameplayVolume
   slider_Gameplay: {fileID: 1416304871}
   defaultSliderValue_Gameplay: 1
-  buttonHighlight: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
-  buttonSelect: {fileID: 8300000, guid: 7066f6c5e2858d74a8c68e550df08127, type: 3}
 --- !u!1 &574814889
 GameObject:
   m_ObjectHideFlags: 0
@@ -1712,6 +1710,47 @@ MonoBehaviour:
   gameVolumeMixer: {fileID: 24300002, guid: 0781ff401f802fc4a831d0273efd1913, type: 2}
   audioS: []
   audioSUI: []
+  player_WakeUp: {fileID: 8300000, guid: b29c4d13e405d484d92a079168f67024, type: 3}
+  player_StepCounter: {fileID: 8300000, guid: c038a1f84ec32134f8340c5817bce622, type: 3}
+  player_UppercutCounterCollision: {fileID: 8300000, guid: 3151ddd0d84b32b4cb0bc34065dff1e0, type: 3}
+  player_StepCounterCollision: {fileID: 8300000, guid: 3def37873cde74e40bb9509f314b6350, type: 3}
+  player_Jump: {fileID: 8300000, guid: 921df5d9e360e4d47985788513bde0c4, type: 3}
+  player_Land: {fileID: 8300000, guid: 30d809443c45c4340966f1e88f74141d, type: 3}
+  player_UppercutWhoosh: {fileID: 8300000, guid: b27bc74a30d212146af32e3605174502, type: 3}
+  player_StepCounterChime: {fileID: 8300000, guid: 8a9c37236f64cc14e8ef8505af345969, type: 3}
+  player_Hurt: {fileID: 8300000, guid: 7fb74cd81126a204cac345fb0590b074, type: 3}
+  player_Steps:
+  - {fileID: 8300000, guid: 7c5e7ce34e43f7b4eb27e0d932545aaa, type: 3}
+  - {fileID: 8300000, guid: 71e174927935e394f838d28674ab095f, type: 3}
+  - {fileID: 8300000, guid: 6226ce8cfa1fa5348ac2f6796cdb854f, type: 3}
+  - {fileID: 8300000, guid: 4bc80eb385099f448bbf37f45b737fb4, type: 3}
+  - {fileID: 8300000, guid: 7fcc2c536f9682d4f8e0d2467f5ed2ea, type: 3}
+  - {fileID: 8300000, guid: 75ffe03608feaf840b14d48460925b32, type: 3}
+  player_AttackHits:
+  - {fileID: 8300000, guid: 4b34c2ff9366ed945ade957460a36433, type: 3}
+  - {fileID: 8300000, guid: 41abc26c7ae5a0543a26046249944ad4, type: 3}
+  player_AttackWhoosh:
+  - {fileID: 8300000, guid: 5ce47d8d386d9b441b4f7ce79475407d, type: 3}
+  - {fileID: 8300000, guid: 6cc7f8e577d400a4cb38d35a42cdd85f, type: 3}
+  player_Deflected:
+  - {fileID: 8300000, guid: 2b7156cc6285ac64db5cc05a3a6da3a2, type: 3}
+  - {fileID: 8300000, guid: e77c82a314402d446a12da2bad1fe5dd, type: 3}
+  - {fileID: 8300000, guid: f88e50f1b543e334ba03573f6896a387, type: 3}
+  enemy_Steps:
+  - {fileID: 8300000, guid: 7c5e7ce34e43f7b4eb27e0d932545aaa, type: 3}
+  - {fileID: 8300000, guid: 71e174927935e394f838d28674ab095f, type: 3}
+  - {fileID: 8300000, guid: 6226ce8cfa1fa5348ac2f6796cdb854f, type: 3}
+  - {fileID: 8300000, guid: 4bc80eb385099f448bbf37f45b737fb4, type: 3}
+  - {fileID: 8300000, guid: 7fcc2c536f9682d4f8e0d2467f5ed2ea, type: 3}
+  - {fileID: 8300000, guid: 75ffe03608feaf840b14d48460925b32, type: 3}
+  UI_ButtonHighlight: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
+  UI_ButtonSelect: {fileID: 8300000, guid: 7066f6c5e2858d74a8c68e550df08127, type: 3}
+  UI_Interact: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
+  UI_Dialogue_Open: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
+  UI_Dialogue_Close: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
+  UI_Dialogue_Skip: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
+  UI_Dialogue_Typing: {fileID: 8300000, guid: 37ee8b975771ca54fa0ef7bf1dbe96cc, type: 3}
+  UI_Vocal_NightmareDweller: {fileID: 0}
 --- !u!1 &969315255
 GameObject:
   m_ObjectHideFlags: 0
@@ -2013,7 +2052,6 @@ MonoBehaviour:
   - {fileID: 1546546782}
   controlsPanel: {fileID: 392235408}
   settingsPanel: {fileID: 555141245}
-  buttonSelect: {fileID: 8300000, guid: 7066f6c5e2858d74a8c68e550df08127, type: 3}
   fakePlayer: {fileID: 1717829021}
 --- !u!1 &1006083856
 GameObject:
@@ -3146,7 +3184,6 @@ MonoBehaviour:
   - {fileID: 576852152}
   - {fileID: 1546546779}
   rapidAppear: 0
-  buttonHighlight: {fileID: 8300000, guid: 19b8b3531fb69804e8ce67a5ea72bc9f, type: 3}
 --- !u!1 &1506101210
 GameObject:
   m_ObjectHideFlags: 0
