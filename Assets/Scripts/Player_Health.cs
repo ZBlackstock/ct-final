@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
+// Manages player body collisisons, damage and healing
 public class Player_Health : Health
 {
     private bool hurt;

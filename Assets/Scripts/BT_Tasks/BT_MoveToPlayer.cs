@@ -3,6 +3,7 @@ using System.Net;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
+// Enemy AI - Move towards player in a pacing fashion
 public class BT_MoveToPlayer : EnemyAction
 {
     [SerializeField] private float moveSpeed;

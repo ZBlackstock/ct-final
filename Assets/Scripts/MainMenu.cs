@@ -73,6 +73,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
+    // -----------------------Buttons-------------------------------------------------
     public void OpenMenu()
     {
         PlaySound_ButtonSelect();
@@ -122,6 +123,8 @@ public class MainMenu : MonoBehaviour
             Application.Quit();
         }
     }
+
+    // -------------------------------------------------------------------------------
 
     private void PlaySound_ButtonSelect()
     {

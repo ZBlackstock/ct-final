@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Used for logic tied to enemy animations
 public class Enemy_Animations : MonoBehaviour
 {
     private SoundManager sound;

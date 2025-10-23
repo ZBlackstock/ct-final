@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
+// BAsic global settings, just timeScale currently
 public class Settings : MonoBehaviour
 {
     [SerializeField] private float timeScale;
@@ -35,7 +36,6 @@ public class Settings : MonoBehaviour
    
     public void SetTimeScale(float time)
     {
-        print("TimeScale set to " + time);
         Time.timeScale = time;
     }
 

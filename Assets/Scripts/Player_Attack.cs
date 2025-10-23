@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngineInternal;
 
-public class Player_Sword : MonoBehaviour
+// Player attack collisions that collide with enemy (both attacks & counters)
+public class Player_Attack : MonoBehaviour
 {
     private Settings settings;
     private CameraShake camShake;
@@ -54,35 +55,42 @@ public class Player_Sword : MonoBehaviour
         }
     }
 
-
     private void SuccessfulCounter(bool uppercut)
     {
+        // Heal player & disable collisions
         playerHealth.AddHealth(playerHealth.healAmount);
         playerHealth.SetPlayerInvincible(1f);
+        playerAnims.DisableAllAttackCollisions(); // May be unnecessary
 
+        // Play effects
         anim.SetTrigger("counterSuccess");
         settings.SetTimeScale(0, 0.15f, 0.01f);
         camShake.ShakeCamera(0.15f);
-        playerAnims.DisableAllAttackCollisions();
 
+        // Call unique methods based on counter type
         if (uppercut)
         {
             SuccessfulUppercutCounter();
         }
-        else // Step counter success
+        else
         {
             SuccessfulStepCounter();
         }
     }
 
+    // Uppercut counter collision
     private void SuccessfulUppercutCounter()
     {
         playerController.uppercutKnockback = true;
-        sound.PlaySound(sound.player_UppercutCounterCollision);
-        anim.Play("Player_Counter_Uppercut", 0, 0.3f);
-        playerAnims.uppercut_False();
-        enemyHealth.OverheadCountered(true);
 
+        // Set enemy counteredState
+        enemyHealth.Countered(true, true);
+
+        // Snap to best looking part of animation to look good
+        anim.Play("Player_Counter_Uppercut", 0, 0.3f);
+
+        // Play sound & particles
+        sound.PlaySound(sound.player_UppercutCounterCollision);
         foreach (ParticleSystem p in particlesManager.uppercutCounterParticles)
         {
             p.transform.localScale = new Vector3(playerController.faceRight ? 1 : -1, 1, 1);
@@ -90,18 +98,26 @@ public class Player_Sword : MonoBehaviour
         particlesManager.PlayParticlesFromParticleSystem(particlesManager.uppercutCounterParticles);
     }
 
+    // Step counter collision
     private void SuccessfulStepCounter()
     {
         playerController.stepKnockback = true;
-        sound.PlaySound(sound.player_StepCounterCollision);
+
+        // Set enemy counteredState
+        enemyHealth.Countered(true, false);
+
+        // Snap to best looking part of animation to look good
         anim.Play("Player_Counter_Step", 0, 0.35f);
-        playerAnims.step_False();
-        enemyHealth.UnderarmCountered(true);
+
+        // Play sound & particles
+        sound.PlaySound(sound.player_StepCounterCollision);      
         particlesManager.PlayParticlesFromParticleSystem(particlesManager.stepCounterParticles);
     }
 
+    // Bool enemyExposed returns if enemy is vulnerable when method is called
     private void AttackEnemy(bool enemyExposed)
     {
+        // Successful hit
         if (enemyExposed)
         {
             settings.SetTimeScale(0, 0.1f);
@@ -119,14 +135,13 @@ public class Player_Sword : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D col)
     {
-
         if (col.CompareTag("enemy_overhead") && this.CompareTag("player_uppercut"))
         {
-            enemyHealth.OverheadCountered(false);
+            enemyHealth.Countered(false, true);
         }
         else if (col.CompareTag("enemy_underarm") && this.CompareTag("player_step"))
         {
-            enemyHealth.UnderarmCountered(false);
+            enemyHealth.Countered(false, false);
         }
     }
 }

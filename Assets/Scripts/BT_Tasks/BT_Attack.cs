@@ -5,21 +5,26 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using static BehaviorDesigner.Runtime.BehaviorManager;
 
+// Enemy AI - handles attacks
+// Collisions must be set via enabling/disabling gameobject under AttackCollisions in hierarchy, via associated attack animation
 public class BT_Attack : EnemyAction
 {
-    public int attackSeq = -1;
+    public int attackSeq = -1; // Tells anim int "attackSeq" what attack anim clip to play
+    public float attackForceDelay = 0.1f; // Delay before adding velocity to enemy
+    public Vector2 attackForce; // Velocity of attack
+    public Vector2 counteredForce; // Velocity added when countered by player
+    public float attackForceDuration = 0.01f; // Duration of time the enemy is moving forward when attacking
+    public float counteredForceDuration = 0.01f; // Duration of time enemy is moving back when countered
+    public SharedBool hit; // Global bool - has enemy been hit. used to cause quicker animation exit, or result in return hit
+    public SharedBool returnHit; // Global bool, if true on exit, enemy will jab player
 
-    [HideInInspector] public float attackForceDelayTimer = 0.1f;
-    public float attackForceDelay = 0.1f;
-    public Vector2 attackForce, counteredForce;
-    public float attackForceDuration = 0.01f, counteredForceDuration = 0.01f;
-    public bool success, addedForce, attackCountered;
     private Enemy_Health health;
-    [Range(0, 1)] private float counter_NormalisedTime; //When countered, skip to specific fram - makes counter connection look better
-    private bool velocityCoroutineRunning;
     private AnimatorStateInfo animStateInfo;
-    public SharedBool hit, returnHit;
+    [HideInInspector] public float attackForceDelayTimer = 0.1f;
     private float counteredTimer = -1;
+    private bool success;
+    private bool addedForce;
+    private bool attackCountered;
 
     public override void OnAwake()
     {
@@ -84,11 +89,12 @@ public class BT_Attack : EnemyAction
         anim.SetInteger("attackSeq", -1);
     }
 
+    // Player countered enemy attack
     public IEnumerator AttackCountered()
     {
         attackForceDelayTimer = 100;
         anim.SetInteger("attackSeq", -1);
-        StopCoroutine(ChangeVelocity(attackForce, attackForceDuration));
+        StopCoroutine(ChangeVelocity(attackForce, attackForceDuration)); // Stop moving forward with attack force
         StartCoroutine(ChangeVelocity(-counteredForce, counteredForceDuration));
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero;
@@ -101,17 +107,15 @@ public class BT_Attack : EnemyAction
         rb.velocity = Vector2.zero;
     }
 
-
-
     IEnumerator Wait()
     {
-
         yield return null; // Wait frame to ensure correct animation clip
         counteredTimer = animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length);
         yield return new WaitUntil(() => counteredTimer == -1);
         ExitAttackTask();
     }
 
+    // Check if enemy has been hit, and if it's following being countered
     public void HitCheck(bool attackCountered)
     {
         if (hit.Value == true)

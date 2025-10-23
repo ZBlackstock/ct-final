@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Basic health info to be used by entities
 public class Health : MonoBehaviour
 {
     public float maxHealth = 100;

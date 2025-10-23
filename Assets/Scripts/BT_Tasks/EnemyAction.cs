@@ -4,6 +4,7 @@ using UnityEngine;
 using BehaviorDesigner.Runtime.Tasks;
 using BehaviorDesigner.Runtime;
 
+// Enemy AI - Inherited by Enemy Actions
 public class EnemyAction : Action
 {
     protected Rigidbody2D rb;

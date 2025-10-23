@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime.Tasks;
 using System.Net;
 using UnityEngine;
 
+// Enemy AI - Check if player as killed enemy
 public class BT_Check_Dead : EnemyConditional
 {
     [SerializeField] private GameObject enableOnDeath;

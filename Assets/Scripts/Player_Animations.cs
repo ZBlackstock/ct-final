@@ -15,7 +15,6 @@ public class Player_Animations : MonoBehaviour
     public void Hurt()
     {
         uppercutStepback_False();
-        uppercut_False();
         attack_False();
         attackKnockback_False();
         step_False();
@@ -77,25 +76,6 @@ public class Player_Animations : MonoBehaviour
     public bool GetUppercutStepBack()
     {
         return uppercutStepBack;
-    }
-
-    ///////////////////////////////////////////
-
-    private bool uppercut;
-
-    public void uppercut_True()
-    {
-        uppercut = true;
-    }
-
-    public void uppercut_False()
-    {
-        uppercut = false;
-    }
-
-    public bool GetUppercut()
-    {
-        return uppercut;
     }
 
     ///////////////////////////////////////////

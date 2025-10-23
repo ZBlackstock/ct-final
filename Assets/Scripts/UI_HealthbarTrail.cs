@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_HealthbarTril : MonoBehaviour
+public class UI_HealthbarTrail : MonoBehaviour
 {
     [SerializeField] private float currentWidth;
     [SerializeField] private RectTransform healthFillTrans;

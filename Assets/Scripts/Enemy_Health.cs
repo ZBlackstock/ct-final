@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
 
+// Manages damage and healing of enemy entities, and effects
 public class Enemy_Health : Health
 {
-    [SerializeField] private string[] tags = new string[2];
+    [SerializeField] private string[] tags = new string[2]; // 2 different tags dictate if enemy is in vulnerable state
     private float invincibilityTimer;
-    [SerializeField] private float invincibilityDuration = 0.15f;
+    [SerializeField] private float invincibilityDuration = 0.15f;  // Invincibility duration after taking hit
 
     private GravetenderKnight gravetenderKnight;
     private CapsuleCollider2D capsule;
 
-    private bool dead;
-    private bool counter;
-    private bool overheadCountered, underarmCountered;
+    private bool overheadCountered, underarmCountered; // Dictates which logic to execute when player counters enemy attack
     private _ParticlesManager particlesManager;
     private bool faceRight;
     [SerializeField] private SpriteRenderer attackTrail;
-    private BehaviorTree behaviourTree;
+    private BehaviorTree behaviourTree; // Enemy AI
 
     private void Awake()
     {
@@ -35,6 +34,7 @@ public class Enemy_Health : Health
         tag = gravetenderKnight.CanMove() ? tags[0] : tags[1];
     }
 
+    // Called when player attack collides with enemy collider
     public bool TakeHitFromPlayer()
     {
         if (invincibilityTimer < 0)
@@ -45,6 +45,7 @@ public class Enemy_Health : Health
         return CompareTag("enemy_exposed");
     }
 
+    // Handles hit logic
     private void TakeHit(bool exposed)
     {
         if (exposed) // take hit
@@ -52,16 +53,21 @@ public class Enemy_Health : Health
             health -= 8f;
             rb.velocity = Vector2.zero;
             invincibilityTimer = invincibilityDuration;
+
+            // Communicate with enemy AI
+            behaviourTree.SetVariableValue("hit", true);
+
+            //If dead, disable collider
+            capsule.enabled = health > 0;
+
+            // Set animator variables
             tintAnim.SetTrigger("hit");
             bodyAnim.SetTrigger("hit");
             bodyAnim.SetBool("dead", health <= 0);
-            capsule.enabled = health > 0;
-            behaviourTree.SetVariableValue("hit", true);
         }
         else // Counter player
         {
             invincibilityTimer = 0.1f;
-            counter = true;
             bodyAnim.SetTrigger("counter");
             particlesManager.enemyCounter_Particles.transform.localScale = new Vector3((faceRight ? -1 : 1), 1, 1);
             particlesManager.PlayParticlesFromParticleSystem(particlesManager.enemyCounter_Particles);
@@ -76,28 +82,26 @@ public class Enemy_Health : Health
         }
     }
 
-    public void OverheadCountered(bool countered)
+    // Set countered state based on player using uppercut/step counter
+    public void Countered(bool successfullyCountered, bool overheadAttack)
     {
-        if (countered)
+        if (successfullyCountered)
         {
-            bodyAnim.SetTrigger("countered_overhead");
+            bodyAnim.SetTrigger(overheadAttack ? "countered_overhead" : "countered_underarm");
             attackTrail.enabled = false;
         }
 
-        overheadCountered = countered;
-    }
-
-    public void UnderarmCountered(bool countered)
-    {
-        if (countered)
+        if (overheadAttack)
         {
-            bodyAnim.SetTrigger("countered_underarm");
-            attackTrail.enabled = false;
+            overheadCountered = successfullyCountered;
         }
-
-        underarmCountered = countered;
+        else
+        {
+            underarmCountered = successfullyCountered;
+        }
     }
 
+    // Returns if enemy is in any countered state
     public bool GetHasBeenCountered()
     {
         return overheadCountered || underarmCountered;

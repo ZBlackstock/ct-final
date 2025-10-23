@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// For ineditor use. Sets names of children based on their sprite name
 [ExecuteInEditMode]
 public class SetEditorName_ChildSprites : MonoBehaviour
 {

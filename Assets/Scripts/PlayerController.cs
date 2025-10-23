@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Player movement, and other logic that probably should be elsewhere
 public class PlayerController : MonoBehaviour
 {
     public bool ignoreWakeUp;
@@ -146,7 +147,6 @@ public class PlayerController : MonoBehaviour
             animVariables.stepKnockback_False();
             animVariables.step_False();
             animVariables.uppercutStepback_False();
-            animVariables.uppercut_False();
         }
     }
 
@@ -339,7 +339,7 @@ public class PlayerController : MonoBehaviour
     {
         velocityCoroutineRunning = true;
         rb.velocity = new Vector2(velocity.x * direction, velocity.y);
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration); // CHANGE THIS TO MANUAL DELTA TIME TIMER
         rb.velocity = Vector2.zero;
         velocityCoroutineRunning = false;
     }

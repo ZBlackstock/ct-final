@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Load scene upon player entering trigger
 public class NextLevelTrigger : MonoBehaviour
 {
     [SerializeField] private Animator absBack;
