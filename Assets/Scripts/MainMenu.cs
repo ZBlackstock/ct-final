@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+// Handles main menu functionality
 public class MainMenu : MonoBehaviour
 {
     [SerializeField] private GameObject[] canvases = new GameObject[3];

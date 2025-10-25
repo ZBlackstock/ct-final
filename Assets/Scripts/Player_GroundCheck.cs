@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Detects if gameobject is touching ground
 public class GroundCheck : MonoBehaviour
 {
     public bool isGrounded;

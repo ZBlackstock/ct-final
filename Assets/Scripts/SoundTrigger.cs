@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Plays sound when player enters trigger
 public class SoundTrigger : MonoBehaviour
 {
     private AudioSource audioS;

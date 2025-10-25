@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Trails behind healthbar when damage is taken
 public class UI_HealthbarTrail : MonoBehaviour
 {
     [SerializeField] private float currentWidth;

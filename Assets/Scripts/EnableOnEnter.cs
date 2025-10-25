@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Enables gameObject upon entering a trigger
 public class EnableOnEnter : MonoBehaviour
 {
     [SerializeField] private GameObject[] objectsToEnable;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Displays UI prompt on screen, that can be interacted with to be observed by external scripts
 public class InteractPrompt : MonoBehaviour
 {
     [SerializeField] private Sprite E_Key, Y_Button;

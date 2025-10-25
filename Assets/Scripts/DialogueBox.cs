@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Displays NPC dialogue as multiple texts strings.
 public class DialogueBox : MonoBehaviour
 {
     [HideInInspector] public Vector3 spawnTrans;

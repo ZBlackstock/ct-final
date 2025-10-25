@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles enabling and disabling of dialogue box
 public class DisplayDialogueBox : MonoBehaviour
 {
     [SerializeField] private InteractPrompt prompt;
@@ -14,7 +15,6 @@ public class DisplayDialogueBox : MonoBehaviour
     private void Awake()
     {
         playerController = FindFirstObjectByType<PlayerController>();
-
     }
 
     void Update()

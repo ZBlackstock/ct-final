@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles functionality tied to animations on player
 public class Player_Animations : MonoBehaviour
 {
     private CameraShake cameraShake;

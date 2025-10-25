@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Audio;
 
+// Handles settings panel of main/pause menu
 public class Menu_Settings : MonoBehaviour
 {
     [SerializeField] private GameObject primaryMenu;
