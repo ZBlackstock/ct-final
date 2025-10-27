@@ -11,7 +11,6 @@ public class UI_ControlsPanel : MonoBehaviour
     private _PauseMenu pauseMenu;
     private PlayerController playerController;
     private float timer = 0.1f;
-    private GameObject healthbar;
     private bool panelActive;
     private SoundManager sound;
 
@@ -19,7 +18,6 @@ public class UI_ControlsPanel : MonoBehaviour
     {
         playerController = FindFirstObjectByType<PlayerController>();
         pauseMenu = FindFirstObjectByType<_PauseMenu>();
-        healthbar = FindFirstObjectByType<UI_Healthbar>().gameObject;
         sound = FindFirstObjectByType<SoundManager>();
     }
 
@@ -92,6 +90,7 @@ public class UI_ControlsPanel : MonoBehaviour
     {
         if (!pauseMenu.GetPauseMenuActive())
         {
+            GameObject healthbar = FindFirstObjectByType<UI_Healthbar>().gameObject;
             healthbar.SetActive(!appear);
         }
         playerController.SetUIOpen(appear || pauseMenu.GetPauseMenuActive(), false); // UIOPen if controls is open OR pause menu is open1
