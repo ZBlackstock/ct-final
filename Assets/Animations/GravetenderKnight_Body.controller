@@ -266,7 +266,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GravetenderKnight_Countered_Overhead
+  m_Name: GravetenderKnight_OverheadCountered
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1432,7 +1432,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GravetenderKnight_Countered_Underarm
+  m_Name: GravetenderKnight_UnderarmCountered
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

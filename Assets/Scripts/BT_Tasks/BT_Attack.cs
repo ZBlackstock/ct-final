@@ -1,9 +1,8 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using System;
 using System.Collections;
-using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
-using static BehaviorDesigner.Runtime.BehaviorManager;
 
 // Enemy AI - handles attacks
 // Collisions must be set via enabling/disabling gameobject under AttackCollisions in hierarchy, via associated attack animation
@@ -17,6 +16,8 @@ public class BT_Attack : EnemyAction
     public float counteredForceDuration = 0.01f; // Duration of time enemy is moving back when countered
     public SharedBool hit; // Global bool - has enemy been hit. used to cause quicker animation exit, or result in return hit
     public SharedBool returnHit; // Global bool, if true on exit, enemy will jab player
+    public int attackStartAudioIndex = -1; // references index of SoundManager.enemy_Vocal_AttackStart[]
+    public int attackEndAudioIndex = -1;// same for SoundManager.enemy_Vocal_AttackEnd[]
 
     private Enemy_Health health;
     private AnimatorStateInfo animStateInfo;
@@ -25,10 +26,12 @@ public class BT_Attack : EnemyAction
     private bool success;
     private bool addedForce;
     private bool attackCountered;
+    private SoundManager sound;
 
     public override void OnAwake()
     {
         health = gameObject.GetComponentInChildren<Enemy_Health>();
+        sound = GameObject.FindFirstObjectByType<SoundManager>();
         base.OnAwake();
     }
 
@@ -42,6 +45,10 @@ public class BT_Attack : EnemyAction
         hit.Value = false;
         anim.ResetTrigger("hit");
         returnHit.Value = false;
+        if(attackStartAudioIndex != -1)
+        {
+            sound.PlaySound(sound.enemy_vocal_AttackStart[attackStartAudioIndex]);
+        }
     }
 
     public override TaskStatus OnUpdate()
@@ -86,6 +93,10 @@ public class BT_Attack : EnemyAction
     public void Attack()
     {
         StartCoroutine(ChangeVelocity(attackForce, attackForceDuration));
+        if (attackEndAudioIndex != -1)
+        {
+            sound.PlaySound(sound.enemy_vocal_AttackEnd[attackEndAudioIndex]);
+        }
         anim.SetInteger("attackSeq", -1);
     }
 

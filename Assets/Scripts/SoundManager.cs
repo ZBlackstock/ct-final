@@ -22,6 +22,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip player_StepCounterChime;
     public AudioClip player_Hurt;
 
+    [Header("Grouped AudioClips")]
+    public AudioClip[] enemy_vocal_AttackStart;
+    public AudioClip[] enemy_vocal_AttackEnd;
+
     [Header("Randomised AudioClips")]
     public AudioClip[] player_Steps;
     public AudioClip[] player_AttackHits;
@@ -127,6 +131,7 @@ public class SoundManager : MonoBehaviour
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
     }
+
     public void PlaySound(AudioClip audioClip, float volume)
     {
         AudioSource newAudioS = gameObject.AddComponent<AudioSource>();

@@ -9,6 +9,7 @@ public class GravetenderKnight : MonoBehaviour
     private Transform playerTrans;
     [SerializeField] private Animator bodyAnim;
     private AnimatorStateInfo bodyAnimState;
+    private AnimatorClipInfo[] animClipInfo;
     private bool faceRight;
     private Enemy_Health health;
 
@@ -47,12 +48,12 @@ public class GravetenderKnight : MonoBehaviour
         faceRight = !faceRight;
     }
 
-    public bool CanMove()
+    public bool CanMove()  // BE CAREFUL WITH NAMING ANIM CLIPS
     {
         bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
-        if (bodyAnimState.IsName("GravetenderKnight_Idle") || bodyAnimState.IsName("GravetenderKnight_Run") ||
-            bodyAnimState.IsName("GravetenderKnight_Walk_Forward") || bodyAnimState.IsName("GravetenderKnight_Walk_Backward") || 
-            bodyAnimState.IsName("GravetenderKnight_Counter"))
+        animClipInfo = bodyAnim.GetCurrentAnimatorClipInfo(0);
+        if (animClipInfo[0].clip.name.Contains("Idle") || animClipInfo[0].clip.name.Contains("Run") ||
+            animClipInfo[0].clip.name.Contains("Walk") || animClipInfo[0].clip.name.Contains("_Counter"))
         {
             return true;
         }
