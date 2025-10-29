@@ -49,7 +49,6 @@ public class SoundManager : MonoBehaviour
         StartCoroutine(AudioClear());
         StartCoroutine(DestroyUISound());
     }
-
     private IEnumerator AudioClear()
     {
         while (true)
@@ -106,7 +105,6 @@ public class SoundManager : MonoBehaviour
         }
         return false;
     }
-
     public void PlaySoundRandom(AudioClip[] audioClip, float volume, float pitchMin, float pitchMax)
     {
         soundRandomiser = Random.Range(0, audioClip.Length);
@@ -120,7 +118,6 @@ public class SoundManager : MonoBehaviour
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
     }
-
     public void PlaySound(AudioClip audioClip)
     {
         AudioSource newAudioS = gameObject.AddComponent<AudioSource>();
@@ -131,7 +128,6 @@ public class SoundManager : MonoBehaviour
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
     }
-
     public void PlaySound(AudioClip audioClip, float volume)
     {
         AudioSource newAudioS = gameObject.AddComponent<AudioSource>();
@@ -188,7 +184,6 @@ public class SoundManager : MonoBehaviour
         newAudioS.outputAudioMixerGroup = gameVolumeMixer;
         newAudioS.Play();
     }
-
     public void StopSound(AudioClip audio)
     {
         if (audioS.Count > 0)

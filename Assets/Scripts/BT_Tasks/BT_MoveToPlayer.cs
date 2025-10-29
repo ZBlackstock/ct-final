@@ -9,8 +9,8 @@ public class BT_MoveToPlayer : EnemyAction
     [SerializeField] private float moveSpeed;
     public float runSpeed = 200;
     public float walkSpeed = 50;
-    public const float walkingRange = 30;
-    public const float stopRange = 10f;
+    public float walkingRange = 30;
+    public float stopRange = 10f;
     public const float attackRange = 20f;
     public Vector2 attackWait = new Vector2(0.25f, 1f);
     public float attackWaitTimer;
@@ -84,23 +84,25 @@ public class BT_MoveToPlayer : EnemyAction
 
     private void CalculateMoveSpeed()
     {
-        switch (Vector2.Distance(playerController.transform.position, transform.position))
+        float distance = Vector2.Distance(playerController.transform.position, transform.position);
         {
-            case < stopRange:
+            if (distance < stopRange)
+            {
                 if (!forcedReverse)
                 {
                     ReverseWalk(true);
                     forcedReverse = true;
                 }
-                break;
-            case >= walkingRange:
+            }
+            else if (distance >= walkingRange)
+            {
                 moveSpeed = runSpeed;
-
-                break;
-            case < walkingRange:
+            }
+            else if (distance < walkingRange)
+            {
                 moveSpeed = walkSpeed;
                 forcedReverse = false;
-                break;
+            }
         }
     }
 
@@ -126,6 +128,7 @@ public class BT_MoveToPlayer : EnemyAction
         reverseWalkDuration = Random.Range(reverseWalkDurationRange.x, reverseWalkDurationRange.y);
         reverseWalkDuration = reverse ? reverseWalkDuration : reverseWalkDuration * 2;
     }
+
     private void SetAnimatorVariables()
     {
         //Change to dynamic
@@ -133,13 +136,19 @@ public class BT_MoveToPlayer : EnemyAction
         if (Mathf.Abs(moveSpeed) > 0)
         {
             // Running
-            if (Mathf.Abs(moveSpeed) > walkSpeed)
+            if (Mathf.Abs(moveSpeed) > Mathf.Abs(walkSpeed))
             {
                 animMoveSpeed = 2;
             }
             else //Walking
             {
                 animMoveSpeed = 1;
+            }
+            
+            // Check facing left
+            if(transform.localScale.x > 0)
+            {
+                animMoveSpeed *= -1;
             }
         }
         anim.SetInteger("moveSpeed", animMoveSpeed * reverseMultiplier);
