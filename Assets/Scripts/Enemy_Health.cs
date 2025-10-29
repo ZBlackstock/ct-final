@@ -10,7 +10,7 @@ public class Enemy_Health : Health
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 0.15f;  // Invincibility duration after taking hit
 
-    private GravetenderKnight gravetenderKnight;
+    private Enemy gravetenderKnight;
     private CapsuleCollider2D capsule;
 
     private bool overheadCountered, underarmCountered; // Dictates which logic to execute when player counters enemy attack
@@ -23,7 +23,7 @@ public class Enemy_Health : Health
     {
         rb = GetComponentInParent<Rigidbody2D>();
         capsule = GetComponent<CapsuleCollider2D>();
-        gravetenderKnight = GetComponentInParent<GravetenderKnight>();
+        gravetenderKnight = GetComponentInParent<Enemy>();
         particlesManager = FindFirstObjectByType<_ParticlesManager>();
         behaviourTree = GetComponentInParent<BehaviorTree>();
     }

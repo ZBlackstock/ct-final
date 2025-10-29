@@ -22,6 +22,11 @@ public class BT_MoveToPlayer : EnemyAction
     public int reverseMultiplier = 1;
     [SerializeField] private bool forcedReverse;
 
+    public override void OnAwake()
+    {
+        base.OnAwake();
+    }
+
     public override void OnStart()
     {
         attackWaitTimer = Random.Range(attackWait.x, attackWait.y);
@@ -55,7 +60,7 @@ public class BT_MoveToPlayer : EnemyAction
             reverseMultiplier = 1;
         }
 
-        if (PlayerWithinAttackRange() && !anim.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("counter"))
+        if (PlayerWithinAttackRange() && !enemy.GetCurrentAnimClipName().Contains("counter"))
         {
             if (attackWaitTimer < 0)
             {

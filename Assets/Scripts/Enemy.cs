@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using BehaviorDesigner.Runtime;
 
-public class GravetenderKnight : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     private PlayerController playerController;
     private Transform playerTrans;
     [SerializeField] private Animator bodyAnim;
-    private AnimatorStateInfo bodyAnimState;
     private AnimatorClipInfo[] animClipInfo;
     private bool faceRight;
     private Enemy_Health health;
@@ -50,14 +49,35 @@ public class GravetenderKnight : MonoBehaviour
 
     public bool CanMove()  // BE CAREFUL WITH NAMING ANIM CLIPS
     {
-        bodyAnimState = bodyAnim.GetCurrentAnimatorStateInfo(0);
-        animClipInfo = bodyAnim.GetCurrentAnimatorClipInfo(0);
-        if (animClipInfo[0].clip.name.Contains("Idle") || animClipInfo[0].clip.name.Contains("Run") ||
-            animClipInfo[0].clip.name.Contains("Walk") || animClipInfo[0].clip.name.Contains("_Counter"))
+        string clipName = GetCurrentAnimClipName();
+        if (clipName.Contains("Idle") || clipName.Contains("Run") || clipName.Contains("Walk") || clipName.Contains("_Counter"))
         {
             return true;
         }
 
         return false;
+    }
+
+    public string GetCurrentAnimClipName()
+    {
+        if (!bodyAnim.IsInTransition(0))
+        {
+            animClipInfo = bodyAnim.GetCurrentAnimatorClipInfo(0);
+        }
+        else
+        {
+            animClipInfo = bodyAnim.GetNextAnimatorClipInfo(0);
+        }
+
+        string clipName = "";
+        if (animClipInfo != null && animClipInfo.Length > 0)
+        {
+            clipName = animClipInfo[0].clip.name;
+        }
+        else
+        {
+            clipName = "NoClip";
+        }
+        return clipName;    
     }
 }
