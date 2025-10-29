@@ -129,7 +129,20 @@ public class BT_MoveToPlayer : EnemyAction
     private void SetAnimatorVariables()
     {
         //Change to dynamic
-        anim.SetInteger("moveSpeed", (int)(moveSpeed * reverseMultiplier));
+        int animMoveSpeed = 0;
+        if (Mathf.Abs(moveSpeed) > 0)
+        {
+            // Running
+            if (Mathf.Abs(moveSpeed) > walkSpeed)
+            {
+                animMoveSpeed = 2;
+            }
+            else //Walking
+            {
+                animMoveSpeed = 1;
+            }
+        }
+        anim.SetInteger("moveSpeed", animMoveSpeed * reverseMultiplier);
     }
 
     private bool PlayerWithinAttackRange()
@@ -145,6 +158,6 @@ public class BT_MoveToPlayer : EnemyAction
 
     public override void OnEnd()
     {
-       rb.velocity = Vector2.zero;
+        rb.velocity = Vector2.zero;
     }
 }

@@ -13,7 +13,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -44,7 +44,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -75,7 +75,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -20
+    m_EventTreshold: -2
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -106,7 +106,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 20
+    m_EventTreshold: 2
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -137,7 +137,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -195,7 +195,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 20
+    m_EventTreshold: 2
   - m_ConditionMode: 1
     m_ConditionEvent: faceRight
     m_EventTreshold: 0
@@ -226,7 +226,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -282,7 +282,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -340,7 +340,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -485,7 +485,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -516,7 +516,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -577,7 +577,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 20
+    m_EventTreshold: 2
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -636,7 +636,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -20
+    m_EventTreshold: -2
   - m_ConditionMode: 2
     m_ConditionEvent: faceRight
     m_EventTreshold: 0
@@ -667,7 +667,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -698,7 +698,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: 10
+    m_EventTreshold: 1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -729,7 +729,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -760,7 +760,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -20
+    m_EventTreshold: -2
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
@@ -856,7 +856,7 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 6
     m_ConditionEvent: moveSpeed
-    m_EventTreshold: -10
+    m_EventTreshold: -1
   - m_ConditionMode: 2
     m_ConditionEvent: dead
     m_EventTreshold: 0
