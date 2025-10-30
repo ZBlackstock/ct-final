@@ -9,7 +9,10 @@ public class NextLevelTrigger : MonoBehaviour
     [SerializeField] private Animator absBack;
     [SerializeField] private Animator fadeBlack;
     private PlayerController playerController;
+    [SerializeField] private string sceneToLoad = "CutsceneA";
+    [SerializeField] private float waitDuration = 8;
     private float timer = 12;
+    private bool appear;
 
     private void Awake()
     {
@@ -18,7 +21,7 @@ public class NextLevelTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (absBack.GetBool("appear"))
+        if (appear)
         {
             timer -= Time.deltaTime;
         }
@@ -28,8 +31,8 @@ public class NextLevelTrigger : MonoBehaviour
             fadeBlack.SetBool("visible", true);
             if (timer < 0)
             {
-                timer = 8;
-                SceneManager.LoadScene("CutsceneA");
+                timer = waitDuration;
+                SceneManager.LoadScene(sceneToLoad);
             }
         }
     }
@@ -44,7 +47,11 @@ public class NextLevelTrigger : MonoBehaviour
 
     private void LoadNextLevel()
     {
-        absBack.SetBool("appear", true);
+        appear = true;
+        if(absBack != null)
+        {
+            absBack.SetBool("appear", true);
+        }
         playerController.SetDisableMove(true);
     }
 }
