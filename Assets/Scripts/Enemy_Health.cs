@@ -6,6 +6,8 @@ using BehaviorDesigner.Runtime;
 // Manages damage and healing of enemy entities, and effects
 public class Enemy_Health : Health
 {
+    private Container container;
+
     [SerializeField] private string[] tags = new string[2]; // 2 different tags dictate if enemy is in vulnerable state
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 0.15f;  // Invincibility duration after taking hit
@@ -14,7 +16,6 @@ public class Enemy_Health : Health
     private CapsuleCollider2D capsule;
 
     private bool overheadCountered, underarmCountered; // Dictates which logic to execute when player counters enemy attack
-    private _ParticlesManager particlesManager;
     private bool faceRight;
     [SerializeField] private SpriteRenderer attackTrail;
     private BehaviorTree behaviourTree; // Enemy AI
@@ -24,7 +25,7 @@ public class Enemy_Health : Health
         rb = GetComponentInParent<Rigidbody2D>();
         capsule = GetComponent<CapsuleCollider2D>();
         enemy = GetComponentInParent<Enemy>();
-        particlesManager = FindFirstObjectByType<_ParticlesManager>();
+        container = FindFirstObjectByType<Container>();
         behaviourTree = GetComponentInParent<BehaviorTree>();
     }
 
@@ -69,12 +70,12 @@ public class Enemy_Health : Health
         {
             invincibilityTimer = 0.1f;
             bodyAnim.SetTrigger("counter");
-            particlesManager.enemyCounter_Particles.transform.localScale = new Vector3((faceRight ? -1 : 1), 1, 1);
-            particlesManager.PlayParticlesFromParticleSystem(particlesManager.enemyCounter_Particles);
+            container.particles.enemyCounter_Particles.transform.localScale = new Vector3((faceRight ? -1 : 1), 1, 1);
+           container.particles.PlayParticlesFromParticleSystem(container.particles.enemyCounter_Particles);
 
             if(health < maxHealth)
             {
-                particlesManager.PlayParticlesFromParticleSystem(particlesManager.enemyHeal);
+                container. particles.PlayParticlesFromParticleSystem(container.particles.enemyHeal);
                 // Ensure health healed doesn't go over max
                 health = health > (maxHealth - healAmount) ? maxHealth : health += healAmount;
                 tintAnim.SetTrigger("heal");

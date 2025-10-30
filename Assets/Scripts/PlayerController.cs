@@ -6,6 +6,7 @@ using UnityEngine;
 // Player movement, and other logic that probably should be elsewhere
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private Container container;
     public bool ignoreWakeUp;
     public bool wakeUpKneel;
     [SerializeField] private int moveSpeed = 600;

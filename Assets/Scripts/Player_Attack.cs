@@ -6,27 +6,13 @@ using UnityEngineInternal;
 // Player attack collisions that collide with enemy (both attacks & counters)
 public class Player_Attack : MonoBehaviour
 {
-    private Settings settings;
+    private Container container;
     private CameraShake camShake;
-    private PlayerController playerController;
-    private Player_Animations playerAnims;
-    private Player_Health playerHealth;
-    private Animator anim;
-    private Enemy_Health enemyHealth;
-    private _ParticlesManager particlesManager;
-    private SoundManager sound;
 
     void Awake()
     {
-        settings = FindFirstObjectByType<Settings>();
-        camShake = FindFirstObjectByType<CameraShake>();
-        playerController = GetComponentInParent<PlayerController>();
-        playerHealth = FindFirstObjectByType<Player_Health>();
-        playerAnims = FindFirstObjectByType<Player_Animations>();
-        anim = playerController.gameObject.GetComponentInChildren<Animator>();
-        enemyHealth = FindFirstObjectByType<Enemy_Health>();
-        particlesManager = FindFirstObjectByType<_ParticlesManager>();
-        sound = FindFirstObjectByType<SoundManager>();
+        container = FindFirstObjectByType<Container>();
+        camShake = FindFirstObjectByType<CameraShake>();  
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -50,7 +36,7 @@ public class Player_Attack : MonoBehaviour
             }
             else // Regular attack
             {
-                AttackEnemy(enemyHealth.TakeHitFromPlayer());
+                AttackEnemy(container.enemyHealth.TakeHitFromPlayer());
             }
         }
     }
@@ -58,13 +44,13 @@ public class Player_Attack : MonoBehaviour
     private void SuccessfulCounter(bool uppercut)
     {
         // Heal player & disable collisions
-        playerHealth.AddHealth(playerHealth.healAmount);
-        playerHealth.SetPlayerInvincible(1f);
-        playerAnims.DisableAllAttackCollisions(); // May be unnecessary
+        container.playerHealth.AddHealth(container.playerHealth.healAmount);
+        container.playerHealth.SetPlayerInvincible(1f);
+        container.playerAnims.DisableAllAttackCollisions(); // May be unnecessary
 
         // Play effects
-        anim.SetTrigger("counterSuccess");
-        settings.SetTimeScale(0, 0.15f, 0.01f);
+        container.playerAnim.SetTrigger("counterSuccess");
+        container.settings.SetTimeScale(0, 0.15f, 0.01f);
         camShake.ShakeCamera(0.15f);
 
         // Call unique methods based on counter type
@@ -81,37 +67,37 @@ public class Player_Attack : MonoBehaviour
     // Uppercut counter collision
     private void SuccessfulUppercutCounter()
     {
-        playerController.uppercutKnockback = true;
+        container.playerController.uppercutKnockback = true;
 
         // Set enemy counteredState
-        enemyHealth.Countered(true, true);
+        container.enemyHealth.Countered(true, true);
 
         // Snap to best looking part of animation to look good
-        anim.Play("Player_Counter_Uppercut", 0, 0.3f);
+        container.playerAnim.Play("Player_Counter_Uppercut", 0, 0.3f);
 
         // Play sound & particles
-        sound.PlaySound(sound.player_UppercutCounterCollision);
-        foreach (ParticleSystem p in particlesManager.uppercutCounterParticles)
+        container.sounds.PlaySound(container.sounds.player_UppercutCounterCollision);
+        foreach (ParticleSystem p in container.particles.uppercutCounterParticles)
         {
-            p.transform.localScale = new Vector3(playerController.faceRight ? 1 : -1, 1, 1);
+            p.transform.localScale = new Vector3(container.playerController.faceRight ? 1 : -1, 1, 1);
         }
-        particlesManager.PlayParticlesFromParticleSystem(particlesManager.uppercutCounterParticles);
+        container.particles.PlayParticlesFromParticleSystem(container.particles.uppercutCounterParticles);
     }
 
     // Step counter collision
     private void SuccessfulStepCounter()
     {
-        playerController.stepKnockback = true;
+        container.playerController.stepKnockback = true;
 
         // Set enemy counteredState
-        enemyHealth.Countered(true, false);
+        container.enemyHealth.Countered(true, false);
 
         // Snap to best looking part of animation to look good
-        anim.Play("Player_Counter_Step", 0, 0.35f);
+        container.playerAnim.Play("Player_Counter_Step", 0, 0.35f);
 
         // Play sound & particles
-        sound.PlaySound(sound.player_StepCounterCollision);      
-        particlesManager.PlayParticlesFromParticleSystem(particlesManager.stepCounterParticles);
+        container.sounds.PlaySound(container.sounds.player_StepCounterCollision);
+        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles);
     }
 
     // Bool enemyExposed returns if enemy is vulnerable when method is called
@@ -120,16 +106,16 @@ public class Player_Attack : MonoBehaviour
         // Successful hit
         if (enemyExposed)
         {
-            settings.SetTimeScale(0, 0.1f);
+            container.settings.SetTimeScale(0, 0.1f);
             camShake.ShakeCamera(0.1f);
-            playerController.attackKnockback = true;
-            sound.PlaySoundRandom(sound.player_AttackHits, 1, 0.95f, 1);
+            container.playerController.attackKnockback = true;
+            container.sounds.PlaySoundRandom(container.sounds.player_AttackHits, 1, 0.95f, 1);
         }
         else // Attack countered by enemy
         {
-            playerController.countered = true;
-            playerAnims.DisableAllAttackCollisions();
-            playerAnims.attack_False();
+            container.playerController.countered = true;
+            container.playerAnims.DisableAllAttackCollisions();
+            container.playerAnims.attack_False();
         }
     }
 
@@ -137,11 +123,11 @@ public class Player_Attack : MonoBehaviour
     {
         if (col.CompareTag("enemy_overhead") && this.CompareTag("player_uppercut"))
         {
-            enemyHealth.Countered(false, true);
+            container.enemyHealth.Countered(false, true);
         }
         else if (col.CompareTag("enemy_underarm") && this.CompareTag("player_step"))
         {
-            enemyHealth.Countered(false, false);
+            container.enemyHealth.Countered(false, false);
         }
     }
 }
