@@ -21,6 +21,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip player_UppercutWhoosh;
     public AudioClip player_StepCounterChime;
     public AudioClip player_Hurt;
+    public AudioClip player_Death;
 
     [Header("Grouped AudioClips")]
     public AudioClip[] enemy_vocal_AttackStart;

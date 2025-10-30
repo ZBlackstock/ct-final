@@ -133,7 +133,6 @@ public class BT_Attack : EnemyAction
         {
             ExitAttackTask();
             hit.Value = false;
-            anim.ResetTrigger("hit");
 
             returnHit.Value = !attackCountered;
         }

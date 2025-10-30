@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
     public bool CanMove()  // BE CAREFUL WITH NAMING ANIM CLIPS
     {
         string clipName = GetCurrentAnimClipName();
-        if (clipName.Contains("Idle") || clipName.Contains("Run") || clipName.Contains("Walk") || clipName.Contains("_Counter"))
+        if (clipName.Contains("Idle") || clipName.Contains("Run") || clipName.Contains("Walk") || clipName.Contains("CounterPlayer"))
         {
             return true;
         }

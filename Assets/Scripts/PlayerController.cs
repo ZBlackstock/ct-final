@@ -228,7 +228,7 @@ public class PlayerController : MonoBehaviour
                     canJumpAttack = groundCheck.isGrounded;
                 }
             }
-            else if (stepInputTimer > 0 && canMove())
+            else if (stepInputTimer > 0 && canMove() && groundCheck.isGrounded)
             {
                 stepInputTimer = 0;
                 stepForce = bodyAnimState.IsName("Player_Run") ? stepSprintForce : stepIdleForce;

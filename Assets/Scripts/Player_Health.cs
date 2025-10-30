@@ -106,6 +106,7 @@ public class Player_Health : Health
         death = true;
         invincibilityTimer = 100;
         trail.SetActive(false);
+        sound.PlaySound(sound.player_Death);
     }
 
     private void DeathEffects()
