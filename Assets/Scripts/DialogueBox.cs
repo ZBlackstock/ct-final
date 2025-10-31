@@ -5,32 +5,29 @@ using UnityEngine;
 // Displays NPC dialogue as multiple texts strings.
 public class DialogueBox : MonoBehaviour
 {
-    [HideInInspector] public Vector3 spawnTrans;
-    private List<TMPro.TextMeshPro> texts = new List<TMPro.TextMeshPro>();
+    private Container container;
+
     [SerializeField] private TMPro.TextMeshPro skipText;
+    [SerializeField] private DisplayDialogueBox dialogueBoxController;
+    [SerializeField] private FadeText nameTextFade, skipTextFade;
+    [SerializeField] private float dialogueOpenSoundVolume = 0.75f;
+
+    private List<TMPro.TextMeshPro> texts = new List<TMPro.TextMeshPro>();
+    [HideInInspector] public Vector3 spawnTrans;
     private InputDetection input;
     private List<int> charCounts = new List<int>();
     private List<string> lineStores = new List<string>();
-    [SerializeField] private DisplayDialogueBox dialogueBoxController;
     private bool skipLine;
-    [SerializeField] private FadeText nameTextFade, skipTextFade;
     private Animator anim;
-    private Transform boxTrans;
-    private SoundManager sound;
-    [SerializeField] private AudioClip open, close, skip;
-    [SerializeField] private AudioClip uniqueDialogueOpenSound;
-    [SerializeField] private float dialogueOpenSoundVolume = 0.75f;
-    private PlayerController playerController;
-    float realTimeSinceStartup;
+    private float realTimeSinceStartup;
 
     [SerializeField] private AudioClip dialogueTyping;
 
     private void Awake()
     {
+        container = FindFirstObjectByType<Container>();
         input = FindFirstObjectByType<InputDetection>();
         anim = transform.GetChild(0).GetComponent<Animator>();
-        boxTrans = transform.GetChild(0).GetComponent<Transform>();
-        sound = FindFirstObjectByType<SoundManager>();
 
         Transform dialogues = transform.GetChild(0).transform.GetChild(0);
 
@@ -66,11 +63,6 @@ public class DialogueBox : MonoBehaviour
 
     void Start()
     {
-        if (sound == null)
-        {
-            sound = FindFirstObjectByType<SoundManager>();
-        }
-
         transform.position = spawnTrans;
         nameTextFade.SetTextAlpha(0);
         skipTextFade.SetTextAlpha(0);
@@ -81,11 +73,6 @@ public class DialogueBox : MonoBehaviour
         realTimeSinceStartup = Time.realtimeSinceStartup;
 
         transform.position = spawnTrans;
-
-        if (sound == null)
-        {
-            sound = FindFirstObjectByType<SoundManager>();
-        }
 
         nextText();
         DetectInput();
@@ -107,7 +94,7 @@ public class DialogueBox : MonoBehaviour
     {
         if (Input.GetButtonDown("Interact"))
         {
-            sound.PlaySound(sound.UI_Dialogue_Skip, 1);
+            container.sounds.PlaySound(container.sounds.UI_Dialogue_Skip, 1);
             skipLine = true;
             return true;
         }
@@ -119,10 +106,7 @@ public class DialogueBox : MonoBehaviour
 
     private IEnumerator DisplayText()
     {
-        if (uniqueDialogueOpenSound)
-        {
-            sound.PlaySound(sound.UI_Vocal_NightmareDweller, dialogueOpenSoundVolume);
-        }
+        container.sounds.PlaySound(container.sounds.UI_Vocal_NightmareDweller, dialogueOpenSoundVolume);
 
         foreach (TMPro.TextMeshPro text in texts)
         {
@@ -141,7 +125,7 @@ public class DialogueBox : MonoBehaviour
 
         for (int i = 0; i < texts.Count; i++) // Texts
         {
-            sound.PlaySoundLoop(sound.UI_Dialogue_Typing, 0.8f, 0.975f, 1f);
+            container.sounds.PlaySoundLoop(container.sounds.UI_Dialogue_Typing, 0.8f, 0.975f, 1f);
 
             texts[i].text = "";
             char currentChar = ' ';
@@ -153,7 +137,7 @@ public class DialogueBox : MonoBehaviour
 
                 if (skipLine && j > 0) // Skip line generation
                 {
-                    sound.StopSound(sound.UI_Dialogue_Typing);
+                    container.sounds.StopSound(container.sounds.UI_Dialogue_Typing);
                     texts[i].text = lineStores[i];
                     j = charCounts[i];
                 }
@@ -164,7 +148,7 @@ public class DialogueBox : MonoBehaviour
                 yield return new WaitUntil(() => realTimeSinceStartup >= (currentTimeSinceStartup + 0.025f));
             }
 
-            sound.StopSound(sound.UI_Dialogue_Typing);
+            container.sounds.StopSound(container.sounds.UI_Dialogue_Typing);
             yield return new WaitUntil(() => nextText()); // Next text 
             texts[i].text = "";
         }
@@ -174,7 +158,7 @@ public class DialogueBox : MonoBehaviour
 
     public void ResetDialogue()
     {
-        sound.StopSound(sound.UI_Dialogue_Typing);
+        container.sounds.StopSound(container.sounds.UI_Dialogue_Typing);
 
         StopCoroutine(DisplayText());
         nameTextFade.SetTextAlpha(0);
@@ -182,12 +166,8 @@ public class DialogueBox : MonoBehaviour
 
     public void StartDialogue()
     {
-        if (sound == null)
-        {
-            sound = FindFirstObjectByType<SoundManager>();
-        }
 
-        sound.PlaySound(sound.UI_Dialogue_Open, 1);
+        container.sounds.PlaySound(container.sounds.UI_Dialogue_Open, 1);
         foreach (TMPro.TextMeshPro text in texts)
         {
             text.enabled = true;
@@ -208,16 +188,11 @@ public class DialogueBox : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.05f);
         yield return new WaitForSecondsRealtime(anim.GetCurrentAnimatorStateInfo(anim.GetLayerIndex("Base Layer")).length - 0.05f);
 
-        sound.StopSound(sound.UI_Dialogue_Typing);
-        sound.PlaySound(sound.UI_Dialogue_Close, 1);
+        container.sounds.StopSound(container.sounds.UI_Dialogue_Typing);
+        container.sounds.PlaySound(container.sounds.UI_Dialogue_Close, 1);
 
-        if (playerController == null)
-        {
-            playerController = FindFirstObjectByType<PlayerController>();
-        }
-
-        playerController.SetUIOpen(false, false);
-        playerController.SetDialogueOpen(false);
+        container.playerController.SetUIOpen(false, false);
+        container.playerController.SetDialogueOpen(false);
 
         gameObject.SetActive(false);
     }

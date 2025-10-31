@@ -4872,6 +4872,63 @@ AnimationClip:
     classID: 212
     script: {fileID: 0}
     flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.4583333
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.475
+        value: 0.70980394
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.9916666
+        value: 0.70980394
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: AbsBack/ClockLight/ClockHand_Large
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
   m_PPtrCurves:
   - serializedVersion: 2
     curve:
@@ -4885,6 +4942,21 @@ AnimationClip:
       value: {fileID: 21300000, guid: 90cd55b25b26d004592a0f6ebde6323d, type: 3}
     attribute: m_Sprite
     path: AbsBack/ClockLight/Crack
+    classID: 212
+    script: {fileID: 0}
+    flags: 2
+  - serializedVersion: 2
+    curve:
+    - time: 0
+      value: {fileID: 21300000, guid: 5bd94c9e437f897439eba10055d96493, type: 3}
+    - time: 2.475
+      value: {fileID: 21300000, guid: 8ff359ad8ea62c84c918ccd632854a56, type: 3}
+    - time: 4
+      value: {fileID: 21300000, guid: 8ff359ad8ea62c84c918ccd632854a56, type: 3}
+    - time: 5.9666667
+      value: {fileID: 21300000, guid: 5bd94c9e437f897439eba10055d96493, type: 3}
+    attribute: m_Sprite
+    path: AbsBack/ClockLight/ClockHand_Large
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -4968,7 +5040,25 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
+      path: 406050211
+      attribute: 304273561
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
       path: 1258476772
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 406050211
       attribute: 0
       script: {fileID: 0}
       typeID: 212
@@ -4981,6 +5071,10 @@ AnimationClip:
     - {fileID: 21300000, guid: 580fa7b5db0b0534fb0e74f2206f363e, type: 3}
     - {fileID: 21300000, guid: 1e12dae3fdca30a429e409e61d6ebc57, type: 3}
     - {fileID: 21300000, guid: 90cd55b25b26d004592a0f6ebde6323d, type: 3}
+    - {fileID: 21300000, guid: 5bd94c9e437f897439eba10055d96493, type: 3}
+    - {fileID: 21300000, guid: 8ff359ad8ea62c84c918ccd632854a56, type: 3}
+    - {fileID: 21300000, guid: 8ff359ad8ea62c84c918ccd632854a56, type: 3}
+    - {fileID: 21300000, guid: 5bd94c9e437f897439eba10055d96493, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -19366,6 +19460,63 @@ AnimationClip:
       m_RotationOrder: 4
     attribute: m_Enabled
     path: AbsBack/ClockLight
+    classID: 212
+    script: {fileID: 0}
+    flags: 0
+  - serializedVersion: 2
+    curve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.4583333
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 2.475
+        value: 0.70980394
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 3.9916666
+        value: 0.70980394
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 4
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 136
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    attribute: m_Color.a
+    path: AbsBack/ClockLight/ClockHand_Large
     classID: 212
     script: {fileID: 0}
     flags: 0

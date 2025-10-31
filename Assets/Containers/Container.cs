@@ -12,6 +12,7 @@ public class Container : MonoBehaviour
     [field: SerializeField] public Settings settings { get; private set; }
     [field: SerializeField] public SoundManager sounds { get; private set; }
     [field: SerializeField] public _ParticlesManager particles { get; private set; }
+    [field: SerializeField] public Enemy enemy { get; private set; }
     [field: SerializeField] public Enemy_Health enemyHealth { get; private set; }
     [field: SerializeField] public Animator playerAnim{ get; private set; }
 

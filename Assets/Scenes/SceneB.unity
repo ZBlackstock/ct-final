@@ -673,7 +673,7 @@ Transform:
   m_GameObject: {fileID: 44320812}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: 10}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: 10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1392,7 +1392,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -11466,7 +11466,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 3
-  m_FollowOffset: {x: 5, y: 10, z: -35}
+  m_FollowOffset: {x: 5, y: 10, z: -60}
   m_XDamping: 1
   m_YDamping: 20
   m_ZDamping: 20
@@ -17353,8 +17353,8 @@ MonoBehaviour:
       JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(-229.830383,-452.226257)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(5.79322433,120.432671)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-9.69697952,120)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-180,150)"},"ID":3,"Name":"IntroAnim","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.FloatComparison","NodeData":{"Offset":"(-295.053284,121.689484)"},"ID":4,"Name":"CheckPlayerDistance","Instant":true,"Operationoperation":"LessThan","SharedFloatfloat1":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},"SharedFloatfloat2":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":30}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.SetTrigger","NodeData":{"Offset":"(-128.675964,118.3147)"},"ID":5,"Name":"SetTrigger_active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringparamaterName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"active"}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(3.538494,117.670715)"},"ID":6,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(168.72731,167.192719)"},"ID":7,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-4.588051,110.981491)"},"ID":8,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,140)"},"ID":9,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.SetActive","NodeData":{"Offset":"(-275.676575,140.34494)"},"ID":10,"Name":"Music
         Active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":1},"SharedBoolactive":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Check_Dead","NodeData":{"Offset":"(-148.028839,137.203522)"},"ID":11,"Name":"BT  
         Check   Dead","Instant":true,"GameObjectenableOnDeath":2,"UI_HealthbarplayerHealthbar":3,"UI_HealthbarEnemyenemyHealthbar":4},{"Type":"BT_MoveToPlayer","NodeData":{"Offset":"(-1.78884888,138.416443)"},"ID":12,"Name":"BT  
-        Move To Player","Instant":false,"SinglemoveSpeed":0,"SinglerunSpeed":30,"SinglewalkSpeed":10,"SinglewalkingRange":50,"SinglestopRange":15,"Vector2attackWait":"(0.5,1)","SingleattackWaitTimer":0,"BooleanreverseWalkWhenClose":true,"SinglereverseWalkChance":0.3,"Vector2reverseWalkDurationRange":"(0.5,1.5)","Int32reverseMultiplier":1,"BooleanforcedReverse":false},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(130.51474,136.08078)"},"ID":13,"Name":"Attack","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(71.6667,118.888885)","Comment":"Attack0"},"ID":14,"Name":"Overhead","Instant":false,"Int32attackSeq":0,"SingleattackForceDelay":0.5,"Vector2attackForce":"(100,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.CompareSharedBool","NodeData":{"Offset":"(271.597717,143.429214)"},"ID":15,"Name":"Compare
-        Shared Bool","Instant":false,"SharedBoolvariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"SharedBoolcompareTo":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Attack","NodeData":{"Offset":"(412.697754,144.791428)","Comment":"Attack_3_0"},"ID":16,"Name":"Jab","Instant":false,"Disabled":true,"Int32attackSeq":3,"SingleattackForceDelay":0,"Vector2attackForce":"(200,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.05,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":3,"SingleattackForceDelayTimer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityBoxCollider2D.SetSize","NodeData":{"Offset":"(152.7328,141.511154)"},"ID":17,"Name":"Set
+        Move To Player","Instant":false,"SinglemoveSpeed":0,"SinglerunSpeed":30,"SinglewalkSpeed":10,"SinglewalkingRange":50,"SinglestopRange":15,"Vector2attackWait":"(0.5,1)","SingleattackWaitTimer":0,"BooleanreverseWalkWhenClose":true,"SinglereverseWalkChance":0.3,"Vector2reverseWalkDurationRange":"(0.5,1.5)","Int32reverseMultiplier":1,"BooleanforcedReverse":false},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(130.51474,136.08078)"},"ID":13,"Name":"Attack","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(-62.85707,115.714294)","Comment":"Attack0"},"ID":14,"Name":"Overhead","Instant":false,"Disabled":true,"Int32attackSeq":0,"SingleattackForceDelay":0.5,"Vector2attackForce":"(100,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.2,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BT_Attack","NodeData":{"Offset":"(71.6667,118.888885)","Comment":"Attack1"},"ID":15,"Name":"Underarm","Instant":false,"Int32attackSeq":1,"SingleattackForceDelay":0.6,"Vector2attackForce":"(100,0)","Vector2counteredForce":"(300,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.01,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.CompareSharedBool","NodeData":{"Offset":"(271.597717,143.429214)"},"ID":16,"Name":"Compare
+        Shared Bool","Instant":false,"SharedBoolvariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"SharedBoolcompareTo":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Attack","NodeData":{"Offset":"(412.697754,144.791428)","Comment":"Attack_3_0"},"ID":17,"Name":"Jab","Instant":false,"Disabled":true,"Int32attackSeq":3,"SingleattackForceDelay":0,"Vector2attackForce":"(200,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.05,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":3,"SingleattackForceDelayTimer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityBoxCollider2D.SetSize","NodeData":{"Offset":"(152.7328,141.511154)"},"ID":18,"Name":"Set
         Size","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":5},"SharedVector2size":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":null,"Vector2mValue":"(0.1,0.1)"}}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"activeDistance","IsShared":true,"SinglemValue":30},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"walkDistance","IsShared":true,"SinglemValue":30},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"attackDistance","IsShared":true,"SinglemValue":40},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
@@ -18809,7 +18809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camDist: 35
-  zoomRate: 0.1
+  zoomRate: 0.2
   zoomDamping: {x: 0, y: 0}
 --- !u!1 &348352172
 GameObject:
@@ -19406,7 +19406,7 @@ Transform:
   m_GameObject: {fileID: 410730845}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: -1}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20125,7 +20125,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -31018,7 +31018,7 @@ Transform:
   m_GameObject: {fileID: 536962685}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: 40}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: 40}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -31737,7 +31737,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -51592,7 +51592,7 @@ MonoBehaviour:
   bodyAnim: {fileID: 794608585}
   settings: {fileID: 0}
   invincibilityDuration: 1.5
-  fadeBlackAnim: {fileID: 0}
+  fadeBlackAnim: {fileID: 63948384}
   playerSprites:
   - {fileID: 794608586}
   - {fileID: 644035771}
@@ -53713,7 +53713,7 @@ Transform:
   m_GameObject: {fileID: 801457468}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: -5}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54432,7 +54432,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -70994,7 +70994,7 @@ Transform:
   m_GameObject: {fileID: 1075282060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: 20}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -71713,7 +71713,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -83099,6 +83099,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controlsPanel: {fileID: 237733309}
   interact: {fileID: 1810890096}
+  playerHealthbar: {fileID: 0}
 --- !u!1 &1268551740
 GameObject:
   m_ObjectHideFlags: 0
@@ -83126,7 +83127,7 @@ Transform:
   m_GameObject: {fileID: 1268551740}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: 5}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83845,7 +83846,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -88255,7 +88256,7 @@ Transform:
   m_GameObject: {fileID: 1316339819}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: 0}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -88974,7 +88975,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -99436,7 +99437,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
   m_SortingLayer: 8
-  m_SortingOrder: -69
+  m_SortingOrder: -119
   m_Sprite: {fileID: 21300000, guid: c602a9adbdddbb14bb44eeb93fea185f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -104834,6 +104835,7 @@ MonoBehaviour:
   <settings>k__BackingField: {fileID: 1111055941}
   <sounds>k__BackingField: {fileID: 1037362638}
   <particles>k__BackingField: {fileID: 1132965575}
+  <enemy>k__BackingField: {fileID: 215220963}
   <enemyHealth>k__BackingField: {fileID: 592226331}
   <playerAnim>k__BackingField: {fileID: 794608585}
 --- !u!4 &1512678216
@@ -105487,7 +105489,7 @@ Transform:
   m_GameObject: {fileID: 1571509583}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.2, y: 9.79, z: -35}
+  m_LocalPosition: {x: -56.2, y: 9.79, z: -60}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -117225,7 +117227,7 @@ Transform:
   m_GameObject: {fileID: 1882663123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -175, y: 93.91, z: -2}
+  m_LocalPosition: {x: -296.4, y: 93.91, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -117944,7 +117946,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 198, y: 100, z: 1}
+    m_Scale: {x: 198, y: 182, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -128387,20 +128389,16 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -7.1185203, y: 6.660476}
-      - {x: -10.701854, y: 17.156937}
-      - {x: -16.107134, y: 13.626804}
-      - {x: -21.85954, y: 6.8604016}
-      - {x: -21.892397, y: -0.035559177}
-      - {x: -19.448898, y: -6.578182}
-      - {x: -17.224102, y: -8.487145}
-      - {x: -14.28244, y: -10.203877}
-      - {x: -11.871971, y: -12.075255}
-      - {x: -2.0316281, y: -12.282662}
-      - {x: 6.4112415, y: -8.955738}
-      - {x: 10.827066, y: -3.8034248}
-      - {x: 13.180047, y: 10.592617}
-      - {x: 5.4888253, y: 3.8876913}
+    - - {x: 0.6209936, y: -1.450201}
+      - {x: -2.6205611, y: 5.333036}
+      - {x: -7.8578243, y: 4.061465}
+      - {x: -16.150057, y: 18.772125}
+      - {x: -19.577633, y: 16.043266}
+      - {x: -23.853142, y: 6.8512497}
+      - {x: -20.413988, y: -5.6002235}
+      - {x: -9.015884, y: -12.520443}
+      - {x: 4.0256386, y: -9.572165}
+      - {x: 11.468163, y: 2.8046079}
   m_UseDelaunayMesh: 0
 --- !u!1 &1967704065
 GameObject:
@@ -128539,7 +128537,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
   m_SortingLayer: 8
-  m_SortingOrder: -68
+  m_SortingOrder: -118
   m_Sprite: {fileID: 21300000, guid: b0b330498f9f5464abee03e8b1f295cf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

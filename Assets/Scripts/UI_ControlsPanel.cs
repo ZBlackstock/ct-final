@@ -13,6 +13,7 @@ public class UI_ControlsPanel : MonoBehaviour
     private float timer = 0.1f;
     private bool panelActive;
     private SoundManager sound;
+    [SerializeField] private GameObject playerHealthbar;
 
     private void Awake()
     {
@@ -45,6 +46,7 @@ public class UI_ControlsPanel : MonoBehaviour
 
     private void ExitCheck(bool pauseMenuActive)
     {
+        print("Controls panel exitCheck: Within pausemenu = " + pauseMenuActive);
         if (pauseMenuActive)
         {
             // Within pause menu, check for "back" inputs
@@ -90,8 +92,7 @@ public class UI_ControlsPanel : MonoBehaviour
     {
         if (!pauseMenu.GetPauseMenuActive())
         {
-            GameObject healthbar = FindFirstObjectByType<UI_Healthbar>().gameObject;
-            healthbar.SetActive(!appear);
+            playerHealthbar.SetActive(!appear);
         }
         playerController.SetUIOpen(appear || pauseMenu.GetPauseMenuActive(), false); // UIOPen if controls is open OR pause menu is open1
         controlsPanel.SetActive(appear);

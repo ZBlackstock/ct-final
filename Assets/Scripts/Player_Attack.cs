@@ -50,7 +50,7 @@ public class Player_Attack : MonoBehaviour
 
         // Play effects
         container.playerAnim.SetTrigger("counterSuccess");
-        container.settings.SetTimeScale(0, 0.15f, 0.01f);
+        container.settings.SetTimeScale(0, 0.15f, 0.02f);
         camShake.ShakeCamera(0.15f);
 
         // Call unique methods based on counter type

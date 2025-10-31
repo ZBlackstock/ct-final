@@ -12,7 +12,6 @@ public class Enemy_Health : Health
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 0.15f;  // Invincibility duration after taking hit
 
-    private Enemy enemy;
     private CapsuleCollider2D capsule;
 
     private bool overheadCountered, underarmCountered; // Dictates which logic to execute when player counters enemy attack
@@ -24,7 +23,6 @@ public class Enemy_Health : Health
     {
         rb = GetComponentInParent<Rigidbody2D>();
         capsule = GetComponent<CapsuleCollider2D>();
-        enemy = GetComponentInParent<Enemy>();
         container = FindFirstObjectByType<Container>();
         behaviourTree = GetComponentInParent<BehaviorTree>();
     }
@@ -32,7 +30,7 @@ public class Enemy_Health : Health
     void Update()
     {
         invincibilityTimer -= Time.deltaTime;
-        tag = enemy.CanMove() ? tags[0] : tags[1];
+        tag = container.enemy.CanMove() ? tags[0] : tags[1];
     }
 
     // Called when player attack collides with enemy collider

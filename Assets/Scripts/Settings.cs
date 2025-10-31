@@ -9,6 +9,7 @@ public class Settings : MonoBehaviour
     [SerializeField] private float timeScale;
     private _PauseMenu pauseMenu;
     private float timer;
+    private float timer_ExecuteAfter;
 
     private void Awake()
     {
@@ -18,6 +19,14 @@ public class Settings : MonoBehaviour
     void Update()
     {
         Application.targetFrameRate = 60;
+        if(timer_ExecuteAfter > 0)
+        {
+            timer_ExecuteAfter -= Time.deltaTime;
+        }
+        else
+        {
+            timer_ExecuteAfter = -1;
+        }
 
         if (!pauseMenu.GetPauseMenuActive())
         {
@@ -47,7 +56,14 @@ public class Settings : MonoBehaviour
 
     public void SetTimeScale(float time, float duration, float executeAfter)
     {
-        Time.timeScale = time;
-        timer = duration;
+        timer_ExecuteAfter = executeAfter;
+        StopAllCoroutines();
+        StartCoroutine(SetTimeScaleAfterDuration(time, duration));
+    }
+
+    private IEnumerator SetTimeScaleAfterDuration(float time, float duration)
+    {
+        yield return new WaitUntil(() => timer_ExecuteAfter == -1);
+        SetTimeScale(time, duration);
     }
 }
