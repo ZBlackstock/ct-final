@@ -22,9 +22,12 @@ public class SetEditorName_ChildSprites : MonoBehaviour
                 {
                     curChildSR = curChild.GetComponent<SpriteRenderer>();
 
-                    if (curChild.name != curChildSR.sprite.name)
+                    if(curChildSR.sprite != null)
                     {
-                        curChild.name = curChildSR.sprite.name;
+                        if (curChild.name != curChildSR.sprite.name)
+                        {
+                            curChild.name = curChildSR.sprite.name;
+                        }
                     }
                 }
             }
@@ -39,9 +42,12 @@ public class SetEditorName_ChildSprites : MonoBehaviour
             curChild = transform.GetChild(i).gameObject;
             if (curChild.GetComponent<SpriteRenderer>())
             {
-                if (curChild.name != curChild.GetComponent<SpriteRenderer>().sprite.name)
+                if(curChild.GetComponent<SpriteRenderer>().sprite != null)
                 {
-                    return false;
+                    if (curChild.name != curChild.GetComponent<SpriteRenderer>().sprite.name)
+                    {
+                        return false;
+                    }
                 }
             }
         }
