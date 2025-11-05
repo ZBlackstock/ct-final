@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 // Manages player body collisisons, damage and healing
 public class Player_Health : Health
 {
-    private bool hurt;
     private float invincibilityTimer;
     [SerializeField] private float invincibilityDuration = 1.5f;
     private PlayerController playerController;
@@ -128,10 +127,6 @@ public class Player_Health : Health
         }
     }
 
-    public bool IsHurt()
-    {
-        return hurt;
-    }
     public bool IsDeath()
     {
         return death;

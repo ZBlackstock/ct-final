@@ -7,6 +7,7 @@ using BehaviorDesigner.Runtime;
 // Enemy AI - Inherited by Enemy Actions
 public class EnemyAction : Action
 {
+    protected Container container;
     protected Rigidbody2D rb;
     protected Animator anim;
     protected PlayerController playerController;
@@ -18,6 +19,6 @@ public class EnemyAction : Action
         anim = gameObject.GetComponentInChildren<Animator>();
         playerController = PlayerController.FindFirstObjectByType<PlayerController>();
         enemy = Enemy.FindFirstObjectByType<Enemy>();
-
+        container = Container.FindFirstObjectByType<Container>();
     }
 }

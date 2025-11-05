@@ -9,7 +9,8 @@ public class GroundCheck : MonoBehaviour
     private CapsuleCollider2D capsule;
     [SerializeField] private LayerMask groundLayerMask;
     public float timeSinceLeftGround, boxDepth;
-    [SerializeField] private Player_Health health;
+    [SerializeField] private Health health;
+    [SerializeField] private Animator relatedAnim;
 
     private void Awake()
     {
@@ -29,6 +30,11 @@ public class GroundCheck : MonoBehaviour
             isGrounded = false;
 
             timeSinceLeftGround -= Time.deltaTime;
+        }
+
+        if (relatedAnim != null)
+        {
+            relatedAnim.SetBool("isGrounded", isGrounded);
         }
     }
 
