@@ -21,6 +21,8 @@ public class Player_Health : Health
     [SerializeField] private GameObject trail;
     private bool playerInvincible;
     private SoundManager sound;
+    private UI_Healthbar healthbar;
+    private UI_HealthbarEnemy healthbarEnemy;
 
     void Awake()
     {
@@ -64,7 +66,7 @@ public class Player_Health : Health
 
     private void TakeHit(bool fromRight)
     {
-        if(invincibilityTimer < 0)
+        if (invincibilityTimer < 0)
         {
             rb.velocity = Vector2.zero;
 
@@ -106,6 +108,9 @@ public class Player_Health : Health
         invincibilityTimer = 100;
         trail.SetActive(false);
         sound.PlaySound(sound.player_Death);
+
+        FindFirstObjectByType<UI_Healthbar>().gameObject.SetActive(false);
+        FindFirstObjectByType<UI_HealthbarEnemy>().gameObject.SetActive(false);
     }
 
     private void DeathEffects()
@@ -154,7 +159,7 @@ public class Player_Health : Health
 
     private void ResetScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("SceneA");
     }
 
     public void SetPlayerInvincible(float duration)

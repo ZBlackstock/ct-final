@@ -9,6 +9,7 @@ public class BT_ExitPortal : EnemyAction
 {
     private Transform trans;
     public Transform teleportTrans;
+    public bool plungeAttack;
 
     [Header("Portal")]
     public Vector2 portalOffset;
@@ -27,8 +28,14 @@ public class BT_ExitPortal : EnemyAction
     public override void OnStart()
     {
         // Teleport Enemy
-        // Change this to detect if it's plunging attack
-        trans.position = new Vector2(teleportTrans.position.x, 8);
+        if (plungeAttack)
+        {
+            trans.position = teleportTrans.position; // Use X and Y
+        }
+        else
+        {
+            trans.position = new Vector2(teleportTrans.position.x, 8); // Just Use X
+        }
 
         enemy.FlipCheck(false);
         if (enemy.IsFaceRight() && Xscaler == -1 || !enemy.IsFaceRight() && Xscaler == 1)

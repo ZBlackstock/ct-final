@@ -2,6 +2,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 // Enemy AI - handles attacks
@@ -11,13 +12,21 @@ public class BT_Attack : EnemyAction
     private Container container;
 
     public int attackSeq = -1; // Tells anim int "attackSeq" what attack anim clip to play
-    public float attackForceDelay = 0.1f; // Delay before adding velocity to enemy
-    public Vector2 attackForce; // Velocity of attack
+    [Header("Attack Velocity Changes")]
+    public List<Vector2> attackForces = new List<Vector2>(1); // Velocity X, Velocity Y, Duration, WaitTime
+    public List<float> attackDurations = new List<float>(1); // Velocity durations
+    public List<float> attackWaits = new List<float>(1); // Time between velocity changes
+    private int iterator = 0;
+
+    [Header("Countered Velocity Change")]
     public Vector2 counteredForce; // Velocity added when countered by player
-    public float attackForceDuration = 0.01f; // Duration of time the enemy is moving forward when attacking
     public float counteredForceDuration = 0.01f; // Duration of time enemy is moving back when countered
+
+    [Header("Global Variables")]
     public SharedBool hit; // Global bool - has enemy been hit. used to cause quicker animation exit, or result in return hit
     public SharedBool returnHit; // Global bool, if true on exit, enemy will jab player
+
+    [Header("Enemy Vocals Audio")]
     public int attackStartAudioIndex = -1; // references index of SoundManager.enemy_Vocal_AttackStart[]
     public int attackEndAudioIndex = -1;// same for SoundManager.enemy_Vocal_AttackEnd[]
 
@@ -37,8 +46,9 @@ public class BT_Attack : EnemyAction
 
     public override void OnStart()
     {
+        iterator = 0;
         rb.velocity = Vector2.zero;
-        attackForceDelayTimer = attackForceDelay;
+        attackForceDelayTimer = attackWaits[iterator];
         anim.SetInteger("attackSeq", attackSeq);
         success = false;
         attackCountered = false;
@@ -79,8 +89,6 @@ public class BT_Attack : EnemyAction
         {
             Attack();
             StartCoroutine(Wait());
-
-            addedForce = true;
         }
 
         //check not been countered
@@ -100,7 +108,19 @@ public class BT_Attack : EnemyAction
 
     public void Attack()
     {
-        StartCoroutine(ChangeVelocity(attackForce, attackForceDuration));
+        Debug.Log("Attack");
+        StartCoroutine(ChangeVelocity(attackForces[iterator], attackDurations[iterator]));
+
+        if (attackForces.Count > iterator + 1)
+        {
+            iterator++;
+            attackForceDelayTimer = attackWaits[iterator];
+        }
+        else
+        {
+            addedForce = true;
+        }
+
         if (attackEndAudioIndex != -1)
         {
             container.sounds.PlaySound(container.sounds.enemy_vocal_AttackEnd[attackEndAudioIndex]);
@@ -113,7 +133,7 @@ public class BT_Attack : EnemyAction
     {
         attackForceDelayTimer = 100;
         anim.SetInteger("attackSeq", -1);
-        StopCoroutine(ChangeVelocity(attackForce, attackForceDuration)); // Stop moving forward with attack force
+        StopCoroutine(ChangeVelocity(attackForces[iterator], attackDurations[iterator])); // Stop moving forward with attack force
         StartCoroutine(ChangeVelocity(-counteredForce, counteredForceDuration));
         yield return new WaitForSeconds(0.1f);
         rb.velocity = Vector2.zero;
@@ -121,6 +141,7 @@ public class BT_Attack : EnemyAction
 
     private IEnumerator ChangeVelocity(Vector2 velocity, float duration)
     {
+        Debug.Log("ChangeVelocity");
         rb.velocity = new Vector2(velocity.x * -transform.localScale.x, velocity.y);
         velocityTimer = duration;
         yield return new WaitUntil(() => velocityTimer == -1);
@@ -155,13 +176,14 @@ public class BT_Attack : EnemyAction
 
     public override void OnEnd()
     {
+        iterator = 0;
         anim.ResetTrigger("hit");
         StopAllCoroutines();
         success = false;
         addedForce = false;
         attackCountered = false;
         hit.Value = false;
-        attackForceDelayTimer = attackForceDelay;
+        attackForceDelayTimer = attackWaits[iterator];
         anim.SetInteger("attackSeq", -1);
     }
 }
