@@ -45,7 +45,7 @@ public class BT_Attack : EnemyAction
         hit.Value = false;
         anim.ResetTrigger("hit");
         returnHit.Value = false;
-        if(attackStartAudioIndex != -1)
+        if (attackStartAudioIndex != -1)
         {
             container.sounds.PlaySound(container.sounds.enemy_vocal_AttackStart[attackStartAudioIndex]);
         }
@@ -133,6 +133,7 @@ public class BT_Attack : EnemyAction
         counteredTimer = animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length);
         yield return new WaitUntil(() => counteredTimer == -1);
         ExitAttackTask();
+        Debug.Log("success");
     }
 
     // Check if enemy has been hit, and if it's following being countered

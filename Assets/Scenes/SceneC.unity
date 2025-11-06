@@ -12111,7 +12111,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: de3a5af31b7832d4db8ccc77b66fb2cc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12181,8 +12181,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -23250,7 +23250,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8f0354e54eeb4c14489ba70916c77826, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -23320,8 +23320,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -25590,8 +25590,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -25635,7 +25635,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 9e773d2e26106cc49ab024514e4e8bc7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27521,7 +27521,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -20
   m_Sprite: {fileID: 21300000, guid: 3ba62d3e274936a4fa7dd1f7b410870f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27591,8 +27591,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -32520,7 +32520,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 7c3444842b1984042b5b192de4f909b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32590,8 +32590,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -43077,8 +43077,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -43122,7 +43122,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 5c6d92c6914a2244cbd5bb5477050126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -43695,7 +43695,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 200
   m_Sprite: {fileID: 21300000, guid: a4fab2b87e4eb1c49a0f6e5dd660ae73, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.39215687}
@@ -45038,8 +45038,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -45083,7 +45083,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 6a9c3ba337028ca4f95e60c8677da71c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -45121,7 +45121,7 @@ Transform:
   m_GameObject: {fileID: 644576232}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 58.1, z: 0}
+  m_LocalPosition: {x: 0, y: 55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -45613,8 +45613,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -45658,7 +45658,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 60
   m_Sprite: {fileID: 21300000, guid: 8afab6ab77355504d973ccf04b30fb82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -51227,7 +51227,7 @@ Transform:
   m_GameObject: {fileID: 673151929}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.69, y: 7.12, z: 0}
+  m_LocalPosition: {x: -21.5, y: 6.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -51331,8 +51331,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.4764109, y: 2.2580295}
-  m_Size: {x: 3.4528217, y: 13.851745}
+  m_Offset: {x: -1.4764109, y: 2.4639812}
+  m_Size: {x: 3.4528217, y: 13.439841}
   m_Direction: 0
 --- !u!114 &673151935
 MonoBehaviour:
@@ -51362,14 +51362,19 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(361.337616,-1256.756)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(8.9565115,131.044022)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-10,120)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-193.157883,150)"},"ID":3,"Name":"IntroAnim","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.FloatComparison","NodeData":{"Offset":"(-736.1089,120)"},"ID":4,"Name":"CheckPlayerDistance","Instant":true,"Operationoperation":"LessThan","SharedFloatfloat1":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},"SharedFloatfloat2":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3000}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-597.0729,123.614922)"},"ID":5,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.SetTrigger","NodeData":{"Offset":"(-429.7453,120)"},"ID":6,"Name":"SetTrigger_active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringparamaterName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"active"}},{"Type":"BT_SpawnPortal","NodeData":{"Offset":"(-260,130)"},"ID":7,"Name":"BT  
-        Spawn Portal","Instant":true,"TransformteleportTrans":1,"Vector2portalOffset":"(0,0)","SingleportalRot":0,"SingleportalDuration":1},{"Type":"BT_Attack","NodeData":{"Offset":"(-143.539459,115.151733)"},"ID":8,"Name":"Intro","Instant":true,"Int32attackSeq":-1,"SingleattackForceDelay":0,"Vector2attackForce":"(0,50)","Vector2counteredForce":"(0,0)","SingleattackForceDuration":1,"SinglecounteredForceDuration":0.01,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.1}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(170,170)"},"ID":9,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(17.7778683,138.1475)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.BoolComparison","NodeData":{"Offset":"(-101.481506,186.666428)"},"ID":11,"Name":"Bool
+      JSONSerialization: '{"EntryTask":{"Type":"BehaviorDesigner.Runtime.Tasks.EntryTask","NodeData":{"Offset":"(361.337616,-1256.756)"},"ID":0,"Name":"Entry","Instant":true},"RootTask":{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(8.9565115,131.044022)"},"ID":1,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-10,120)"},"ID":2,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-193.157883,150)"},"ID":3,"Name":"IntroAnim","Instant":true,"AbortTypeabortType":"Self","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.FloatComparison","NodeData":{"Offset":"(-494.226135,120)"},"ID":4,"Name":"CheckPlayerDistance","Instant":true,"Operationoperation":"LessThan","SharedFloatfloat1":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},"SharedFloatfloat2":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3000}},{"Type":"BehaviorDesigner.Runtime.Tasks.Wait","NodeData":{"Offset":"(-355.190125,123.614922)"},"ID":5,"Name":"Wait","Instant":true,"SharedFloatwaitTime":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":3},"SharedBoolrandomWait":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedFloatrandomWaitMin":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1},"SharedFloatrandomWaitMax":{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":null,"SinglemValue":1}},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityAnimator.SetTrigger","NodeData":{"Offset":"(-233.316986,120)"},"ID":6,"Name":"SetTrigger_active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":0},"SharedStringparamaterName":{"Type":"BehaviorDesigner.Runtime.SharedString","Name":null,"StringmValue":"active"}},{"Type":"BT_ExitPortal","NodeData":{"Offset":"(-85.91196,123.2113)"},"ID":7,"Name":"BT  
+        Exit Portal","Instant":true,"TransformteleportTrans":1,"Vector2portalOffset":"(0,0)","SingleportalRot":0,"SingleportalDuration":1},{"Type":"BT_Attack","NodeData":{"Offset":"(52.8889847,115.151733)"},"ID":8,"Name":"Intro","Instant":true,"Int32attackSeq":-1,"SingleattackForceDelay":0,"Vector2attackForce":"(0,50)","Vector2counteredForce":"(0,0)","SingleattackForceDuration":1,"SinglecounteredForceDuration":0.01,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.1}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(170,170)"},"ID":9,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":false},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(17.7778683,138.1475)"},"ID":10,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.Math.BoolComparison","NodeData":{"Offset":"(-101.481506,186.666428)"},"ID":11,"Name":"Bool
         Comparison","Instant":true,"SharedBoolbool1":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"canMove","IsShared":true,"BooleanmValue":false},"SharedBoolbool2":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BehaviorDesigner.Runtime.Tasks.Repeater","NodeData":{"Offset":"(43.20127,196.9028)"},"ID":12,"Name":"Repeater","Instant":true,"SharedIntcount":{"Type":"BehaviorDesigner.Runtime.SharedInt","Name":null,"Int32mValue":0},"SharedBoolrepeatForever":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"SharedBoolendOnFailure":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true},"Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Selector","NodeData":{"Offset":"(-40,130)"},"ID":13,"Name":"Selector","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(0,140)"},"ID":14,"Name":"Sequence","Instant":true,"AbortTypeabortType":"LowerPriority","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityGameObject.SetActive","NodeData":{"Offset":"(-294.2857,140)"},"ID":15,"Name":"Music
         Active","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":2},"SharedBoolactive":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Check_Dead","NodeData":{"Offset":"(-164.2857,140)"},"ID":16,"Name":"BT  
         Check   Dead","Instant":true,"GameObjectenableOnDeath":3,"UI_HealthbarplayerHealthbar":4,"UI_HealthbarEnemyenemyHealthbar":5},{"Type":"BT_MoveToPlayer","NodeData":{"Offset":"(0,140)"},"ID":17,"Name":"BT  
-        Move To Player","Instant":false,"SinglemoveSpeed":0,"SinglerunSpeed":7,"SinglewalkSpeed":7,"SinglewalkingRange":5000,"SinglestopRange":15,"Vector2attackWait":"(0.5,1)","SingleattackWaitTimer":0,"BooleanreverseWalkWhenClose":true,"SinglereverseWalkChance":0.3,"Vector2reverseWalkDurationRange":"(0.5,1.5)","Int32reverseMultiplier":1,"BooleanforcedReverse":false},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(130,140)"},"ID":18,"Name":"Attack","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(-1.3795166,120)","Comment":"Attack0"},"ID":19,"Name":"Overhead","Instant":false,"Int32attackSeq":0,"SingleattackForceDelay":0.4,"Vector2attackForce":"(200,0)","Vector2counteredForce":"(70,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.2,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.CompareSharedBool","NodeData":{"Offset":"(270.000244,140)"},"ID":20,"Name":"Compare
-        Shared Bool","Instant":false,"SharedBoolvariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"SharedBoolcompareTo":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Attack","NodeData":{"Offset":"(410,140)","Comment":"Attack4"},"ID":21,"Name":"Jab","Instant":false,"Int32attackSeq":4,"SingleattackForceDelay":0,"Vector2attackForce":"(50,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.05,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityBoxCollider2D.SetSize","NodeData":{"Offset":"(150,140)"},"ID":22,"Name":"Set
-        Size","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":6},"SharedVector2size":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":null,"Vector2mValue":"(0.1,0.1)"}}]}]}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"canMove","IsShared":true,"BooleanmValue":false}]}'
+        Move To Player","Instant":false,"SinglemoveSpeed":0,"SinglerunSpeed":7,"SinglewalkSpeed":7,"SinglewalkingRange":5000,"SinglestopRange":15,"SingleattackRange":5000,"Vector2attackWait":"(0.5,1)","SingleattackWaitTimer":0,"BooleanreverseWalkWhenClose":true,"SinglereverseWalkChance":0.3,"Vector2reverseWalkDurationRange":"(0.5,1.5)","Int32reverseMultiplier":1,"BooleanforcedReverse":false},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(130,140)"},"ID":18,"Name":"Attack","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(-194.802,132.5)","Comment":"Attack0"},"ID":19,"Name":"Overarm","Instant":false,"Int32attackSeq":0,"SingleattackForceDelay":0.4,"Vector2attackForce":"(100,0)","Vector2counteredForce":"(70,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.2,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BT_Attack","NodeData":{"Offset":"(-64.61554,127.179489)","Comment":"Attack1"},"ID":20,"Name":"Underarm","Instant":false,"Int32attackSeq":1,"SingleattackForceDelay":0.7,"Vector2attackForce":"(200,0)","Vector2counteredForce":"(50,0)","SingleattackForceDuration":0.1,"SinglecounteredForceDuration":0.05,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(65.2959,134.298431)"},"ID":21,"Name":"PortalAttacks","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BT_EnterPortal","NodeData":{"Offset":"(-1.77943134,123.122055)"},"ID":22,"Name":"SpawnEnterPortal","Instant":true,"TransformportalSpawnPos":6,"SingleportalRot":-90,"SingleportalDuration":1},{"Type":"BT_Attack","NodeData":{"Offset":"(126.828682,117.932442)","Comment":"Attack1"},"ID":23,"Name":"EnterPortalAnim","Instant":false,"Int32attackSeq":2,"SingleattackForceDelay":0,"Vector2attackForce":"(-50,0)","Vector2counteredForce":"(0,0)","SingleattackForceDuration":0.5,"SinglecounteredForceDuration":0,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(307.477173,109.651123)"},"ID":24,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(-130.223969,180.578781)"},"ID":25,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BT_ExitPortal","NodeData":{"Offset":"(0,140)","Comment":"Player
+        Right"},"ID":26,"Name":"SpawnExitPortal","Instant":true,"TransformteleportTrans":7,"Vector2portalOffset":"(0,0)","SingleportalRot":-90,"SingleportalDuration":0.6},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(136.970215,139.583344)"},"ID":27,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(-154.865173,130.0929)","Comment":"Attack4"},"ID":28,"Name":"PortalUnderarm","Instant":false,"Int32attackSeq":4,"SingleattackForceDelay":0,"Vector2attackForce":"(250,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.5,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BT_Attack","NodeData":{"Offset":"(-20,125.483894)","Comment":"Attack3"},"ID":29,"Name":"PortalOverarm","Instant":false,"Int32attackSeq":3,"SingleattackForceDelay":0,"Vector2attackForce":"(250,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.5,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Sequence","NodeData":{"Offset":"(211.507813,182.758636)"},"ID":30,"Name":"Sequence","Instant":true,"AbortTypeabortType":"None","Children":[{"Type":"BT_ExitPortal","NodeData":{"Offset":"(0,140)","Comment":"Player
+        Left"},"ID":31,"Name":"SpawnExitPortal","Instant":true,"TransformteleportTrans":8,"Vector2portalOffset":"(0,0)","SingleportalRot":-90,"SingleportalDuration":0.6},{"Type":"BehaviorDesigner.Runtime.Tasks.RandomSelector","NodeData":{"Offset":"(141.157013,138.866211)"},"ID":32,"Name":"Random
+        Selector","Instant":true,"Int32seed":0,"BooleanuseSeed":false,"AbortTypeabortType":"None","Children":[{"Type":"BT_Attack","NodeData":{"Offset":"(-141.960785,130.000031)","Comment":"Attack4"},"ID":33,"Name":"PortalUnderarm","Instant":false,"Int32attackSeq":4,"SingleattackForceDelay":0,"Vector2attackForce":"(250,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.5,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7},{"Type":"BT_Attack","NodeData":{"Offset":"(2.41759586,130.000031)","Comment":"Attack3"},"ID":34,"Name":"PortalOverarm","Instant":false,"Int32attackSeq":3,"SingleattackForceDelay":0,"Vector2attackForce":"(250,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.5,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0.7}]}]}]}]}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.SharedVariables.CompareSharedBool","NodeData":{"Offset":"(270.000244,140)"},"ID":35,"Name":"Compare
+        Shared Bool","Instant":false,"SharedBoolvariable":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"SharedBoolcompareTo":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":null,"BooleanmValue":true}},{"Type":"BT_Attack","NodeData":{"Offset":"(410,140)","Comment":"Attack4"},"ID":36,"Name":"Jab","Instant":false,"Int32attackSeq":4,"SingleattackForceDelay":0,"Vector2attackForce":"(50,0)","Vector2counteredForce":"(100,0)","SingleattackForceDuration":0.05,"SinglecounteredForceDuration":0.1,"SharedBoolhit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},"SharedBoolreturnHit":{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},"Int32attackStartAudioIndex":-1,"Int32attackEndAudioIndex":-1,"SingleattackForceDelayTimer":0}]},{"Type":"BehaviorDesigner.Runtime.Tasks.Unity.UnityBoxCollider2D.SetSize","NodeData":{"Offset":"(150,140)"},"ID":37,"Name":"Set
+        Size","Instant":true,"SharedGameObjecttargetGameObject":{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":null,"GameObjectmValue":9},"SharedVector2size":{"Type":"BehaviorDesigner.Runtime.SharedVector2","Name":null,"Vector2mValue":"(0.1,0.1)"}}]}]}]}]}]}]},"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"distanceToPlayer","IsShared":true,"SinglemValue":100},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"hit","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"returnHit","IsShared":true,"BooleanmValue":false},{"Type":"BehaviorDesigner.Runtime.SharedBool","Name":"canMove","IsShared":true,"BooleanmValue":false}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -51382,6 +51387,9 @@ MonoBehaviour:
         - {fileID: 1375000903}
         - {fileID: 1224993990}
         - {fileID: 994030484}
+        - {fileID: 1290398995}
+        - {fileID: 977434822}
+        - {fileID: 1897295835}
         - {fileID: 63799786}
         byteData: 
         byteDataArray: 
@@ -60201,7 +60209,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.015933514}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -60212,7 +60220,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 10, y: 10.031867}
   m_EdgeRadius: 0
 --- !u!1 &767988423
 GameObject:
@@ -61955,8 +61963,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -62000,7 +62008,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 9e8fe0c8879fbea43a7352a136beb56f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -62619,7 +62627,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 300
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -71762,7 +71770,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 7c3444842b1984042b5b192de4f909b8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -71832,8 +71840,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -72101,6 +72109,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &977434821
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977434822}
+  m_Layer: 7
+  m_Name: Teleport_Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977434822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977434821}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 100, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2032031386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &978990166
 GameObject:
   m_ObjectHideFlags: 0
@@ -72818,7 +72857,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 40
   m_Sprite: {fileID: 21300000, guid: f0cf70e14cce86840b2940e69bf4639c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -72888,8 +72927,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -74736,8 +74775,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -74781,7 +74820,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 40
   m_Sprite: {fileID: 21300000, guid: d0d5f70d14338734a9f0bc8061947cfc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -75239,8 +75278,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.6
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -75284,7 +75323,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 4421e3458d3fee34eb15d0b52dc362b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -75835,7 +75874,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 8259f44d879d3a04bb2c29d86216c06a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -75905,8 +75944,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -76826,7 +76865,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 30
   m_Sprite: {fileID: 21300000, guid: 3587d279ddb531747b33162429373ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -76896,8 +76935,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -78046,7 +78085,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 300
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -83319,7 +83358,7 @@ MonoBehaviour:
   bodyAnim: {fileID: 1684065823}
   settings: {fileID: 0}
   invincibilityDuration: 1.5
-  fadeBlackAnim: {fileID: 0}
+  fadeBlackAnim: {fileID: 1878527292}
   playerSprites:
   - {fileID: 1684065824}
   - {fileID: 1086577536}
@@ -85996,7 +86035,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 20
   m_Sprite: {fileID: 21300000, guid: 3ba62d3e274936a4fa7dd1f7b410870f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -86066,8 +86105,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -87028,7 +87067,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 878d791c5ac0f2c4fb8cd38a70d29cfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -87098,8 +87137,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -87367,7 +87406,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -40
   m_Sprite: {fileID: 21300000, guid: 590e70198f7ee2a408fd20cbc032d3f6, type: 3}
   m_Color: {r: 0.6754716, g: 0.6754716, b: 0.6754716, a: 1}
@@ -87437,8 +87476,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -88253,6 +88292,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -50, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1290398994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1290398995}
+  m_Layer: 0
+  m_Name: PortalSpawnTrans
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1290398995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1290398994}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12, y: 3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1396190300}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1293727145
 GameObject:
   m_ObjectHideFlags: 0
@@ -94298,7 +94368,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 300
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -100622,7 +100692,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 200
   m_Sprite: {fileID: 21300000, guid: b4a54d0ea28f3ef4da49e9a5578afac6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -100835,6 +100905,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1375000904}
   - component: {fileID: 1375000905}
+  - component: {fileID: 1375000906}
   m_Layer: 0
   m_Name: NextLevel
   m_TagString: Untagged
@@ -100876,6 +100947,51 @@ MonoBehaviour:
   fadeBlack: {fileID: 1878527292}
   sceneToLoad: CutsceneC
   waitDuration: 5
+--- !u!61 &1375000906
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375000903}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 1.1220703, y: 19.915958}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 446.84747, y: 90.47192}
+  m_EdgeRadius: 0
 --- !u!1001 &1377249573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101225,8 +101341,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -101270,7 +101386,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -20
   m_Sprite: {fileID: 21300000, guid: 7410af1e61ae81642afab2e738bea510, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -101762,6 +101878,7 @@ Transform:
   - {fileID: 612270450}
   - {fileID: 1334547214}
   - {fileID: 1927219161}
+  - {fileID: 1290398995}
   m_Father: {fileID: 673151930}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1398608224
@@ -103141,7 +103258,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 43cba78977bc4334db74fa2eafad2cf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -103211,8 +103328,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -110146,7 +110263,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 300
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -116812,7 +116929,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 135
   m_Sprite: {fileID: 21300000, guid: 208403620faea974e869a5162c3f20d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -117502,15 +117619,19 @@ PolygonCollider2D:
   m_Points:
     m_Paths:
     - - {x: 0.6209936, y: -1.450201}
-      - {x: -2.6205611, y: 5.333036}
-      - {x: -7.8578243, y: 4.061465}
-      - {x: -16.150057, y: 18.772125}
-      - {x: -19.577633, y: 16.043266}
-      - {x: -23.853142, y: 6.8512497}
-      - {x: -20.413988, y: -5.6002235}
-      - {x: -9.015884, y: -12.520443}
-      - {x: 4.0256386, y: -9.572165}
-      - {x: 11.468163, y: 2.8046079}
+      - {x: -0.4696517, y: 0.23230696}
+      - {x: -10.407997, y: 16.40969}
+      - {x: -14.405199, y: 19.644554}
+      - {x: -23.182766, y: 17.736885}
+      - {x: -28.211905, y: 15.30693}
+      - {x: -31.099035, y: 12.987469}
+      - {x: -32.030853, y: 8.656564}
+      - {x: -32.46274, y: 6.6478767}
+      - {x: -31.973444, y: 4.233964}
+      - {x: -28.26585, y: -0.9025302}
+      - {x: -19.08238, y: -2.1855135}
+      - {x: -13.557163, y: -4.5389194}
+      - {x: -7.3897305, y: -4.443263}
   m_UseDelaunayMesh: 0
 --- !u!1 &1567115606
 GameObject:
@@ -123677,8 +123798,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -123722,7 +123843,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -40
   m_Sprite: {fileID: 21300000, guid: 148c23a9424523d4089ee12b8dac1279, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -125110,7 +125231,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 310
   m_RenderMode: 0
   m_MeshDistribution: 0
@@ -132581,8 +132702,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.78
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -132647,7 +132768,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a650d9d16b34ee0489a9024b32cf2d64, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -134793,8 +134914,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.6
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -134838,7 +134959,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 45
   m_Sprite: {fileID: 21300000, guid: 92ef0111e9cf0da4d8221c04e0684c76, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140296,7 +140417,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 878d791c5ac0f2c4fb8cd38a70d29cfb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -140366,8 +140487,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -140553,8 +140674,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -140598,7 +140719,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -50
   m_Sprite: {fileID: 21300000, guid: 823aaf22362719e449093fc23956edb8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -144174,7 +144295,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1878527290}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -144418,13 +144539,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1883583831}
+  - component: {fileID: 1883583832}
   m_Layer: 0
   m_Name: Gradients
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1883583831
 Transform:
   m_ObjectHideFlags: 0
@@ -144447,6 +144569,18 @@ Transform:
   - {fileID: 64240864}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1883583832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1883583830}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb08f3525b6741e458a11bf5fb6c040c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1884651506
 GameObject:
   m_ObjectHideFlags: 0
@@ -144866,6 +145000,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1897295834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1897295835}
+  m_Layer: 7
+  m_Name: Teleport_Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1897295835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897295834}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -100, y: 12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2032031386}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1899028231
 GameObject:
   m_ObjectHideFlags: 0
@@ -145459,7 +145624,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 8259f44d879d3a04bb2c29d86216c06a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -145529,8 +145694,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -146118,7 +146283,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -10
   m_Sprite: {fileID: 21300000, guid: 3587d279ddb531747b33162429373ff3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -146188,8 +146353,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -146371,7 +146536,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 705
   m_Sprite: {fileID: 21300000, guid: 208403620faea974e869a5162c3f20d3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.40784314}
@@ -148014,7 +148179,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: 73a3253a92e21eb4b84a99b4647f7fdb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148084,8 +148249,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -148990,7 +149155,7 @@ TrailRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 44
   m_Time: 0.215
   m_PreviewTimeScale: 1
@@ -149971,6 +150136,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 644576233}
+  - {fileID: 1897295835}
+  - {fileID: 977434822}
   m_Father: {fileID: 1804322262}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033159359
@@ -151118,8 +151285,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -151163,7 +151330,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 50
   m_Sprite: {fileID: 21300000, guid: 32b4455868a4dfe48b4f0f19013ea63b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -152913,7 +153080,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 10
   m_Sprite: {fileID: 21300000, guid: 73a3253a92e21eb4b84a99b4647f7fdb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -152983,8 +153150,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -153497,7 +153664,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -11750333
-  m_SortingLayer: 9
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4c0edf0b377035f438369960c6a8722a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -153567,8 +153734,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -11750333
   m_BackSortingLayerID: -11750333
-  m_FrontSortingLayer: 9
-  m_BackSortingLayer: 9
+  m_FrontSortingLayer: 8
+  m_BackSortingLayer: 8
   m_FrontSortingOrder: 710
   m_BackSortingOrder: 700
   m_IsCustomRangeActive: 1
@@ -154924,8 +155091,8 @@ SpriteMask:
   m_MaskAlphaCutoff: 0.2
   m_FrontSortingLayerID: -1480410211
   m_BackSortingLayerID: -1480410211
-  m_FrontSortingLayer: 8
-  m_BackSortingLayer: 8
+  m_FrontSortingLayer: 9
+  m_BackSortingLayer: 9
   m_FrontSortingOrder: 11000
   m_BackSortingOrder: 110
   m_IsCustomRangeActive: 1
@@ -154969,7 +155136,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1480410211
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: -30
   m_Sprite: {fileID: 21300000, guid: af2d9ec8db7699c41bc928d8a78eee9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

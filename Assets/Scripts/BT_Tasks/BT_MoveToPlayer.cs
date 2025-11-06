@@ -11,7 +11,7 @@ public class BT_MoveToPlayer : EnemyAction
     public float walkSpeed = 50;
     public float walkingRange = 30;
     public float stopRange = 10f;
-    public const float attackRange = 20f;
+    public float attackRange = 20f;
     public Vector2 attackWait = new Vector2(0.25f, 1f);
     public float attackWaitTimer;
 

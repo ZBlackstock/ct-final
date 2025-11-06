@@ -21,18 +21,21 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        FlipCheck();
+        FlipCheck(true);
         bodyAnim.SetBool("faceRight", faceRight);
         health.Set_FaceRight(faceRight);
     }
 
-    private void FlipCheck()
+    public void FlipCheck(bool checkCanMove)
     {
         if (playerTrans.position.x < transform.position.x && faceRight ||
             playerTrans.position.x > transform.position.x && !faceRight)
         {
-            if (CanMove())
+            print("Should flip if able");
+
+            if (CanMove() || !checkCanMove)
             {
+                print("Flipping enemy!");
                 Flip();
             }
         }
@@ -78,6 +81,11 @@ public class Enemy : MonoBehaviour
         {
             clipName = "NoClip";
         }
-        return clipName;    
+        return clipName;
+    }
+
+    public bool IsFaceRight()
+    {
+        return faceRight;
     }
 }
