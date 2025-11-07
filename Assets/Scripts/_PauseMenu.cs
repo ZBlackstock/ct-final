@@ -91,7 +91,7 @@ public class _PauseMenu : MonoBehaviour
     // Checks if submenu like controls or settings is open on exit input, and if so wont close menu, just go back once
     private bool Submenu_Back()
     {
-        if (settingsCanvas.activeSelf || controlsCanvas.activeSelf)
+        if ((settingsCanvas.activeSelf || controlsCanvas.activeSelf) && GetPauseMenuActive())
         {
             menuSettings.btn_Back();
             return true;

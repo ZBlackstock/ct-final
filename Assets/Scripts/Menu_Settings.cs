@@ -99,6 +99,7 @@ public class Menu_Settings : MonoBehaviour
 
     public void btn_Back()
     {
+        print("Button back");
         primaryMenu.SetActive(true);
         buttonHighlighter.SetEventSystemCurrentButton(buttonHighlighter.firstSelectedButton);
         sound.PlaySound(sound.UI_ButtonSelect);

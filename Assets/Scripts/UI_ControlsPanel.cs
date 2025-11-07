@@ -46,7 +46,6 @@ public class UI_ControlsPanel : MonoBehaviour
 
     private void ExitCheck(bool pauseMenuActive)
     {
-        print("Controls panel exitCheck: Within pausemenu = " + pauseMenuActive);
         if (pauseMenuActive)
         {
             // Within pause menu, check for "back" inputs
