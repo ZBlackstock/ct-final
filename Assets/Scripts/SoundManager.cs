@@ -45,6 +45,11 @@ public class SoundManager : MonoBehaviour
     public AudioClip UI_Dialogue_Typing;
     public AudioClip UI_Vocal_NightmareDweller;
 
+
+    [Header("Misc")]
+    public AudioClip portalEnter;
+    public AudioClip portalExit;
+
     private void Start()
     {
         StartCoroutine(AudioClear());

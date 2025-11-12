@@ -26,5 +26,6 @@ public class BT_EnterPortal : EnemyAction
             Xscaler *= -1;
         }
         portalManager.SpawnPortal(new Vector2(portalSpawnPos.position.x, portalSpawnPos.position.y), Xscaler * portalRot, portalDuration);
+        container.sounds.PlaySound(container.sounds.portalEnter);
     }
 }

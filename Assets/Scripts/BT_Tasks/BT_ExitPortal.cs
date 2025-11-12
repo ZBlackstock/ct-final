@@ -47,5 +47,7 @@ public class BT_ExitPortal : EnemyAction
         portalManager.SpawnPortal(new Vector2(trans.position.x, trans.position.y) +
                                   new Vector2(portalOffset.x * Xscaler, portalOffset.y),
                                   portalRot * Xscaler, portalDuration);
+
+        container.sounds.PlaySound(container.sounds.portalExit);
     }
 }
