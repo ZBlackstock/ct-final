@@ -8,6 +8,8 @@ public class BT_Check_Dead : EnemyConditional
     [SerializeField] private GameObject enableOnDeath;
     [SerializeField] private UI_Healthbar playerHealthbar;
     [SerializeField] private UI_HealthbarEnemy enemyHealthbar;
+    [SerializeField] private BoxCollider2D musicTrigger; // Shrink on death to fade out music
+    [SerializeField] private Rotate clockRotate;
     bool isDead;
 
     public override TaskStatus OnUpdate()
@@ -24,11 +26,17 @@ public class BT_Check_Dead : EnemyConditional
             rb.velocity = Vector2.zero;
             enemyHealthbar.gameObject.SetActive(false);
             playerHealthbar.gameObject.SetActive(false);
+
+            if(musicTrigger != null)
+            {
+                musicTrigger.size = Vector2.zero;   
+            }
+            if(clockRotate != null)
+            {
+                clockRotate.SpeedUp(-0.5f);
+            }
         }
 
-
-
-        // Change to include music hitbox and clock rotate
         return isDead ? TaskStatus.Failure : TaskStatus.Success;
     }
 }

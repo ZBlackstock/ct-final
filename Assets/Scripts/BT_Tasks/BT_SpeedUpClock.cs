@@ -13,7 +13,6 @@ public class BT_SpeedUpClock : EnemyAction
 
     public override void OnStart()
     {
-        Debug.Log("what the fuck");
         clockRotate.SpeedUp(speedRate);
     }
 }
