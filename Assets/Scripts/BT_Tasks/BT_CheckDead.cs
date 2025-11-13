@@ -26,6 +26,9 @@ public class BT_Check_Dead : EnemyConditional
             playerHealthbar.gameObject.SetActive(false);
         }
 
+
+
+        // Change to include music hitbox and clock rotate
         return isDead ? TaskStatus.Failure : TaskStatus.Success;
     }
 }

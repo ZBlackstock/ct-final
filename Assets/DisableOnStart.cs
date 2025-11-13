@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class DisableOnStart : MonoBehaviour
 {
-    void Start()
+    [SerializeField] private bool waitFrame;
+    IEnumerator Start()
     {
+        if (waitFrame)
+        {
+            yield return null;
+        }
         gameObject.SetActive(false);
     }
 }
