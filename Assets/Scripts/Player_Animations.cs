@@ -5,6 +5,7 @@ using UnityEngine;
 // Handles functionality tied to animations on player
 public class Player_Animations : MonoBehaviour
 {
+    private Container container;
     private CameraShake cameraShake;
     private Animator playerAnim;
     private AnimatorStateInfo playerStateInfo;
@@ -26,6 +27,7 @@ public class Player_Animations : MonoBehaviour
         cameraShake = FindFirstObjectByType<CameraShake>();
         playerAnim = GetComponent<Animator>();
         sound = FindFirstObjectByType<SoundManager>();
+        container = FindFirstObjectByType<Container>();
     }
 
     private void Start()
@@ -105,62 +107,6 @@ public class Player_Animations : MonoBehaviour
         attack = true;
     }
 
-    private void AttackHitbox_True()
-    {
-        if (playerStateInfo.IsName("Player_Attack"))
-        {
-            attackCollisions[0].SetActive(true);
-        }
-        else if (playerStateInfo.IsName("Player_Attack1"))
-        {
-            attackCollisions[1].SetActive(true);
-        }
-        else if (playerStateInfo.IsName("Player_JumpAttack"))
-        {
-            attackCollisions[2].SetActive(true);
-        }
-    }
-
-    private void AttackHitbox_False()
-    {
-        if (playerStateInfo.IsName("Player_Attack"))
-        {
-            attackCollisions[0].SetActive(false);
-        }
-        else if (playerStateInfo.IsName("Player_Attack1"))
-        {
-            attackCollisions[1].SetActive(false);
-        }
-        else if (playerStateInfo.IsName("Player_JumpAttack"))
-        {
-            attackCollisions[2].SetActive(false);
-        }
-    }
-
-    private void CounterHitbox_True()
-    {
-        if (playerStateInfo.IsName("Player_Counter_Uppercut"))
-        {
-            counterCollisions[0].SetActive(true);
-        }
-        else if (playerStateInfo.IsName("Player_Counter_Step"))
-        {
-            counterCollisions[1].SetActive(true);
-        }
-    }
-
-    private void CounterHitbox_False()
-    {
-        if (playerStateInfo.IsName("Player_Counter_Uppercut"))
-        {
-            counterCollisions[0].SetActive(false);
-        }
-        else if (playerStateInfo.IsName("Player_Counter_Step"))
-        {
-            counterCollisions[1].SetActive(false);
-        }
-    }
-
     public void attack_False()
     {
         attack = false;
@@ -238,5 +184,11 @@ public class Player_Animations : MonoBehaviour
     private void PlaySound_StepCounter()
     {
         sound.PlaySound(sound.player_StepCounter, 1);
+    }
+
+    private void PlayParticles_StepCounter()
+    {
+        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles[1]);
+        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles[2]);
     }
 }

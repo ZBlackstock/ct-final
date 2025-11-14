@@ -97,7 +97,8 @@ public class Player_Attack : MonoBehaviour
 
         // Play sound & particles
         container.sounds.PlaySound(container.sounds.player_StepCounterCollision);
-        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles);
+        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles[3]);
+        container.particles.PlayParticlesFromParticleSystem(container.particles.stepCounterParticles[4]);
     }
 
     // Bool enemyExposed returns if enemy is vulnerable when method is called

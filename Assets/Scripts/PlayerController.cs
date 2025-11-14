@@ -287,6 +287,7 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeVelocity(new Vector2(stepForce, 0), stepForceDuration);
                     sound.PlaySound(sound.player_StepCounterChime);
+                    playerParticles.PlayParticlesFromParticleSystem(playerParticles.stepCounterParticles[0]); // White ring particles
 
                     step = false;
                 }
