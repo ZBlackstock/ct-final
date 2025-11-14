@@ -23,6 +23,11 @@ public class Enemy_Animations : MonoBehaviour
     {
         container.particles.PlayParticlesFromParticleSystem(container.particles.scythe);
     }
+
+    private void SwipeSound()
+    {
+        container.sounds.PlaySound(container.sounds.player_AttackWhoosh[0]);
+    }
 }
 
 
