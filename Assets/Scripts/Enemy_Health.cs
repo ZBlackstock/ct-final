@@ -56,14 +56,17 @@ public class Enemy_Health : Health
             // Communicate with enemy AI
             behaviourTree.SetVariableValue("hit", true);
 
-            //If dead, disable collider
-            capsule.enabled = health > 0;
-
             // Set animator variables
             tintAnim.SetTrigger("hit");
             bodyAnim.SetTrigger("hit");
 
-            bodyAnim.SetBool("dead", health <= 0);
+            //Dead
+            if(health <= 0)
+            {
+                container.sounds.PlaySound(container.sounds.enemy_Death);
+                capsule.enabled = false;
+                bodyAnim.SetBool("dead", true);
+            }
         }
         else // Counter player
         {

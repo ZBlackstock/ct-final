@@ -29498,6 +29498,134 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &410395979
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 410395980}
+  - component: {fileID: 410395981}
+  m_Layer: 0
+  m_Name: Sound_Bell
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &410395980
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410395979}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &410395981
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410395979}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: f335b13aa6c4ff947bba6a2ac24fad32, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.576
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &422630678
 GameObject:
   m_ObjectHideFlags: 0
@@ -40128,6 +40256,7 @@ MonoBehaviour:
   playerHeal: {fileID: 346897276}
   enemyCounter_Particles: {fileID: 1520482392}
   enemyHeal: {fileID: 888658199}
+  scythe: []
 --- !u!70 &469249755
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -108924,6 +109053,7 @@ MonoBehaviour:
   player_StepCounterChime: {fileID: 8300000, guid: 8a9c37236f64cc14e8ef8505af345969, type: 3}
   player_Hurt: {fileID: 8300000, guid: 7fb74cd81126a204cac345fb0590b074, type: 3}
   player_Death: {fileID: 8300000, guid: fea0edd87184a8347b7eaf1f777f0da3, type: 3}
+  enemy_Death: {fileID: 0}
   enemy_vocal_AttackStart:
   - {fileID: 8300000, guid: 1bbfa4d07fbf7854d8ebcde4dd9d4c04, type: 3}
   - {fileID: 8300000, guid: 41ccd59e2fd720b47aa7f6a7c4f5e7af, type: 3}
@@ -109702,6 +109832,7 @@ MonoBehaviour:
   <enemy>k__BackingField: {fileID: 215220963}
   <enemyHealth>k__BackingField: {fileID: 592226331}
   <playerAnim>k__BackingField: {fileID: 1305339949}
+  <camShake>k__BackingField: {fileID: 0}
 --- !u!4 &1512678216
 Transform:
   m_ObjectHideFlags: 0
@@ -149977,7 +150108,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2024647494
 Transform:
   m_ObjectHideFlags: 0
@@ -152144,6 +152275,7 @@ SceneRoots:
   - {fileID: 690074027}
   - {fileID: 1161463185}
   - {fileID: 895517612}
+  - {fileID: 410395980}
   - {fileID: 1007621404}
   - {fileID: 469249758}
   - {fileID: 1466527656}

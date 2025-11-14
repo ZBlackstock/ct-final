@@ -10,6 +10,7 @@ public class BT_Check_Dead : EnemyConditional
     [SerializeField] private UI_HealthbarEnemy enemyHealthbar;
     [SerializeField] private BoxCollider2D musicTrigger; // Shrink on death to fade out music
     [SerializeField] private Rotate clockRotate;
+    public bool shakeCamera;
     bool isDead;
 
     public override TaskStatus OnUpdate()
@@ -34,6 +35,10 @@ public class BT_Check_Dead : EnemyConditional
             if(clockRotate != null)
             {
                 clockRotate.SpeedUp(-0.5f);
+            }
+            if (shakeCamera)
+            {
+                container.camShake.ShakeCamera(10);
             }
         }
 

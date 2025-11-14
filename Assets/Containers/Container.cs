@@ -15,10 +15,12 @@ public class Container : MonoBehaviour
     [field: SerializeField] public Enemy enemy { get; private set; }
     [field: SerializeField] public Enemy_Health enemyHealth { get; private set; }
     [field: SerializeField] public Animator playerAnim{ get; private set; }
+    [field: SerializeField] public CameraShake camShake{ get; private set; }
 
 
     private void Awake()
     {
         instance = this;
+        camShake = FindFirstObjectByType<CameraShake>();
     }
 }

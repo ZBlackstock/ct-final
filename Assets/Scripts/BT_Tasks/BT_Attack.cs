@@ -9,8 +9,6 @@ using UnityEngine;
 // Collisions must be set via enabling/disabling gameobject under AttackCollisions in hierarchy, via associated attack animation
 public class BT_Attack : EnemyAction
 {
-    private Container container;
-
     public int attackSeq = -1; // Tells anim int "attackSeq" what attack anim clip to play
     [Header("Attack Velocity Changes")]
     public List<Vector2> attackForces = new List<Vector2>(1); // Velocity X, Velocity Y, Duration, WaitTime
@@ -26,7 +24,9 @@ public class BT_Attack : EnemyAction
     public SharedBool hit; // Global bool - has enemy been hit. used to cause quicker animation exit, or result in return hit
     public SharedBool returnHit; // Global bool, if true on exit, enemy will jab player
 
-    [Header("Enemy Vocals Audio")]
+    [Header("Attack Audio")]
+    public AudioClip swipe;
+    public int playSoundAtIterator = 0; // What iterator value to play sound at. otherwise it will play on every velocity change
     public int attackStartAudioIndex = -1; // references index of SoundManager.enemy_Vocal_AttackStart[]
     public int attackEndAudioIndex = -1;// same for SoundManager.enemy_Vocal_AttackEnd[]
 
@@ -80,17 +80,14 @@ public class BT_Attack : EnemyAction
         {
             velocityTimer = -1;
         }
-
         // If timer above 0, decrease. Else set to -1 (add attack force)
         attackForceDelayTimer = attackForceDelayTimer >= 0 ? attackForceDelayTimer -= Time.deltaTime : -1;
-
         // Add force, then wait until anim is finished before returning success
         if (attackForceDelayTimer == -1 && !addedForce && !container.enemyHealth.GetHasBeenCountered())
         {
             Attack();
             StartCoroutine(Wait());
         }
-
         //check not been countered
         if (container.enemyHealth.GetHasBeenCountered() && !attackCountered)
         {
@@ -99,18 +96,18 @@ public class BT_Attack : EnemyAction
             StartCoroutine(Wait());
             attackCountered = true;
         }
-
         // Check if player has hit enem during attack
         HitCheck(attackCountered);
-
         return success ? TaskStatus.Success : TaskStatus.Running;
     }
 
     public void Attack()
     {
-        Debug.Log("Attack");
         StartCoroutine(ChangeVelocity(attackForces[iterator], attackDurations[iterator]));
-
+        if(playSoundAtIterator == iterator)
+        {
+            PlayAttackSounds();
+        }
         if (attackForces.Count > iterator + 1)
         {
             iterator++;
@@ -120,12 +117,19 @@ public class BT_Attack : EnemyAction
         {
             addedForce = true;
         }
+        anim.SetInteger("attackSeq", -1);
+    }
 
+    private void PlayAttackSounds()
+    {
+        if (swipe != null)
+        {
+            container.sounds.PlaySound(swipe);
+        }
         if (attackEndAudioIndex != -1)
         {
             container.sounds.PlaySound(container.sounds.enemy_vocal_AttackEnd[attackEndAudioIndex]);
         }
-        anim.SetInteger("attackSeq", -1);
     }
 
     // Player countered enemy attack
@@ -151,6 +155,7 @@ public class BT_Attack : EnemyAction
     IEnumerator Wait()
     {
         yield return null; // Wait frame to ensure correct animation clip
+        yield return new WaitUntil(()=> !anim.IsInTransition(0));
         counteredTimer = animStateInfo.length - (animStateInfo.normalizedTime * animStateInfo.length);
         yield return new WaitUntil(() => counteredTimer == -1);
         ExitAttackTask();
@@ -164,7 +169,6 @@ public class BT_Attack : EnemyAction
         {
             ExitAttackTask();
             hit.Value = false;
-
             returnHit.Value = !attackCountered;
         }
     }
@@ -173,7 +177,6 @@ public class BT_Attack : EnemyAction
     {
         success = true;
     }
-
     public override void OnEnd()
     {
         iterator = 0;
