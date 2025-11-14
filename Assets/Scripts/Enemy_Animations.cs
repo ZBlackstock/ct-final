@@ -6,15 +6,22 @@ using UnityEngine;
 public class Enemy_Animations : MonoBehaviour
 {
     private SoundManager sound;
+    private Container container;
 
     private void Awake()
     {
         sound = FindFirstObjectByType<SoundManager>();
+        container = FindFirstObjectByType<Container>();
     }
 
     private void PlaySound_Step()
     {
         sound.PlaySoundRandom(sound.enemy_Steps, 0.3f, 1, 1);
+    }
+
+    private void PlayParticles_Scythe()
+    {
+        container.particles.PlayParticlesFromParticleSystem(container.particles.scythe);
     }
 }
 

@@ -19,6 +19,7 @@ public class _ParticlesManager : MonoBehaviour
     [Header("Enemy Particles")]
     public ParticleSystem enemyCounter_Particles; // Metal sparks when enemy counters player
     public ParticleSystem enemyHeal; //Play when player countered
+    public ParticleSystem[] scythe;
 
     //Instantiate GameObject at position 
     public void SpawnParticlesAsGameObject(GameObject particles, Vector2 pos)

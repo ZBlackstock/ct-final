@@ -62,6 +62,7 @@ public class Enemy_Health : Health
             // Set animator variables
             tintAnim.SetTrigger("hit");
             bodyAnim.SetTrigger("hit");
+
             bodyAnim.SetBool("dead", health <= 0);
         }
         else // Counter player
@@ -69,11 +70,11 @@ public class Enemy_Health : Health
             invincibilityTimer = 0.1f;
             bodyAnim.SetTrigger("counter");
             container.particles.enemyCounter_Particles.transform.localScale = new Vector3((faceRight ? -1 : 1), 1, 1);
-           container.particles.PlayParticlesFromParticleSystem(container.particles.enemyCounter_Particles);
+            container.particles.PlayParticlesFromParticleSystem(container.particles.enemyCounter_Particles);
 
-            if(health < maxHealth)
+            if (health < maxHealth)
             {
-                container. particles.PlayParticlesFromParticleSystem(container.particles.enemyHeal);
+                container.particles.PlayParticlesFromParticleSystem(container.particles.enemyHeal);
                 // Ensure health healed doesn't go over max
                 health = health > (maxHealth - healAmount) ? maxHealth : health += healAmount;
                 tintAnim.SetTrigger("heal");

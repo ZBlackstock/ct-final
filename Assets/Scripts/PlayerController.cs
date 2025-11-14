@@ -95,12 +95,10 @@ public class PlayerController : MonoBehaviour
         sound = FindFirstObjectByType<SoundManager>();
         bodyAnim.SetBool("wakeUpKneel", wakeUpKneel);
     }
-
     private void Start()
     {
         startTimer = wakeUpKneel ? 2.5f : 9f;
     }
-
     void Update()
     {
         canmove = canMove();
@@ -117,7 +115,7 @@ public class PlayerController : MonoBehaviour
         {
             moveInput = 0;
         }
-            startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
+        startTimer = !ignoreWakeUp ? startTimer -= Time.deltaTime : startTimer = -1;
 
         CheckInput();
         ExecuteInputs();
@@ -142,15 +140,9 @@ public class PlayerController : MonoBehaviour
 
         if (canMove())
         {
-            animVariables.attackKnockback_False();
-            animVariables.attack_False();
-            animVariables.countered_False();
-            animVariables.stepKnockback_False();
-            animVariables.step_False();
-            animVariables.uppercutStepback_False();
+            SetAnimVariables();
         }
     }
-
     private void SetAnimatorParameters()
     {
         bodyAnim.SetFloat("moveInput", moveInput);
@@ -162,7 +154,15 @@ public class PlayerController : MonoBehaviour
         bodyAnim.SetBool("isGrounded", groundCheck.isGrounded);
         bodyAnim.SetBool("countered", countered);
     }
-
+    private void SetAnimVariables()
+    {
+        animVariables.attackKnockback_False();
+        animVariables.attack_False();
+        animVariables.countered_False();
+        animVariables.stepKnockback_False();
+        animVariables.step_False();
+        animVariables.uppercutStepback_False();
+    }
     private void SubtractTimers()
     {
         attackInputTimer -= Time.deltaTime;
@@ -170,7 +170,6 @@ public class PlayerController : MonoBehaviour
         stepInputTimer -= Time.deltaTime;
         jumpInputTimer -= Time.deltaTime;
     }
-
     private void CheckInput()
     {
         if (!GetUIOpen())
@@ -193,12 +192,10 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void DetectAppropriateGravScale()
     {
         rb.gravityScale = groundCheck.isGrounded && !bodyAnimState.IsName("Player_Hurt") ? groundedGravity : jumpingGravity;
     }
-
     private void ExecuteInputs()
     {
         if (!health.IsHurt() && !health.IsDeath())
@@ -247,7 +244,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void FixedUpdate()
     {
         if (!health.IsHurt())
@@ -330,13 +326,11 @@ public class PlayerController : MonoBehaviour
             health.SetHurt(false);
         }
     }
-
     private void ChangeVelocity(Vector2 velocity, float duration)
     {
         StopAllCoroutines();
         StartCoroutine(ChangeVelocityCoroutine(velocity, duration));
     }
-
     private IEnumerator ChangeVelocityCoroutine(Vector2 velocity, float duration)
     {
         velocityCoroutineRunning = true;
@@ -345,7 +339,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = Vector2.zero;
         velocityCoroutineRunning = false;
     }
-
     // Flip player scaling
     public void Flip()
     {
@@ -355,7 +348,6 @@ public class PlayerController : MonoBehaviour
         transform.localScale = Scaler;
         direction *= -1;
     }
-
     // Checks if player anim is currenty a movable state (not interacting or taking damage etc
     // Common check to see if player can perform action
     public bool canMove()
@@ -371,13 +363,11 @@ public class PlayerController : MonoBehaviour
 
         return false;
     }
-
     public void SetDisableMove(bool disable)
     {
         disableMove = disable;
     }
-
-    public void SetUIOpen(bool open, bool waitFrame)
+   public void SetUIOpen(bool open, bool waitFrame)
     {
         if (!waitFrame)
         {
@@ -400,7 +390,6 @@ public class PlayerController : MonoBehaviour
             healthbar.SetActive(!open);
         }
     }
-
     public void SetDialogueOpen(bool open)
     {
         dialogueOpen = open;
@@ -409,18 +398,15 @@ public class PlayerController : MonoBehaviour
     {
         return dialogueOpen;
     }
-
     private IEnumerator WaitFrame()
     {
         yield return null;
         SetUIOpen(false, false);
     }
-
     public bool GetUIOpen()
     {
         return UIOpen;
     }
-
     public float GetMoveInput()
     {
         return moveInput;

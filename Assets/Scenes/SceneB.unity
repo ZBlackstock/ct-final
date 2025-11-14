@@ -74306,7 +74306,7 @@ MonoBehaviour:
   bodyAnim: {fileID: 1305339949}
   settings: {fileID: 0}
   invincibilityDuration: 1.5
-  fadeBlackAnim: {fileID: 0}
+  fadeBlackAnim: {fileID: 63948384}
   playerSprites:
   - {fileID: 1305339950}
   - {fileID: 484972825}
